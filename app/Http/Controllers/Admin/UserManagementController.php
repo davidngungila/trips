@@ -252,9 +252,29 @@ class UserManagementController extends BaseAdminController
         $permissions = $validated['permissions'] ?? [];
         unset($validated['roles'], $validated['permissions'], $validated['email_verified']);
         
+        // Convert permission names to IDs before syncing
+        $roleIds = [];
+        $permissionIds = [];
+        
+        // Get role IDs
+        foreach ($roles as $roleName) {
+            $role = \Spatie\Permission\Models\Role::where('name', $roleName)->first();
+            if ($role) {
+                $roleIds[] = $role->id;
+            }
+        }
+        
+        // Get permission IDs  
+        foreach ($permissions as $permissionName) {
+            $permission = \Spatie\Permission\Models\Permission::where('name', $permissionName)->first();
+            if ($permission) {
+                $permissionIds[] = $permission->id;
+            }
+        }
+        
         $user->update($validated);
-        $user->syncRoles($roles);
-        $user->syncPermissions($permissions);
+        $user->syncRoles($roleIds);
+        $user->syncPermissions($permissionIds);
         
         return $this->successResponse('User updated successfully!', route('admin.users.index'));
     }
