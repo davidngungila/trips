@@ -23,7 +23,6 @@ class PaymentGatewaySeeder extends Seeder
                 'is_active' => true,
                 'is_test_mode' => false, // Live credentials provided
                 // Set as primary payment gateway
-                'priority' => 0,
                 'credentials' => [
                     'test_consumer_key' => env('PESAPAL_TEST_CONSUMER_KEY', ''),
                     'test_consumer_secret' => env('PESAPAL_TEST_CONSUMER_SECRET', ''),
@@ -56,15 +55,13 @@ class PaymentGatewaySeeder extends Seeder
             return;
         }
 
-        // Stripe Gateway (Primary)
+        // Stripe Gateway
         PaymentGateway::create([
             'name' => 'stripe',
             'display_name' => 'Stripe',
             'description' => 'Stripe payment gateway - Accept credit cards and other payment methods',
             'is_active' => true,
             'is_test_mode' => true,
-            'is_primary' => true,
-            'priority' => 0,
             'credentials' => [
                 'publishable_key' => env('STRIPE_PUBLISHABLE_KEY', 'pk_test_...'),
                 'secret_key' => env('STRIPE_SECRET_KEY', 'sk_test_...'),
@@ -95,8 +92,6 @@ class PaymentGatewaySeeder extends Seeder
             'description' => 'PayPal payment gateway - Accept PayPal payments',
             'is_active' => true,
             'is_test_mode' => true,
-            'is_primary' => false,
-            'priority' => 1,
             'credentials' => [
                 'client_id' => env('PAYPAL_CLIENT_ID', ''),
                 'client_secret' => env('PAYPAL_CLIENT_SECRET', ''),
@@ -129,7 +124,6 @@ class PaymentGatewaySeeder extends Seeder
             'is_active' => true,
             'is_test_mode' => false, // Live credentials provided
             // Set as primary payment gateway
-            'priority' => 0,
             'credentials' => [
                 'test_consumer_key' => env('PESAPAL_TEST_CONSUMER_KEY', ''),
                 'test_consumer_secret' => env('PESAPAL_TEST_CONSUMER_SECRET', ''),
