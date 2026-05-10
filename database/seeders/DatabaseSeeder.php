@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             ActivitySeeder::class, // Homepage Activities
             CoreValueSeeder::class, // Core Values (About Page)
             WhyTravelWithUsSeeder::class, // Why Travel With Us (About Page)
+            ImageSeeder::class, // Professional Images for Tours, Destinations, and Gallery
         ]);
     }
 }

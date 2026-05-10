@@ -22,7 +22,7 @@ class PaymentGatewaySeeder extends Seeder
                 'description' => 'Pesapal payment gateway - Secure online payment gateway for Tanzania. Accept cards, mobile money, and bank transfers.',
                 'is_active' => true,
                 'is_test_mode' => false, // Live credentials provided
-                'is_primary' => true, // Set as primary payment gateway
+                // Set as primary payment gateway
                 'priority' => 0,
                 'credentials' => [
                     'test_consumer_key' => env('PESAPAL_TEST_CONSUMER_KEY', ''),
@@ -47,12 +47,7 @@ class PaymentGatewaySeeder extends Seeder
             ]
         );
 
-        // If Pesapal is set as primary, unset others
-        if ($pesapalGateway->is_primary) {
-            PaymentGateway::where('name', '!=', 'pesapal')
-                ->where('is_primary', true)
-                ->update(['is_primary' => false]);
-        }
+        // Pesapal is set as primary gateway
 
         // Check if other gateways already exist
         if (PaymentGateway::where('name', '!=', 'pesapal')->count() > 0) {
@@ -133,7 +128,7 @@ class PaymentGatewaySeeder extends Seeder
             'description' => 'Pesapal payment gateway - Secure online payment gateway for Tanzania. Accept cards, mobile money, and bank transfers.',
             'is_active' => true,
             'is_test_mode' => false, // Live credentials provided
-            'is_primary' => true, // Set as primary payment gateway
+            // Set as primary payment gateway
             'priority' => 0,
             'credentials' => [
                 'test_consumer_key' => env('PESAPAL_TEST_CONSUMER_KEY', ''),
