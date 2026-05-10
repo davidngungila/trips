@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TanzaniaTrips – Discover the Heart of Africa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Outfit:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* =========================================
+   CSS VARIABLES & RESET
+   ========================================= */
+:root {
+  --green-deep:    #0D2B1A;
+  --green-dark:    #1B4332;
+  --green-mid:     #2D6A4F;
+  --green-soft:    #40916C;
+  --green-light:   #74C69D;
+  --green-pale:    #B7E4C7;
+  --gold:          #C9A84C;
+  --gold-light:    #E8C97A;
+  --white:         #FFFFFF;
+  --off-white:     #F8FAF8;
+  --gray-50:       #F4F6F4;
+  --gray-100:      #E8EDE8;
+  --gray-300:      #B8C4B8;
+  --gray-500:      #6B7C6B;
+  --gray-700:      #3D4D3D;
+  --text-dark:     #0D1F0D;
+  --glass-bg:      rgba(255,255,255,0.12);
+  --glass-border:  rgba(255,255,255,0.25);
+  --glass-shadow:  0 8px 32px rgba(13,43,26,0.18);
+  --glass-dark:    rgba(13,43,26,0.45);
+  --glass-border-dark: rgba(255,255,255,0.1);
+  --radius-sm:     8px;
+  --radius-md:     16px;
+  --radius-lg:     24px;
+  --radius-xl:     40px;
+  --shadow-sm:     0 2px 12px rgba(13,43,26,0.08);
+  --shadow-md:     0 8px 30px rgba(13,43,26,0.14);
+  --shadow-lg:     0 20px 60px rgba(13,43,26,0.20);
+  --nav-h:         76px;
+  --transition:    0.35s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Outfit',sans-serif;background:#fff;color:var(--text-dark);overflow-x:hidden;line-height:1.6;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+button{cursor:pointer;border:none;background:none;font-family:inherit;}
+input,select,textarea{font-family:inherit;}
+
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#f1f1f1;}
+::-webkit-scrollbar-thumb{background:var(--green-mid);border-radius:10px;}
+
+/* =========================================
+   UTILITIES
+   ========================================= */
+.container{max-width:1280px;margin:0 auto;padding:0 24px;}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:0.78rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--green-soft);margin-bottom:12px;}
+.section-label::before{content:'';display:block;width:28px;height:2px;background:var(--gold);}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:1.15;color:var(--green-deep);}
+.section-title span{color:var(--green-soft);}
+.section-subtitle{font-size:1.05rem;color:var(--gray-500);max-width:560px;margin-top:12px;font-weight:300;}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:var(--green-dark);color:#fff;border-radius:var(--radius-xl);font-weight:600;font-size:0.95rem;transition:var(--transition);letter-spacing:0.3px;}
+.btn-primary:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 8px 24px rgba(27,67,50,0.35);}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border:2px solid var(--green-dark);color:var(--green-dark);border-radius:var(--radius-xl);font-weight:600;font-size:0.95rem;transition:var(--transition);}
+.btn-outline:hover{background:var(--green-dark);color:#fff;transform:translateY(-2px);}
+.btn-gold{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:var(--gold);color:#fff;border-radius:var(--radius-xl);font-weight:600;font-size:0.95rem;transition:var(--transition);}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.4);}
+.tag{display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.78rem;font-weight:600;letter-spacing:0.5px;}
+.tag-green{background:var(--green-pale);color:var(--green-deep);}
+.tag-gold{background:rgba(201,168,76,0.15);color:var(--gold);}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.glass-card{background:rgba(255,255,255,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:var(--radius-lg);box-shadow:var(--glass-shadow);}
+.glass-card-dark{background:var(--glass-dark);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border-dark);border-radius:var(--radius-lg);box-shadow:var(--glass-shadow);}
+.page{display:none;}
+.page.active{display:block;}
+.fade-in{animation:fadeIn 0.5s ease forwards;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.stars{color:var(--gold);font-size:0.9rem;}
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);transition:var(--transition);}
+#navbar.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--gray-100);box-shadow:0 4px 20px rgba(13,43,26,0.08);}
+#navbar.hero-mode{background:transparent;}
+.nav-inner{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--green-dark);cursor:pointer;transition:var(--transition);}
+.logo-icon{width:40px;height:40px;background:var(--green-dark);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.logo-icon i{color:#fff;font-size:1.1rem;}
+#navbar.hero-mode .logo{color:#fff;}
+#navbar.hero-mode .logo-icon{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-link{padding:8px 14px;border-radius:var(--radius-sm);font-size:0.9rem;font-weight:500;color:var(--gray-700);transition:var(--transition);cursor:pointer;position:relative;}
+.nav-link:hover,.nav-link.active{color:var(--green-dark);background:var(--gray-50);}
+#navbar.hero-mode .nav-link{color:rgba(255,255,255,0.85);}
+#navbar.hero-mode .nav-link:hover{color:#fff;background:rgba(255,255,255,0.15);}
+.nav-cta{display:flex;align-items:center;gap:10px;}
+.nav-book-btn{padding:10px 22px;background:var(--green-dark);color:#fff;border-radius:var(--radius-xl);font-size:0.88rem;font-weight:600;transition:var(--transition);}
+.nav-book-btn:hover{background:var(--green-mid);box-shadow:0 4px 16px rgba(27,67,50,0.3);}
+#navbar.hero-mode .nav-book-btn{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.35);}
+#navbar.hero-mode .nav-book-btn:hover{background:rgba(255,255,255,0.25);}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--green-dark);border-radius:2px;transition:var(--transition);}
+#navbar.hero-mode .hamburger span{background:#fff;}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(255,255,255,0.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--gray-100);padding:16px 24px 24px;z-index:999;box-shadow:0 8px 24px rgba(13,43,26,0.12);}
+.mobile-menu.open{display:block;}
+.mobile-menu .nav-link{display:block;padding:12px 16px;border-radius:var(--radius-sm);margin-bottom:4px;color:var(--gray-700);}
+.mobile-menu .nav-link:hover{background:var(--gray-50);color:var(--green-dark);}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+#hero{height:100vh;min-height:700px;position:relative;overflow:hidden;display:flex;align-items:center;}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg-gradient{position:absolute;inset:0;background:linear-gradient(135deg,#0D2B1A 0%,#1B4332 40%,#2D6A4F 70%,#1B4332 100%);z-index:1;}
+.hero-bg-pattern{position:absolute;inset:0;z-index:2;opacity:0.06;background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);background-size:40px 40px;}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);z-index:2;}
+.hero-orb-1{width:500px;height:500px;background:radial-gradient(circle,rgba(116,198,157,0.4) 0%,transparent 70%);top:-100px;right:-100px;}
+.hero-orb-2{width:400px;height:400px;background:radial-gradient(circle,rgba(201,168,76,0.25) 0%,transparent 70%);bottom:-80px;left:200px;}
+.hero-orb-3{width:300px;height:300px;background:radial-gradient(circle,rgba(45,106,79,0.6) 0%,transparent 70%);top:50%;left:-80px;}
+.hero-img-right{position:absolute;right:0;top:0;bottom:0;width:50%;z-index:3;opacity:0.35;}
+.hero-img-right::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--green-deep) 0%,transparent 60%);}
+.hero-content{position:relative;z-index:10;max-width:700px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:var(--radius-xl);background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);font-size:0.82rem;font-weight:500;margin-bottom:24px;backdrop-filter:blur(10px);}
+.hero-badge i{color:var(--gold-light);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5.2rem);font-weight:800;line-height:1.08;color:#fff;margin-bottom:20px;}
+.hero-title .line-2{color:var(--gold-light);font-style:italic;}
+.hero-desc{font-size:1.1rem;color:rgba(255,255,255,0.75);max-width:500px;margin-bottom:36px;font-weight:300;line-height:1.7;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;}
+.hero-btn-main{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:#fff;color:var(--green-dark);border-radius:var(--radius-xl);font-weight:700;font-size:1rem;transition:var(--transition);}
+.hero-btn-main:hover{background:var(--green-pale);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.25);}
+.hero-btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border:2px solid rgba(255,255,255,0.35);color:#fff;border-radius:var(--radius-xl);font-weight:600;font-size:1rem;transition:var(--transition);backdrop-filter:blur(8px);}
+.hero-btn-secondary:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.6);}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap;}
+.hero-stat{}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:#fff;line-height:1;}
+.hero-stat-num span{color:var(--gold-light);}
+.hero-stat-label{font-size:0.82rem;color:rgba(255,255,255,0.6);margin-top:4px;font-weight:400;}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.5);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.5),transparent);animation:scrollPulse 2s ease-in-out infinite;}
+@keyframes scrollPulse{0%,100%{opacity:0.5;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.2);}}
+/* Hero floating cards */
+.hero-float-cards{position:absolute;right:5%;top:50%;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;gap:16px;}
+.float-card{background:rgba(255,255,255,0.13);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.2);border-radius:var(--radius-md);padding:14px 18px;color:#fff;min-width:200px;animation:floatCard 4s ease-in-out infinite;}
+.float-card:nth-child(2){animation-delay:1.5s;}
+.float-card:nth-child(3){animation-delay:3s;}
+@keyframes floatCard{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.float-card-label{font-size:0.72rem;color:rgba(255,255,255,0.6);margin-bottom:4px;}
+.float-card-value{font-size:1.1rem;font-weight:700;}
+.float-card-meta{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:0.78rem;color:rgba(255,255,255,0.7);}
+.float-card-meta i{color:var(--gold-light);}
+
+/* =========================================
+   SEARCH BAR
+   ========================================= */
+.search-section{position:relative;z-index:20;margin-top:-64px;padding:0 24px;}
+.search-wrapper{max-width:1100px;margin:0 auto;}
+.search-card{background:rgba(255,255,255,0.95);backdrop-filter:blur(30px);border:1px solid var(--gray-100);border-radius:var(--radius-lg);box-shadow:0 20px 60px rgba(13,43,26,0.18);padding:28px 32px;}
+.search-tabs{display:flex;gap:4px;margin-bottom:24px;background:var(--gray-50);padding:4px;border-radius:var(--radius-sm);width:fit-content;}
+.search-tab{padding:8px 20px;border-radius:6px;font-size:0.88rem;font-weight:600;color:var(--gray-500);cursor:pointer;transition:var(--transition);}
+.search-tab.active{background:#fff;color:var(--green-dark);box-shadow:var(--shadow-sm);}
+.search-fields{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:12px;align-items:end;}
+.sf-group{display:flex;flex-direction:column;gap:6px;}
+.sf-label{font-size:0.78rem;font-weight:600;color:var(--gray-700);letter-spacing:0.3px;}
+.sf-input-wrap{position:relative;}
+.sf-input-wrap i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--green-soft);font-size:0.9rem;}
+.sf-input,.sf-select{width:100%;padding:11px 12px 11px 36px;border:1.5px solid var(--gray-100);border-radius:var(--radius-sm);font-size:0.9rem;color:var(--text-dark);background:#fff;transition:var(--transition);outline:none;}
+.sf-input:focus,.sf-select:focus{border-color:var(--green-soft);box-shadow:0 0 0 3px rgba(64,145,108,0.1);}
+.sf-select{cursor:pointer;appearance:none;-webkit-appearance:none;}
+.search-btn{padding:13px 28px;background:var(--green-dark);color:#fff;border-radius:var(--radius-sm);font-weight:700;font-size:0.95rem;display:flex;align-items:center;gap:8px;transition:var(--transition);white-space:nowrap;}
+.search-btn:hover{background:var(--green-mid);box-shadow:0 6px 20px rgba(27,67,50,0.3);}
+.search-popular{margin-top:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.search-popular-label{font-size:0.8rem;color:var(--gray-500);font-weight:500;}
+.search-pill{padding:5px 14px;background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--radius-xl);font-size:0.8rem;color:var(--gray-700);cursor:pointer;transition:var(--transition);}
+.search-pill:hover{background:var(--green-pale);border-color:var(--green-light);color:var(--green-dark);}
+/* Autocomplete */
+.autocomplete-dropdown{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid var(--gray-100);border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);z-index:100;max-height:240px;overflow-y:auto;display:none;}
+.autocomplete-dropdown.open{display:block;}
+.ac-item{padding:10px 14px;cursor:pointer;font-size:0.88rem;transition:var(--transition);display:flex;align-items:center;gap:10px;}
+.ac-item:hover{background:var(--gray-50);color:var(--green-dark);}
+.ac-item i{color:var(--green-soft);}
+
+/* =========================================
+   WHY SECTION
+   ========================================= */
+.why-section{padding:100px 0;background:#fff;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px;}
+.why-visual{position:relative;}
+.why-img-stack{position:relative;height:500px;}
+.why-img-main{position:absolute;top:0;left:0;width:75%;height:420px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);}
+.why-img-main img,.why-img-accent img{width:100%;height:100%;object-fit:cover;}
+.why-img-accent{position:absolute;bottom:0;right:0;width:55%;height:280px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);border:4px solid #fff;}
+.why-badge{position:absolute;top:50%;left:60%;transform:translate(-50%,-50%);background:var(--green-dark);color:#fff;border-radius:var(--radius-md);padding:16px 20px;text-align:center;box-shadow:var(--shadow-lg);}
+.why-badge-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;line-height:1;}
+.why-badge-text{font-size:0.75rem;margin-top:2px;opacity:0.8;}
+.why-features{display:flex;flex-direction:column;gap:20px;margin-top:32px;}
+.why-feature{display:flex;gap:16px;align-items:flex-start;}
+.why-icon{width:48px;height:48px;background:var(--gray-50);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--transition);}
+.why-feature:hover .why-icon{background:var(--green-pale);}
+.why-icon i{font-size:1.1rem;color:var(--green-soft);}
+.why-feature-title{font-weight:700;font-size:0.95rem;color:var(--green-deep);margin-bottom:4px;}
+.why-feature-desc{font-size:0.88rem;color:var(--gray-500);}
+
+/* Placeholder colored images */
+.img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,0.4);}
+.img-kili{background:linear-gradient(135deg,#1a3a2e 0%,#2d6a4f 50%,#74c69d 100%);}
+.img-safari{background:linear-gradient(135deg,#2d4a1e 0%,#5a8a32 50%,#a8c870 100%);}
+.img-beach{background:linear-gradient(135deg,#1a3a5c 0%,#1e6ba8 50%,#5cb8e4 100%);}
+.img-zanzibar{background:linear-gradient(135deg,#3a1a2e 0%,#7a3a6a 50%,#c87ab8 100%);}
+.img-serengeti{background:linear-gradient(135deg,#3a2a1a 0%,#8a6a30 50%,#c8a850 100%);}
+.img-ngorongoro{background:linear-gradient(135deg,#1a2a3a 0%,#2a5a6a 50%,#5a9aa8 100%);}
+.img-tarangire{background:linear-gradient(135deg,#2a3a1a 0%,#5a7a30 50%,#a0b870 100%);}
+.img-ruaha{background:linear-gradient(135deg,#3a1a1a 0%,#8a3030 50%,#c87070 100%);}
+.img-tour1{background:linear-gradient(135deg,#1B4332 0%,#40916C 100%);}
+.img-tour2{background:linear-gradient(135deg,#2d4a1e 0%,#8a9a32 100%);}
+.img-tour3{background:linear-gradient(135deg,#1a2a4a 0%,#3a6aaa 100%);}
+
+/* =========================================
+   DESTINATIONS
+   ========================================= */
+.destinations-section{padding:100px 0;background:var(--off-white);}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;}
+.dest-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
+.dest-filter{padding:8px 20px;border:1.5px solid var(--gray-100);border-radius:var(--radius-xl);font-size:0.85rem;font-weight:500;color:var(--gray-500);cursor:pointer;transition:var(--transition);background:#fff;}
+.dest-filter.active,.dest-filter:hover{background:var(--green-dark);color:#fff;border-color:var(--green-dark);}
+.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.dest-card{border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;position:relative;box-shadow:var(--shadow-sm);transition:var(--transition);}
+.dest-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.dest-card-img{height:280px;position:relative;overflow:hidden;}
+.dest-card-img .img-placeholder{transition:var(--transition);}
+.dest-card:hover .img-placeholder{transform:scale(1.05);}
+.dest-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,43,26,0.85) 0%,rgba(13,43,26,0.1) 60%,transparent 100%);}
+.dest-card-content{position:absolute;bottom:0;left:0;right:0;padding:20px;}
+.dest-card-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:4px;}
+.dest-card-meta{display:flex;align-items:center;gap:12px;}
+.dest-card-count{font-size:0.8rem;color:rgba(255,255,255,0.7);}
+.dest-card-rating{display:flex;align-items:center;gap:4px;font-size:0.8rem;color:var(--gold-light);}
+.dest-card-tag{position:absolute;top:14px;left:14px;padding:4px 12px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.25);border-radius:20px;color:#fff;font-size:0.75rem;font-weight:600;}
+.dest-card.featured{grid-column:span 2;grid-row:span 2;}
+.dest-card.featured .dest-card-img{height:100%;}
+
+/* =========================================
+   TOURS SECTION
+   ========================================= */
+.tours-section{padding:100px 0;background:#fff;}
+.tour-card{border-radius:var(--radius-lg);overflow:hidden;background:#fff;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100);transition:var(--transition);cursor:pointer;}
+.tour-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.tour-card-img{height:240px;position:relative;overflow:hidden;}
+.tour-card-img .img-placeholder{transition:var(--transition);}
+.tour-card:hover .tour-card-img .img-placeholder{transform:scale(1.05);}
+.tour-card-tags{position:absolute;top:12px;left:12px;display:flex;gap:6px;}
+.tour-duration{position:absolute;bottom:12px;right:12px;background:rgba(13,43,26,0.75);backdrop-filter:blur(6px);color:#fff;padding:4px 10px;border-radius:20px;font-size:0.78rem;font-weight:600;}
+.tour-card-body{padding:20px;}
+.tour-card-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--green-deep);margin-bottom:8px;line-height:1.3;}
+.tour-card-meta{display:flex;gap:16px;margin-bottom:12px;}
+.tour-meta-item{display:flex;align-items:center;gap:5px;font-size:0.8rem;color:var(--gray-500);}
+.tour-meta-item i{color:var(--green-soft);}
+.tour-card-desc{font-size:0.85rem;color:var(--gray-500);margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.tour-card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--gray-100);}
+.tour-price{font-size:1.3rem;font-weight:800;color:var(--green-dark);}
+.tour-price span{font-size:0.8rem;font-weight:400;color:var(--gray-500);}
+.tour-book-btn{padding:8px 18px;background:var(--green-dark);color:#fff;border-radius:var(--radius-xl);font-size:0.82rem;font-weight:600;transition:var(--transition);}
+.tour-book-btn:hover{background:var(--green-mid);}
+.tour-reviews{display:flex;align-items:center;gap:6px;margin-bottom:12px;}
+.tour-reviews span{font-size:0.8rem;color:var(--gray-500);}
+
+/* =========================================
+   KILIMANJARO SECTION
+   ========================================= */
+.kili-section{padding:100px 0;background:var(--green-deep);color:#fff;position:relative;overflow:hidden;}
+.kili-bg{position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);background-size:32px 32px;}
+.kili-orb{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(116,198,157,0.15) 0%,transparent 70%);top:-200px;right:-200px;border-radius:50%;}
+.kili-inner{position:relative;z-index:1;}
+.kili-top{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:70px;}
+.kili-section .section-label{color:var(--green-light);}
+.kili-section .section-title{color:#fff;}
+.kili-section .section-title span{color:var(--gold-light);}
+.kili-section .section-subtitle{color:rgba(255,255,255,0.65);}
+.kili-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+.kili-visual{position:relative;}
+.kili-main-img{border-radius:var(--radius-lg);overflow:hidden;height:420px;box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.kili-stats{position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);display:flex;gap:0;background:rgba(255,255,255,0.12);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-md);overflow:hidden;width:90%;}
+.kili-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid rgba(255,255,255,0.1);}
+.kili-stat:last-child{border-right:none;}
+.kili-stat-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:var(--gold-light);}
+.kili-stat-lbl{font-size:0.72rem;color:rgba(255,255,255,0.6);margin-top:2px;}
+.kili-routes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:50px;}
+.kili-route-card{background:rgba(255,255,255,0.07);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-md);padding:20px;transition:var(--transition);cursor:pointer;}
+.kili-route-card:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);transform:translateY(-4px);}
+.kili-route-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.kili-route-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;}
+.kili-route-badge{padding:3px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;}
+.badge-easy{background:rgba(116,198,157,0.2);color:var(--green-light);}
+.badge-moderate{background:rgba(201,168,76,0.2);color:var(--gold-light);}
+.badge-hard{background:rgba(200,112,80,0.2);color:#ff9a80;}
+.kili-route-desc{font-size:0.82rem;color:rgba(255,255,255,0.6);margin-bottom:12px;}
+.kili-route-details{display:flex;gap:12px;flex-wrap:wrap;}
+.kili-route-detail{display:flex;align-items:center;gap:5px;font-size:0.78rem;color:rgba(255,255,255,0.5);}
+.kili-route-detail i{color:var(--green-light);font-size:0.75rem;}
+
+/* =========================================
+   THINGS TO DO
+   ========================================= */
+.todo-section{padding:100px 0;background:var(--off-white);}
+.todo-cats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;}
+.todo-cat{padding:9px 20px;border:1.5px solid var(--gray-100);border-radius:var(--radius-xl);font-size:0.85rem;font-weight:600;color:var(--gray-700);background:#fff;cursor:pointer;transition:var(--transition);display:flex;align-items:center;gap:6px;}
+.todo-cat i{font-size:0.9rem;color:var(--green-soft);}
+.todo-cat.active,.todo-cat:hover{background:var(--green-dark);color:#fff;border-color:var(--green-dark);}
+.todo-cat.active i,.todo-cat:hover i{color:#fff;}
+.todo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.todo-card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100);transition:var(--transition);}
+.todo-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+.todo-card-img{height:200px;position:relative;}
+.todo-card-icon{position:absolute;top:14px;right:14px;width:40px;height:40px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;}
+.todo-card-body{padding:18px;}
+.todo-card-cat{font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green-soft);margin-bottom:6px;}
+.todo-card-title{font-weight:700;font-size:1rem;color:var(--green-deep);margin-bottom:6px;}
+.todo-card-desc{font-size:0.83rem;color:var(--gray-500);margin-bottom:12px;}
+.todo-card-footer{display:flex;align-items:center;justify-content:space-between;}
+.todo-from{font-size:0.8rem;color:var(--gray-500);}
+.todo-from strong{color:var(--green-dark);}
+
+/* =========================================
+   TESTIMONIALS
+   ========================================= */
+.reviews-section{padding:100px 0;background:#fff;overflow:hidden;}
+.reviews-track{display:flex;gap:24px;margin-top:48px;}
+.review-card{min-width:360px;background:#fff;border:1px solid var(--gray-100);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);flex-shrink:0;}
+.review-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+.reviewer-info{display:flex;gap:12px;align-items:center;}
+.reviewer-avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:#fff;flex-shrink:0;}
+.reviewer-name{font-weight:700;font-size:0.95rem;color:var(--green-deep);}
+.reviewer-meta{font-size:0.78rem;color:var(--gray-500);}
+.review-quote{font-size:0.9rem;color:var(--gray-700);line-height:1.7;font-style:italic;}
+.review-tour{margin-top:14px;padding-top:14px;border-top:1px solid var(--gray-100);font-size:0.78rem;color:var(--gray-500);}
+.review-tour strong{color:var(--green-soft);}
+.reviews-controls{display:flex;gap:10px;margin-top:32px;justify-content:center;}
+.rev-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gray-100);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);}
+.rev-btn:hover{background:var(--green-dark);border-color:var(--green-dark);color:#fff;}
+
+/* =========================================
+   BLOG SECTION
+   ========================================= */
+.blog-section{padding:100px 0;background:var(--off-white);}
+.blog-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px;margin-top:48px;}
+.blog-card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100);transition:var(--transition);cursor:pointer;}
+.blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.blog-card-img{overflow:hidden;position:relative;}
+.blog-card.featured .blog-card-img{height:280px;}
+.blog-card:not(.featured) .blog-card-img{height:160px;}
+.blog-card-img .img-placeholder{transition:var(--transition);}
+.blog-card:hover .blog-card-img .img-placeholder{transform:scale(1.06);}
+.blog-card-body{padding:20px;}
+.blog-card-cat{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--green-soft);margin-bottom:8px;}
+.blog-card-title{font-family:'Playfair Display',serif;font-weight:700;color:var(--green-deep);line-height:1.3;margin-bottom:8px;}
+.blog-card.featured .blog-card-title{font-size:1.4rem;}
+.blog-card:not(.featured) .blog-card-title{font-size:1rem;}
+.blog-card-excerpt{font-size:0.83rem;color:var(--gray-500);margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.blog-card-meta{display:flex;align-items:center;gap:12px;font-size:0.78rem;color:var(--gray-500);}
+.blog-card-meta i{color:var(--green-soft);}
+
+/* =========================================
+   CTA SECTION
+   ========================================= */
+.cta-section{padding:100px 24px;background:linear-gradient(135deg,var(--green-deep) 0%,var(--green-dark) 50%,var(--green-mid) 100%);position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.05) 1px,transparent 0);background-size:30px 30px;}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;text-align:center;}
+.cta-section .section-label{justify-content:center;color:var(--green-light);}
+.cta-section .section-title{color:#fff;font-size:clamp(2rem,5vw,3.5rem);}
+.cta-section .section-title span{color:var(--gold-light);}
+.cta-section .section-subtitle{color:rgba(255,255,255,0.7);margin:12px auto 36px;}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.cta-btn-white{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:#fff;color:var(--green-dark);border-radius:var(--radius-xl);font-weight:700;font-size:1rem;transition:var(--transition);}
+.cta-btn-white:hover{background:var(--green-pale);transform:translateY(-2px);}
+.cta-btn-outline{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border:2px solid rgba(255,255,255,0.3);color:#fff;border-radius:var(--radius-xl);font-weight:600;font-size:1rem;transition:var(--transition);}
+.cta-btn-outline:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.6);}
+.cta-orb{position:absolute;border-radius:50%;filter:blur(100px);}
+.cta-orb-1{width:400px;height:400px;background:rgba(116,198,157,0.2);bottom:-200px;left:-100px;}
+.cta-orb-2{width:300px;height:300px;background:rgba(201,168,76,0.15);top:-100px;right:-50px;}
+
+/* =========================================
+   ABOUT PAGE
+   ========================================= */
+.page-hero{padding:120px 0 80px;background:linear-gradient(135deg,var(--green-deep),var(--green-dark));color:#fff;text-align:center;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.04) 1px,transparent 0);background-size:28px 28px;}
+.page-hero-content{position:relative;z-index:1;}
+.page-hero .section-label{justify-content:center;color:var(--green-light);}
+.page-hero .section-title{color:#fff;}
+.page-hero .section-subtitle{color:rgba(255,255,255,0.7);margin:12px auto 0;}
+.about-mission{padding:80px 0;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-img-wrap{border-radius:var(--radius-lg);overflow:hidden;height:480px;box-shadow:var(--shadow-lg);}
+.about-text p{font-size:1rem;color:var(--gray-700);margin-bottom:16px;line-height:1.8;}
+.about-values{padding:80px 0;background:var(--off-white);}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.value-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);transition:var(--transition);}
+.value-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--green-pale);}
+.value-icon{width:56px;height:56px;background:linear-gradient(135deg,var(--green-pale),var(--green-light));border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.value-icon i{font-size:1.3rem;color:var(--green-dark);}
+.value-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--green-deep);margin-bottom:8px;}
+.value-card p{font-size:0.88rem;color:var(--gray-500);}
+.team-section{padding:80px 0;}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;}
+.team-card{text-align:center;}
+.team-avatar{width:90px;height:90px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;color:#fff;border:3px solid var(--gray-100);}
+.team-name{font-weight:700;color:var(--green-deep);margin-bottom:4px;}
+.team-role{font-size:0.82rem;color:var(--green-soft);margin-bottom:8px;}
+.team-social{display:flex;gap:8px;justify-content:center;}
+.team-social a{width:30px;height:30px;border-radius:50%;background:var(--gray-50);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--gray-500);transition:var(--transition);}
+.team-social a:hover{background:var(--green-dark);color:#fff;}
+
+/* =========================================
+   CONTACT PAGE
+   ========================================= */
+.contact-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;padding:80px 0;}
+.contact-info{}
+.contact-info h2{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:var(--green-deep);margin-bottom:16px;}
+.contact-info p{font-size:0.95rem;color:var(--gray-700);margin-bottom:28px;}
+.contact-items{display:flex;flex-direction:column;gap:16px;margin-bottom:32px;}
+.contact-item{display:flex;gap:14px;align-items:flex-start;}
+.contact-item-icon{width:44px;height:44px;background:var(--green-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contact-item-icon i{color:var(--green-dark);}
+.contact-item-label{font-size:0.78rem;color:var(--gray-500);margin-bottom:2px;}
+.contact-item-val{font-weight:600;color:var(--green-deep);}
+.contact-form-card{background:#fff;border:1px solid var(--gray-100);border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow-md);}
+.contact-form-card h3{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--green-deep);margin-bottom:24px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.form-label{font-size:0.82rem;font-weight:600;color:var(--gray-700);}
+.form-input,.form-select,.form-textarea{padding:12px 14px;border:1.5px solid var(--gray-100);border-radius:var(--radius-sm);font-size:0.9rem;color:var(--text-dark);outline:none;transition:var(--transition);background:#fff;width:100%;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--green-soft);box-shadow:0 0 0 3px rgba(64,145,108,0.1);}
+.form-textarea{resize:vertical;min-height:120px;}
+.form-submit{width:100%;padding:14px;background:var(--green-dark);color:#fff;border-radius:var(--radius-sm);font-weight:700;font-size:0.95rem;transition:var(--transition);}
+.form-submit:hover{background:var(--green-mid);box-shadow:0 6px 20px rgba(27,67,50,0.3);}
+
+/* =========================================
+   TOUR DETAIL MODAL
+   ========================================= */
+.modal-overlay{position:fixed;inset:0;background:rgba(13,43,26,0.7);backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#fff;border-radius:var(--radius-lg);width:100%;max-width:900px;max-height:90vh;overflow-y:auto;animation:modalIn 0.3s ease;}
+@keyframes modalIn{from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);}}
+.modal-header-img{height:300px;position:relative;overflow:hidden;}
+.modal-close{position:absolute;top:16px;right:16px;width:40px;height:40px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;cursor:pointer;z-index:10;transition:var(--transition);}
+.modal-close:hover{background:rgba(255,255,255,0.3);}
+.modal-body{padding:32px;}
+.modal-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:var(--green-deep);margin-bottom:10px;}
+.modal-meta{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px;}
+.modal-meta-item{display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--gray-500);}
+.modal-meta-item i{color:var(--green-soft);}
+.modal-tabs{display:flex;gap:4px;border-bottom:2px solid var(--gray-100);margin-bottom:24px;}
+.modal-tab{padding:10px 20px;font-size:0.9rem;font-weight:600;color:var(--gray-500);cursor:pointer;position:relative;transition:var(--transition);}
+.modal-tab.active{color:var(--green-dark);}
+.modal-tab.active::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--green-dark);}
+.modal-tab-content{display:none;}
+.modal-tab-content.active{display:block;}
+.itinerary-day{display:flex;gap:16px;margin-bottom:20px;}
+.itinerary-day-num{width:40px;height:40px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--green-dark);font-size:0.85rem;flex-shrink:0;}
+.itinerary-day-title{font-weight:700;color:var(--green-deep);margin-bottom:4px;}
+.itinerary-day-desc{font-size:0.85rem;color:var(--gray-500);}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
+.price-option{border:1.5px solid var(--gray-100);border-radius:var(--radius-md);padding:20px;text-align:center;transition:var(--transition);cursor:pointer;}
+.price-option.selected,.price-option:hover{border-color:var(--green-dark);background:var(--green-pale);}
+.price-option-name{font-size:0.85rem;font-weight:700;color:var(--green-deep);margin-bottom:8px;}
+.price-option-price{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;color:var(--green-dark);}
+.price-option-per{font-size:0.78rem;color:var(--gray-500);}
+.inclusions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;}
+.inclusion-item,.exclusion-item{display:flex;align-items:center;gap:8px;font-size:0.85rem;}
+.inclusion-item i{color:var(--green-soft);}
+.exclusion-item i{color:#e74c3c;}
+.modal-footer{display:flex;gap:14px;padding-top:24px;border-top:1px solid var(--gray-100);}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:16px;}
+.cal-day-name{text-align:center;font-size:0.75rem;font-weight:700;color:var(--gray-500);padding:6px 0;}
+.cal-day{text-align:center;padding:8px;border-radius:8px;font-size:0.82rem;cursor:pointer;transition:var(--transition);}
+.cal-day.available{background:var(--green-pale);color:var(--green-dark);font-weight:600;}
+.cal-day.available:hover{background:var(--green-soft);color:#fff;}
+.cal-day.unavailable{color:var(--gray-300);}
+.cal-day.today{font-weight:800;border:2px solid var(--green-dark);}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer{background:var(--green-deep);color:rgba(255,255,255,0.8);padding:80px 0 32px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:60px;}
+.footer-brand .logo{color:#fff;font-size:1.4rem;margin-bottom:16px;}
+.footer-brand p{font-size:0.88rem;line-height:1.7;color:rgba(255,255,255,0.55);max-width:280px;margin-bottom:20px;}
+.footer-socials{display:flex;gap:10px;}
+.footer-social{width:38px;height:38px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.85rem;transition:var(--transition);cursor:pointer;}
+.footer-social:hover{background:var(--green-mid);border-color:var(--green-mid);color:#fff;}
+.footer-col h4{font-weight:700;font-size:0.9rem;color:#fff;margin-bottom:16px;letter-spacing:0.3px;}
+.footer-links li{margin-bottom:8px;}
+.footer-links a{font-size:0.85rem;color:rgba(255,255,255,0.5);transition:var(--transition);}
+.footer-links a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;gap:16px;}
+.footer-copy{font-size:0.82rem;color:rgba(255,255,255,0.4);}
+.footer-legal{display:flex;gap:20px;}
+.footer-legal a{font-size:0.82rem;color:rgba(255,255,255,0.4);transition:var(--transition);}
+.footer-legal a:hover{color:rgba(255,255,255,0.8);}
+.footer-newsletter{margin-top:16px;}
+.footer-newsletter p{font-size:0.82rem;color:rgba(255,255,255,0.5);margin-bottom:10px;}
+.newsletter-form{display:flex;gap:8px;}
+.newsletter-input{flex:1;padding:10px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-sm);color:#fff;font-size:0.85rem;outline:none;transition:var(--transition);}
+.newsletter-input::placeholder{color:rgba(255,255,255,0.35);}
+.newsletter-input:focus{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.12);}
+.newsletter-btn{padding:10px 16px;background:var(--gold);color:#fff;border-radius:var(--radius-sm);font-size:0.85rem;font-weight:600;transition:var(--transition);}
+.newsletter-btn:hover{background:var(--gold-light);}
+
+/* =========================================
+   MAP EMBED PLACEHOLDER
+   ========================================= */
+.map-section{padding:60px 0 80px;background:#fff;}
+.map-wrapper{border-radius:var(--radius-lg);overflow:hidden;height:420px;box-shadow:var(--shadow-md);background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 100%);display:flex;align-items:center;justify-content:center;position:relative;}
+.map-placeholder{text-align:center;z-index:1;}
+.map-placeholder i{font-size:4rem;color:var(--green-soft);margin-bottom:12px;display:block;}
+.map-placeholder h3{font-size:1.2rem;font-weight:700;color:var(--green-deep);margin-bottom:6px;}
+.map-placeholder p{font-size:0.88rem;color:var(--gray-500);}
+.map-pins{position:absolute;inset:0;}
+.map-pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;}
+.map-pin-dot{width:14px;height:14px;background:var(--green-dark);border:3px solid #fff;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.3);}
+.map-pin:hover .map-pin-label{opacity:1;transform:translateY(-4px);}
+.map-pin-label{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--green-deep);color:#fff;padding:4px 10px;border-radius:var(--radius-sm);font-size:0.72rem;white-space:nowrap;opacity:0;transition:var(--transition);}
+
+/* =========================================
+   PARTNERS
+   ========================================= */
+.partners-section{padding:60px 0;background:var(--off-white);border-top:1px solid var(--gray-100);}
+.partners-label{text-align:center;font-size:0.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gray-300);margin-bottom:28px;}
+.partners-track{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;}
+.partner-item{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gray-300);transition:var(--transition);cursor:default;}
+.partner-item:hover{color:var(--green-soft);}
+
+/* =========================================
+   PACKAGES PAGE
+   ========================================= */
+.packages-filters{background:#fff;border-bottom:1px solid var(--gray-100);position:sticky;top:var(--nav-h);z-index:100;}
+.pf-inner{display:flex;align-items:center;gap:16px;padding:16px 0;overflow-x:auto;}
+.pf-group{display:flex;flex-direction:column;gap:4px;}
+.pf-label{font-size:0.72rem;font-weight:700;letter-spacing:0.5px;color:var(--gray-500);text-transform:uppercase;}
+.pf-select{padding:7px 12px;border:1.5px solid var(--gray-100);border-radius:var(--radius-sm);font-size:0.85rem;color:var(--text-dark);outline:none;cursor:pointer;background:#fff;min-width:130px;}
+.pf-select:focus{border-color:var(--green-soft);}
+.pf-divider{width:1px;height:40px;background:var(--gray-100);}
+.pf-result-count{font-size:0.85rem;color:var(--gray-500);margin-left:auto;white-space:nowrap;}
+
+/* =========================================
+   PRICE CALCULATOR
+   ========================================= */
+.price-calc{background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--radius-md);padding:20px;margin-top:20px;}
+.price-calc h4{font-weight:700;color:var(--green-deep);margin-bottom:16px;}
+.calc-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.calc-label{font-size:0.85rem;color:var(--gray-700);}
+.calc-controls{display:flex;align-items:center;gap:10px;}
+.calc-btn{width:28px;height:28px;border:1.5px solid var(--gray-100);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);font-size:0.9rem;}
+.calc-btn:hover{background:var(--green-dark);color:#fff;border-color:var(--green-dark);}
+.calc-count{font-weight:700;font-size:0.95rem;min-width:20px;text-align:center;}
+.calc-total{border-top:1px solid var(--gray-100);margin-top:14px;padding-top:14px;display:flex;justify-content:space-between;align-items:center;}
+.calc-total-label{font-weight:700;color:var(--green-deep);}
+.calc-total-price{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;color:var(--green-dark);}
+
+/* =========================================
+   FAQ
+   ========================================= */
+.faq-section{padding:80px 0;}
+.faq-list{max-width:760px;margin:40px auto 0;}
+.faq-item{border:1px solid var(--gray-100);border-radius:var(--radius-md);margin-bottom:10px;overflow:hidden;transition:var(--transition);}
+.faq-item.open{border-color:var(--green-pale);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;cursor:pointer;font-weight:600;color:var(--green-deep);}
+.faq-q i{transition:var(--transition);color:var(--green-soft);font-size:0.85rem;}
+.faq-item.open .faq-q i{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.35s ease;}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 18px;}
+.faq-a p{font-size:0.88rem;color:var(--gray-500);line-height:1.7;}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media(max-width:1100px){
+  .dest-grid{grid-template-columns:repeat(3,1fr);}
+  .dest-card.featured{grid-column:span 1;grid-row:span 1;}
+  .dest-card.featured .dest-card-img{height:280px;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .team-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .hero-float-cards{display:none;}
+  .search-fields{grid-template-columns:1fr 1fr;}
+  .search-btn{grid-column:1/-1;}
+  .why-grid,.kili-top,.about-grid,.contact-layout{grid-template-columns:1fr;gap:40px;}
+  .kili-routes{grid-template-columns:1fr 1fr;}
+  .grid-2,.grid-3,.grid-4,.todo-grid,.values-grid,.pricing-grid{grid-template-columns:1fr 1fr;}
+  .blog-grid{grid-template-columns:1fr;}
+  .dest-grid{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .hero-title{font-size:2.4rem;}
+  .hero-actions{flex-direction:column;}
+  .hero-actions a{text-align:center;justify-content:center;}
+  .search-fields{grid-template-columns:1fr;}
+  .search-btn{grid-column:auto;}
+  .dest-grid{grid-template-columns:1fr;}
+  .grid-2,.grid-3,.grid-4,.todo-grid,.values-grid,.pricing-grid,.inclusions,.kili-routes{grid-template-columns:1fr;}
+  .section-header{flex-direction:column;align-items:flex-start;gap:16px;}
+  .form-row{grid-template-columns:1fr;}
+  .modal-tabs{overflow-x:auto;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  .partners-track{gap:24px;}
+  .hero-stats{gap:24px;}
+  .kili-stats{position:static;transform:none;width:100%;margin-top:20px;}
+}
+/* =========================================
+   LOADING ANIMATION
+   ========================================= */
+.page-loader{position:fixed;inset:0;background:var(--green-deep);z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.5s ease,visibility 0.5s ease;}
+.page-loader.loaded{opacity:0;visibility:hidden;}
+.loader-inner{text-align:center;color:#fff;}
+.loader-logo{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:800;margin-bottom:20px;}
+.loader-logo span{color:var(--gold-light);}
+.loader-bar{width:200px;height:3px;background:rgba(255,255,255,0.15);border-radius:2px;overflow:hidden;margin:0 auto;}
+.loader-fill{height:100%;background:linear-gradient(to right,var(--green-light),var(--gold-light));border-radius:2px;animation:loadFill 1.8s ease forwards;}
+@keyframes loadFill{from{width:0;}to{width:100%;}}
+/* Notification toast */
+.toast{position:fixed;bottom:30px;right:30px;z-index:3000;background:var(--green-dark);color:#fff;padding:14px 20px;border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);font-size:0.88rem;display:flex;align-items:center;gap:10px;transform:translateY(20px);opacity:0;transition:var(--transition);}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast i{color:var(--green-light);}
+</style>
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-inner">
+    <div class="loader-logo">Tanzania<span>Trips</span></div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toast-msg">Done!</span></div>
+
+<!-- =========================================
+     NAVBAR
+     ========================================= -->
+<nav id="navbar" class="hero-mode">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo" onclick="goHome()">
+        <div class="logo-icon"><i class="fas fa-mountain"></i></div>
+        TanzaniaTrips
+      </div>
+      <div class="nav-links">
+        <span class="nav-link" onclick="navigateTo('home')">Home</span>
+        <span class="nav-link" onclick="navigateTo('destinations')">Destinations</span>
+        <span class="nav-link" onclick="navigateTo('tours')">Tours & Packages</span>
+        <span class="nav-link" onclick="navigateTo('kilimanjaro')">Kilimanjaro</span>
+        <span class="nav-link" onclick="navigateTo('todo')">Things To Do</span>
+        <span class="nav-link" onclick="navigateTo('blog')">Blog</span>
+        <span class="nav-link" onclick="navigateTo('about')">About</span>
+        <span class="nav-link" onclick="navigateTo('contact')">Contact</span>
+      </div>
+      <div class="nav-cta">
+        <button class="nav-book-btn" onclick="openModal('tour1')">Book Now</button>
+        <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="nav-link" onclick="navigateTo('home');toggleMobile()">Home</span>
+  <span class="nav-link" onclick="navigateTo('destinations');toggleMobile()">Destinations</span>
+  <span class="nav-link" onclick="navigateTo('tours');toggleMobile()">Tours & Packages</span>
+  <span class="nav-link" onclick="navigateTo('kilimanjaro');toggleMobile()">Kilimanjaro</span>
+  <span class="nav-link" onclick="navigateTo('todo');toggleMobile()">Things To Do</span>
+  <span class="nav-link" onclick="navigateTo('blog');toggleMobile()">Blog</span>
+  <span class="nav-link" onclick="navigateTo('about');toggleMobile()">About</span>
+  <span class="nav-link" onclick="navigateTo('contact');toggleMobile()">Contact</span>
+</div>
+
+<!-- =========================================
+     HOME PAGE
+     ========================================= -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="hero-bg-gradient"></div>
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Experience the<br>
+          <span class="line-2">Wild Heart</span><br>
+          of Africa
+        </h1>
+        <p class="hero-desc">From Kilimanjaro's snow-capped summit to the golden plains of the Serengeti—Tanzania awaits with adventures that transform lives.</p>
+        <div class="hero-actions">
+          <a href="#" class="hero-btn-main" onclick="navigateTo('tours');return false;"><i class="fas fa-compass"></i> Explore Tours</a>
+          <a href="#" class="hero-btn-secondary" onclick="navigateTo('kilimanjaro');return false;"><i class="fas fa-mountain"></i> Climb Kilimanjaro</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="hero-stat-num">12<span>K+</span></div><div class="hero-stat-label">Happy Travelers</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">98<span>%</span></div><div class="hero-stat-label">Satisfaction Rate</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">15<span>+</span></div><div class="hero-stat-label">Years Experience</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">85<span>+</span></div><div class="hero-stat-label">Tour Packages</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Floating info cards -->
+    <div class="hero-float-cards">
+      <div class="float-card glass-card-dark">
+        <div class="float-card-label">Next Departure</div>
+        <div class="float-card-value">Serengeti Safari</div>
+        <div class="float-card-meta"><i class="fas fa-calendar"></i> May 15, 2025 · 7 days</div>
+      </div>
+      <div class="float-card glass-card-dark">
+        <div class="float-card-label">Most Popular</div>
+        <div class="float-card-value">Kilimanjaro Trek</div>
+        <div class="float-card-meta"><i class="fas fa-star"></i> 4.9 · 342 reviews</div>
+      </div>
+      <div class="float-card glass-card-dark">
+        <div class="float-card-label">Flash Deal 🔥</div>
+        <div class="float-card-value">Zanzibar Beach</div>
+        <div class="float-card-meta"><i class="fas fa-tag"></i> From $899 · 5 days</div>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+  </section>
+
+  <!-- SEARCH SECTION -->
+  <div class="search-section">
+    <div class="search-wrapper">
+      <div class="search-card">
+        <div class="search-tabs">
+          <div class="search-tab active" onclick="switchTab(this,'all')">All Tours</div>
+          <div class="search-tab" onclick="switchTab(this,'safari')">Safari</div>
+          <div class="search-tab" onclick="switchTab(this,'trekking')">Trekking</div>
+          <div class="search-tab" onclick="switchTab(this,'beach')">Beach</div>
+          <div class="search-tab" onclick="switchTab(this,'cultural')">Cultural</div>
+        </div>
+        <div class="search-fields">
+          <div class="sf-group">
+            <div class="sf-label">Destination</div>
+            <div class="sf-input-wrap" style="position:relative;">
+              <i class="fas fa-map-marker-alt"></i>
+              <input type="text" class="sf-input" id="destInput" placeholder="Where do you want to go?" oninput="showAutocomplete(this.value)" autocomplete="off">
+              <div class="autocomplete-dropdown" id="acDropdown">
+                <div class="ac-item" onclick="selectDest('Serengeti National Park')"><i class="fas fa-paw"></i> Serengeti National Park</div>
+                <div class="ac-item" onclick="selectDest('Mount Kilimanjaro')"><i class="fas fa-mountain"></i> Mount Kilimanjaro</div>
+                <div class="ac-item" onclick="selectDest('Zanzibar Island')"><i class="fas fa-umbrella-beach"></i> Zanzibar Island</div>
+                <div class="ac-item" onclick="selectDest('Ngorongoro Crater')"><i class="fas fa-circle-notch"></i> Ngorongoro Crater</div>
+                <div class="ac-item" onclick="selectDest('Tarangire National Park')"><i class="fas fa-tree"></i> Tarangire National Park</div>
+                <div class="ac-item" onclick="selectDest('Lake Manyara')"><i class="fas fa-water"></i> Lake Manyara</div>
+                <div class="ac-item" onclick="selectDest('Ruaha National Park')"><i class="fas fa-hippo"></i> Ruaha National Park</div>
+              </div>
+            </div>
+          </div>
+          <div class="sf-group">
+            <div class="sf-label">Duration</div>
+            <div class="sf-input-wrap">
+              <i class="fas fa-clock"></i>
+              <select class="sf-select">
+                <option value="">Any Duration</option>
+                <option>1-3 Days</option>
+                <option>4-6 Days</option>
+                <option>7-10 Days</option>
+                <option>11-14 Days</option>
+                <option>15+ Days</option>
+              </select>
+            </div>
+          </div>
+          <div class="sf-group">
+            <div class="sf-label">Budget (per person)</div>
+            <div class="sf-input-wrap">
+              <i class="fas fa-dollar-sign"></i>
+              <select class="sf-select">
+                <option value="">Any Budget</option>
+                <option>Under $500</option>
+                <option>$500 – $1,000</option>
+                <option>$1,000 – $2,500</option>
+                <option>$2,500 – $5,000</option>
+                <option>$5,000+</option>
+              </select>
+            </div>
+          </div>
+          <div class="sf-group">
+            <div class="sf-label">Group Type</div>
+            <div class="sf-input-wrap">
+              <i class="fas fa-users"></i>
+              <select class="sf-select">
+                <option value="">All Groups</option>
+                <option>Solo Traveler</option>
+                <option>Couple</option>
+                <option>Family</option>
+                <option>Corporate</option>
+                <option>School Group</option>
+              </select>
+            </div>
+          </div>
+          <button class="search-btn" onclick="runSearch()"><i class="fas fa-search"></i> Search</button>
+        </div>
+        <div class="search-popular">
+          <span class="search-popular-label">Popular:</span>
+          <span class="search-pill" onclick="fillSearch('Serengeti Safari')">🦁 Serengeti Safari</span>
+          <span class="search-pill" onclick="fillSearch('Kilimanjaro Climb')">🏔 Kilimanjaro</span>
+          <span class="search-pill" onclick="fillSearch('Zanzibar Beach')">🏖 Zanzibar</span>
+          <span class="search-pill" onclick="fillSearch('Ngorongoro Crater')">🦏 Ngorongoro</span>
+          <span class="search-pill" onclick="fillSearch('Big Five Safari')">🐘 Big Five</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <section class="why-section">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-visual">
+          <div class="why-img-stack">
+            <div class="why-img-main"><div class="img-placeholder img-kili"><i class="fas fa-mountain" style="font-size:5rem;"></i></div></div>
+            <div class="why-img-accent"><div class="img-placeholder img-safari"><i class="fas fa-paw" style="font-size:3.5rem;"></i></div></div>
+            <div class="why-badge"><div class="why-badge-num">15+</div><div class="why-badge-text">Years of Excellence</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="section-label">Why Choose Us</div>
+          <h2 class="section-title">Tanzania's Most <span>Trusted</span> Travel Partner</h2>
+          <p class="section-subtitle">We don't just book trips — we craft life-changing journeys with unmatched local expertise and care.</p>
+          <div class="why-features">
+            <div class="why-feature">
+              <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+              <div><div class="why-feature-title">100% Safe & Insured</div><div class="why-feature-desc">All tours include comprehensive travel insurance, certified guides, and 24/7 emergency support throughout your journey.</div></div>
+            </div>
+            <div class="why-feature">
+              <div class="why-icon"><i class="fas fa-leaf"></i></div>
+              <div><div class="why-feature-title">Eco-Conscious Travel</div><div class="why-feature-desc">We partner only with sustainable lodges and conservation projects, ensuring tourism benefits local communities and wildlife.</div></div>
+            </div>
+            <div class="why-feature">
+              <div class="why-icon"><i class="fas fa-star"></i></div>
+              <div><div class="why-feature-title">Expert Local Guides</div><div class="why-feature-desc">Our certified, bilingual naturalist guides have an average of 12 years in the field—they make the difference.</div></div>
+            </div>
+            <div class="why-feature">
+              <div class="why-icon"><i class="fas fa-sync-alt"></i></div>
+              <div><div class="why-feature-title">Flexible Booking</div><div class="why-feature-desc">Free cancellation up to 30 days before departure. Custom itineraries on request. No hidden fees, ever.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section class="destinations-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-label">Top Destinations</div>
+          <h2 class="section-title">Where Will You <span>Explore</span>?</h2>
+        </div>
+        <a href="#" class="btn-outline" onclick="navigateTo('destinations');return false;">View All <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="dest-filters">
+        <div class="dest-filter active" onclick="filterDest(this,'all')">All</div>
+        <div class="dest-filter" onclick="filterDest(this,'national-parks')">🌿 National Parks</div>
+        <div class="dest-filter" onclick="filterDest(this,'beach')">🏖 Beach & Islands</div>
+        <div class="dest-filter" onclick="filterDest(this,'mountains')">🏔 Mountains</div>
+        <div class="dest-filter" onclick="filterDest(this,'cultural')">🏛 Cultural Sites</div>
+      </div>
+      <div class="dest-grid">
+        <div class="dest-card featured" data-cat="national-parks" onclick="navigateTo('destinations')">
+          <div class="dest-card-img" style="height:100%"><div class="img-placeholder img-serengeti" style="height:100%"><i class="fas fa-paw" style="font-size:6rem;"></i></div></div>
+          <div class="dest-card-tag">🔥 Most Popular</div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content">
+            <div class="dest-card-name">Serengeti National Park</div>
+            <div class="dest-card-meta">
+              <span class="dest-card-count">24 tours</span>
+              <span class="dest-card-rating"><i class="fas fa-star"></i> 4.9</span>
+            </div>
+          </div>
+        </div>
+        <div class="dest-card" data-cat="mountains" onclick="navigateTo('kilimanjaro')">
+          <div class="dest-card-img"><div class="img-placeholder img-kili"><i class="fas fa-mountain" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content">
+            <div class="dest-card-name">Mt. Kilimanjaro</div>
+            <div class="dest-card-meta"><span class="dest-card-count">12 routes</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.9</span></div>
+          </div>
+        </div>
+        <div class="dest-card" data-cat="beach" onclick="navigateTo('tours')">
+          <div class="dest-card-img"><div class="img-placeholder img-zanzibar"><i class="fas fa-umbrella-beach" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-tag">New</div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content">
+            <div class="dest-card-name">Zanzibar Island</div>
+            <div class="dest-card-meta"><span class="dest-card-count">18 tours</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.8</span></div>
+          </div>
+        </div>
+        <div class="dest-card" data-cat="national-parks" onclick="navigateTo('tours')">
+          <div class="dest-card-img"><div class="img-placeholder img-ngorongoro"><i class="fas fa-circle-notch" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content">
+            <div class="dest-card-name">Ngorongoro Crater</div>
+            <div class="dest-card-meta"><span class="dest-card-count">16 tours</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.8</span></div>
+          </div>
+        </div>
+        <div class="dest-card" data-cat="national-parks" onclick="navigateTo('tours')">
+          <div class="dest-card-img"><div class="img-placeholder img-tarangire"><i class="fas fa-tree" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content">
+            <div class="dest-card-name">Tarangire Park</div>
+            <div class="dest-card-meta"><span class="dest-card-count">9 tours</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.7</span></div>
+          </div>
+        </div>
+        <div class="dest-card" data-cat="national-parks" onclick="navigateTo('tours')">
+          <div class="dest-card-img"><div class="img-placeholder img-ruaha"><i class="fas fa-hippo" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content">
+            <div class="dest-card-name">Ruaha National Park</div>
+            <div class="dest-card-meta"><span class="dest-card-count">7 tours</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.7</span></div>
+          </div>
+        </div>
+        <div class="dest-card" data-cat="beach" onclick="navigateTo('tours')">
+          <div class="dest-card-img"><div class="img-placeholder img-beach"><i class="fas fa-water" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content">
+            <div class="dest-card-name">Pemba Island</div>
+            <div class="dest-card-meta"><span class="dest-card-count">6 tours</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.9</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOURS -->
+  <section class="tours-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-label">Featured Packages</div>
+          <h2 class="section-title">Handpicked <span>Safari & Tour</span> Packages</h2>
+        </div>
+        <a href="#" class="btn-outline" onclick="navigateTo('tours');return false;">All Packages <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="grid-3">
+        <!-- Tour 1 -->
+        <div class="tour-card" onclick="openModal('tour1')">
+          <div class="tour-card-img">
+            <div class="img-placeholder img-tour1"><i class="fas fa-paw" style="font-size:4rem;"></i></div>
+            <div class="tour-card-tags"><span class="tag tag-green">Best Seller</span></div>
+            <div class="tour-duration"><i class="fas fa-clock"></i> 7 Days</div>
+          </div>
+          <div class="tour-card-body">
+            <div class="tour-reviews"><div class="stars">★★★★★</div><span>4.9 (342 reviews)</span></div>
+            <div class="tour-card-title">Classic Serengeti & Ngorongoro Safari</div>
+            <div class="tour-card-meta">
+              <span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Serengeti, Ngorongoro</span>
+              <span class="tour-meta-item"><i class="fas fa-users"></i> 2–12 pax</span>
+            </div>
+            <div class="tour-card-desc">Witness the Great Migration and explore the world's largest intact volcanic caldera. All-inclusive luxury camp stays.</div>
+            <div class="tour-card-footer">
+              <div class="tour-price">$2,850 <span>/ person</span></div>
+              <button class="tour-book-btn">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tour 2 -->
+        <div class="tour-card" onclick="openModal('tour2')">
+          <div class="tour-card-img">
+            <div class="img-placeholder img-kili"><i class="fas fa-mountain" style="font-size:4rem;"></i></div>
+            <div class="tour-card-tags"><span class="tag tag-gold">Top Rated</span></div>
+            <div class="tour-duration"><i class="fas fa-clock"></i> 8 Days</div>
+          </div>
+          <div class="tour-card-body">
+            <div class="tour-reviews"><div class="stars">★★★★★</div><span>4.9 (218 reviews)</span></div>
+            <div class="tour-card-title">Kilimanjaro Machame Route Trek</div>
+            <div class="tour-card-meta">
+              <span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Mt. Kilimanjaro</span>
+              <span class="tour-meta-item"><i class="fas fa-users"></i> 1–8 pax</span>
+            </div>
+            <div class="tour-card-desc">Summit Africa's highest peak via the scenic "Whiskey Route." 7 nights with professional mountain guides and porters.</div>
+            <div class="tour-card-footer">
+              <div class="tour-price">$1,950 <span>/ person</span></div>
+              <button class="tour-book-btn">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tour 3 -->
+        <div class="tour-card" onclick="openModal('tour3')">
+          <div class="tour-card-img">
+            <div class="img-placeholder img-zanzibar"><i class="fas fa-umbrella-beach" style="font-size:4rem;"></i></div>
+            <div class="tour-card-tags"><span class="tag tag-green">New</span></div>
+            <div class="tour-duration"><i class="fas fa-clock"></i> 5 Days</div>
+          </div>
+          <div class="tour-card-body">
+            <div class="tour-reviews"><div class="stars">★★★★☆</div><span>4.7 (156 reviews)</span></div>
+            <div class="tour-card-title">Zanzibar Spice & Beach Escape</div>
+            <div class="tour-card-meta">
+              <span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Zanzibar Island</span>
+              <span class="tour-meta-item"><i class="fas fa-users"></i> 2–16 pax</span>
+            </div>
+            <div class="tour-card-desc">Explore Stone Town's UNESCO heritage, spice plantations, and relax on pristine Indian Ocean beaches.</div>
+            <div class="tour-card-footer">
+              <div class="tour-price">$1,290 <span>/ person</span></div>
+              <button class="tour-book-btn">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tour 4 -->
+        <div class="tour-card" onclick="openModal('tour1')">
+          <div class="tour-card-img">
+            <div class="img-placeholder img-serengeti"><i class="fas fa-camera" style="font-size:4rem;"></i></div>
+            <div class="tour-card-tags"><span class="tag tag-gold">Premium</span></div>
+            <div class="tour-duration"><i class="fas fa-clock"></i> 12 Days</div>
+          </div>
+          <div class="tour-card-body">
+            <div class="tour-reviews"><div class="stars">★★★★★</div><span>5.0 (89 reviews)</span></div>
+            <div class="tour-card-title">Northern Tanzania Grand Safari</div>
+            <div class="tour-card-meta">
+              <span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Full Northern Circuit</span>
+              <span class="tour-meta-item"><i class="fas fa-users"></i> 2–10 pax</span>
+            </div>
+            <div class="tour-card-desc">The complete Northern Circuit: Tarangire, Manyara, Serengeti, Ngorongoro, and Zanzibar in one epic journey.</div>
+            <div class="tour-card-footer">
+              <div class="tour-price">$5,400 <span>/ person</span></div>
+              <button class="tour-book-btn">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tour 5 -->
+        <div class="tour-card" onclick="openModal('tour2')">
+          <div class="tour-card-img">
+            <div class="img-placeholder img-ngorongoro"><i class="fas fa-binoculars" style="font-size:4rem;"></i></div>
+            <div class="tour-card-tags"><span class="tag tag-green">Family</span></div>
+            <div class="tour-duration"><i class="fas fa-clock"></i> 6 Days</div>
+          </div>
+          <div class="tour-card-body">
+            <div class="tour-reviews"><div class="stars">★★★★★</div><span>4.8 (112 reviews)</span></div>
+            <div class="tour-card-title">Family Safari Adventure</div>
+            <div class="tour-card-meta">
+              <span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Ngorongoro, Tarangire</span>
+              <span class="tour-meta-item"><i class="fas fa-child"></i> Family Friendly</span>
+            </div>
+            <div class="tour-card-desc">A specially designed family itinerary with educational activities, child-friendly camps, and junior ranger programs.</div>
+            <div class="tour-card-footer">
+              <div class="tour-price">$1,680 <span>/ person</span></div>
+              <button class="tour-book-btn">Book Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tour 6 -->
+        <div class="tour-card" onclick="openModal('tour3')">
+          <div class="tour-card-img">
+            <div class="img-placeholder img-ruaha"><i class="fas fa-hippo" style="font-size:4rem;"></i></div>
+            <div class="tour-card-tags"><span class="tag tag-gold">Wild Card</span></div>
+            <div class="tour-duration"><i class="fas fa-clock"></i> 9 Days</div>
+          </div>
+          <div class="tour-card-body">
+            <div class="tour-reviews"><div class="stars">★★★★☆</div><span>4.8 (67 reviews)</span></div>
+            <div class="tour-card-title">Southern Circuit Wilderness Expedition</div>
+            <div class="tour-card-meta">
+              <span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Ruaha, Selous</span>
+              <span class="tour-meta-item"><i class="fas fa-users"></i> 2–8 pax</span>
+            </div>
+            <div class="tour-card-desc">Off-the-beaten-path exploration of Tanzania's wilder south—fewer tourists, more authentic wildlife encounters.</div>
+            <div class="tour-card-footer">
+              <div class="tour-price">$3,200 <span>/ person</span></div>
+              <button class="tour-book-btn">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KILIMANJARO TEASER -->
+  <section class="kili-section">
+    <div class="kili-bg"></div>
+    <div class="kili-orb"></div>
+    <div class="container kili-inner">
+      <div class="kili-top">
+        <div>
+          <div class="section-label">The Roof of Africa</div>
+          <h2 class="section-title">Conquer <span>Kilimanjaro</span> — Africa's Highest Peak</h2>
+          <p class="section-subtitle">5,895 meters of sheer determination. Multiple routes for every fitness level. Our 94% summit success rate is the best in Tanzania.</p>
+          <div class="kili-actions">
+            <a href="#" class="btn-gold" onclick="navigateTo('kilimanjaro');return false;"><i class="fas fa-mountain"></i> Explore Routes</a>
+            <a href="#" class="hero-btn-secondary" onclick="openModal('tour2');return false;"><i class="fas fa-play"></i> Watch Highlights</a>
+          </div>
+        </div>
+        <div class="kili-visual">
+          <div class="kili-main-img"><div class="img-placeholder img-kili" style="height:420px"><i class="fas fa-mountain" style="font-size:8rem;color:rgba(255,255,255,0.3);"></i></div></div>
+          <div class="kili-stats">
+            <div class="kili-stat"><div class="kili-stat-val">5,895m</div><div class="kili-stat-lbl">Summit Height</div></div>
+            <div class="kili-stat"><div class="kili-stat-val">94%</div><div class="kili-stat-lbl">Success Rate</div></div>
+            <div class="kili-stat"><div class="kili-stat-val">7</div><div class="kili-stat-lbl">Routes Available</div></div>
+            <div class="kili-stat"><div class="kili-stat-val">12K+</div><div class="kili-stat-lbl">Summited</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="kili-routes">
+        <div class="kili-route-card">
+          <div class="kili-route-header"><div class="kili-route-name">Machame Route</div><span class="kili-route-badge badge-moderate">Moderate</span></div>
+          <div class="kili-route-desc">The "Whiskey Route" — scenic, challenging, and the most popular. Best acclimatization profile.</div>
+          <div class="kili-route-details">
+            <span class="kili-route-detail"><i class="fas fa-clock"></i> 7–8 days</span>
+            <span class="kili-route-detail"><i class="fas fa-chart-line"></i> 85% success</span>
+            <span class="kili-route-detail"><i class="fas fa-dollar-sign"></i> From $1,950</span>
+          </div>
+        </div>
+        <div class="kili-route-card">
+          <div class="kili-route-header"><div class="kili-route-name">Marangu Route</div><span class="kili-route-badge badge-easy">Easier</span></div>
+          <div class="kili-route-desc">The "Coca-Cola Route" — the only route with hut accommodation. Ideal for first-timers.</div>
+          <div class="kili-route-details">
+            <span class="kili-route-detail"><i class="fas fa-clock"></i> 5–6 days</span>
+            <span class="kili-route-detail"><i class="fas fa-chart-line"></i> 75% success</span>
+            <span class="kili-route-detail"><i class="fas fa-dollar-sign"></i> From $1,650</span>
+          </div>
+        </div>
+        <div class="kili-route-card">
+          <div class="kili-route-header"><div class="kili-route-name">Lemosho Route</div><span class="kili-route-badge badge-hard">Challenging</span></div>
+          <div class="kili-route-desc">The most scenic and remote route. Longer approach, superb wildlife, and highest success rate.</div>
+          <div class="kili-route-details">
+            <span class="kili-route-detail"><i class="fas fa-clock"></i> 8–9 days</span>
+            <span class="kili-route-detail"><i class="fas fa-chart-line"></i> 94% success</span>
+            <span class="kili-route-detail"><i class="fas fa-dollar-sign"></i> From $2,250</span>
+          </div>
+        </div>
+        <div class="kili-route-card">
+          <div class="kili-route-header"><div class="kili-route-name">Rongai Route</div><span class="kili-route-badge badge-easy">Easier</span></div>
+          <div class="kili-route-desc">Approaches from the north near Kenya. Drier conditions, remote wilderness feel, and fewer crowds.</div>
+          <div class="kili-route-details">
+            <span class="kili-route-detail"><i class="fas fa-clock"></i> 6–7 days</span>
+            <span class="kili-route-detail"><i class="fas fa-chart-line"></i> 80% success</span>
+            <span class="kili-route-detail"><i class="fas fa-dollar-sign"></i> From $1,750</span>
+          </div>
+        </div>
+        <div class="kili-route-card">
+          <div class="kili-route-header"><div class="kili-route-name">Umbwe Route</div><span class="kili-route-badge badge-hard">Very Hard</span></div>
+          <div class="kili-route-desc">The most direct and most challenging. Only for experienced hikers with high fitness levels.</div>
+          <div class="kili-route-details">
+            <span class="kili-route-detail"><i class="fas fa-clock"></i> 6–7 days</span>
+            <span class="kili-route-detail"><i class="fas fa-chart-line"></i> 70% success</span>
+            <span class="kili-route-detail"><i class="fas fa-dollar-sign"></i> From $1,800</span>
+          </div>
+        </div>
+        <div class="kili-route-card">
+          <div class="kili-route-header"><div class="kili-route-name">Northern Circuit</div><span class="kili-route-badge badge-moderate">Moderate</span></div>
+          <div class="kili-route-desc">The longest route with the best acclimatization. Complete 360° views of the mountain.</div>
+          <div class="kili-route-details">
+            <span class="kili-route-detail"><i class="fas fa-clock"></i> 9–10 days</span>
+            <span class="kili-route-detail"><i class="fas fa-chart-line"></i> 97% success</span>
+            <span class="kili-route-detail"><i class="fas fa-dollar-sign"></i> From $2,490</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THINGS TO DO TEASER -->
+  <section class="todo-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-label">Activities</div>
+          <h2 class="section-title">Things To <span>Do & Experience</span></h2>
+        </div>
+        <a href="#" class="btn-outline" onclick="navigateTo('todo');return false;">All Activities <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="todo-cats">
+        <div class="todo-cat active"><i class="fas fa-th-large"></i> All</div>
+        <div class="todo-cat"><i class="fas fa-paw"></i> Wildlife Safari</div>
+        <div class="todo-cat"><i class="fas fa-mountain"></i> Trekking</div>
+        <div class="todo-cat"><i class="fas fa-umbrella-beach"></i> Beach & Water</div>
+        <div class="todo-cat"><i class="fas fa-landmark"></i> Cultural</div>
+        <div class="todo-cat"><i class="fas fa-hot-air-balloon"></i> Adventure</div>
+      </div>
+      <div class="todo-grid">
+        <div class="todo-card">
+          <div class="todo-card-img"><div class="img-placeholder img-serengeti"><i class="fas fa-binoculars" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-paw"></i></div></div>
+          <div class="todo-card-body">
+            <div class="todo-card-cat">Wildlife Safari</div>
+            <div class="todo-card-title">Great Migration Game Drive</div>
+            <div class="todo-card-desc">Witness over 1.5 million wildebeest crossing the Mara River in one of nature's greatest spectacles.</div>
+            <div class="todo-card-footer">
+              <div class="todo-from">From <strong>$320/day</strong></div>
+              <button class="tour-book-btn" onclick="openModal('tour1')">Book</button>
+            </div>
+          </div>
+        </div>
+        <div class="todo-card">
+          <div class="todo-card-img"><div class="img-placeholder img-beach"><i class="fas fa-fish" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-water"></i></div></div>
+          <div class="todo-card-body">
+            <div class="todo-card-cat">Water Sports</div>
+            <div class="todo-card-title">Zanzibar Snorkeling & Diving</div>
+            <div class="todo-card-desc">Explore spectacular coral reefs with sea turtles, manta rays, and over 500 species of tropical fish.</div>
+            <div class="todo-card-footer">
+              <div class="todo-from">From <strong>$75/person</strong></div>
+              <button class="tour-book-btn" onclick="openModal('tour3')">Book</button>
+            </div>
+          </div>
+        </div>
+        <div class="todo-card">
+          <div class="todo-card-img"><div class="img-placeholder img-zanzibar"><i class="fas fa-mosque" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-landmark"></i></div></div>
+          <div class="todo-card-body">
+            <div class="todo-card-cat">Cultural</div>
+            <div class="todo-card-title">Stone Town Heritage Walk</div>
+            <div class="todo-card-desc">Wander ancient alleyways, spice markets, and the UNESCO-listed Stone Town with an expert local guide.</div>
+            <div class="todo-card-footer">
+              <div class="todo-from">From <strong>$45/person</strong></div>
+              <button class="tour-book-btn" onclick="openModal('tour3')">Book</button>
+            </div>
+          </div>
+        </div>
+        <div class="todo-card">
+          <div class="todo-card-img"><div class="img-placeholder img-tour2"><i class="fas fa-hot-air-balloon" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-hot-air-balloon"></i></div></div>
+          <div class="todo-card-body">
+            <div class="todo-card-cat">Adventure</div>
+            <div class="todo-card-title">Hot Air Balloon Safari</div>
+            <div class="todo-card-desc">Float above the endless Serengeti plains at sunrise—the ultimate aerial wildlife experience.</div>
+            <div class="todo-card-footer">
+              <div class="todo-from">From <strong>$550/person</strong></div>
+              <button class="tour-book-btn" onclick="openModal('tour1')">Book</button>
+            </div>
+          </div>
+        </div>
+        <div class="todo-card">
+          <div class="todo-card-img"><div class="img-placeholder img-tarangire"><i class="fas fa-tree" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-walking"></i></div></div>
+          <div class="todo-card-body">
+            <div class="todo-card-cat">Trekking</div>
+            <div class="todo-card-title">Maasai Village Walking Safari</div>
+            <div class="todo-card-desc">Walk alongside Maasai warriors, learn ancient tracking skills, and share in living cultural traditions.</div>
+            <div class="todo-card-footer">
+              <div class="todo-from">From <strong>$60/person</strong></div>
+              <button class="tour-book-btn" onclick="openModal('tour1')">Book</button>
+            </div>
+          </div>
+        </div>
+        <div class="todo-card">
+          <div class="todo-card-img"><div class="img-placeholder img-ngorongoro"><i class="fas fa-star" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-moon"></i></div></div>
+          <div class="todo-card-body">
+            <div class="todo-card-cat">Luxury</div>
+            <div class="todo-card-title">Crater Rim Stargazing Night</div>
+            <div class="todo-card-desc">Experience some of Earth's clearest skies from the Ngorongoro crater rim with our astronomy guide.</div>
+            <div class="todo-card-footer">
+              <div class="todo-from">From <strong>$120/person</strong></div>
+              <button class="tour-book-btn" onclick="openModal('tour1')">Book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="reviews-section">
+    <div class="container">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">Stories from <span>Our Travelers</span></h2>
+      <div class="reviews-track" id="reviewsTrack">
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar" style="background:linear-gradient(135deg,#1B4332,#40916C)">SJ</div>
+              <div><div class="reviewer-name">Sarah Johnson</div><div class="reviewer-meta">🇺🇸 United States · June 2024</div></div>
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <p class="review-quote">"TanzaniaTrips made our dream safari absolutely unforgettable. Our guide Moses knew every inch of the Serengeti and had us in the right place at the right time—we witnessed a lion hunt! The camps were luxurious yet authentic."</p>
+          <div class="review-tour">Tour: <strong>Classic Serengeti & Ngorongoro Safari · 7 Days</strong></div>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar" style="background:linear-gradient(135deg,#1a3a5c,#1e6ba8)">MH</div>
+              <div><div class="reviewer-name">Marcus Hoffmann</div><div class="reviewer-meta">🇩🇪 Germany · March 2024</div></div>
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <p class="review-quote">"Reaching Uhuru Peak was one of the most emotional moments of my life. The TanzaniaTrips team managed our acclimatization perfectly and their encouragement made the difference. 94% success rate? Now I believe it."</p>
+          <div class="review-tour">Tour: <strong>Kilimanjaro Lemosho Route · 9 Days</strong></div>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar" style="background:linear-gradient(135deg,#5a1a4a,#a83a8a)">AP</div>
+              <div><div class="reviewer-name">Amara Petrov</div><div class="reviewer-meta">🇬🇧 United Kingdom · August 2024</div></div>
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <p class="review-quote">"The Zanzibar extension after our safari was pure magic. Pristine beaches, incredible food, and the Stone Town tour was worth the entire trip alone. Every detail was thought of. Already planning my return!"</p>
+          <div class="review-tour">Tour: <strong>Zanzibar Spice & Beach Escape · 5 Days</strong></div>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar" style="background:linear-gradient(135deg,#3a2a1a,#8a6a30)">TW</div>
+              <div><div class="reviewer-name">Takashi Watanabe</div><div class="reviewer-meta">🇯🇵 Japan · November 2023</div></div>
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <p class="review-quote">"We traveled as a family with three kids and it was flawless. The junior ranger program was fantastic—my children are now obsessed with wildlife. The family-friendly camps made everyone comfortable."</p>
+          <div class="review-tour">Tour: <strong>Family Safari Adventure · 6 Days</strong></div>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar" style="background:linear-gradient(135deg,#1a4a3a,#2a9a6a)">LC</div>
+              <div><div class="reviewer-name">Laura Chen</div><div class="reviewer-meta">🇨🇦 Canada · January 2025</div></div>
+            </div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <p class="review-quote">"The Ruaha expedition was wild and raw in the best possible way. Almost no other tourists, incredible elephant herds, and a magical bush dinner under the stars. TanzaniaTrips really gets the 'off-the-beaten-path' experience."</p>
+          <div class="review-tour">Tour: <strong>Southern Circuit Wilderness Expedition · 9 Days</strong></div>
+        </div>
+      </div>
+      <div class="reviews-controls">
+        <div class="rev-btn" onclick="scrollReviews(-1)"><i class="fas fa-arrow-left"></i></div>
+        <div class="rev-btn" onclick="scrollReviews(1)"><i class="fas fa-arrow-right"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG TEASER -->
+  <section class="blog-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-label">Travel Guides & Stories</div>
+          <h2 class="section-title">From Our <span>Blog</span></h2>
+        </div>
+        <a href="#" class="btn-outline" onclick="navigateTo('blog');return false;">All Articles <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card featured" onclick="navigateTo('blog')">
+          <div class="blog-card-img"><div class="img-placeholder img-serengeti" style="height:280px"><i class="fas fa-paw" style="font-size:5rem;"></i></div></div>
+          <div class="blog-card-body">
+            <div class="blog-card-cat">Wildlife Guide</div>
+            <h3 class="blog-card-title">The Complete Guide to the Great Wildebeest Migration 2025</h3>
+            <p class="blog-card-excerpt">Everything you need to know about timing your visit to witness one of nature's most breathtaking spectacles—month-by-month breakdown, best viewing spots, and expert photography tips.</p>
+            <div class="blog-card-meta"><span><i class="fas fa-user"></i> James Osei</span><span><i class="fas fa-calendar"></i> Feb 12, 2025</span><span><i class="fas fa-clock"></i> 8 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card" onclick="navigateTo('blog')">
+          <div class="blog-card-img"><div class="img-placeholder img-kili" style="height:160px"><i class="fas fa-mountain" style="font-size:3rem;"></i></div></div>
+          <div class="blog-card-body">
+            <div class="blog-card-cat">Trekking Tips</div>
+            <h3 class="blog-card-title">Machame vs. Lemosho: Which Kilimanjaro Route Is Right for You?</h3>
+            <div class="blog-card-meta"><span><i class="fas fa-user"></i> Amina Rashid</span><span><i class="fas fa-calendar"></i> Jan 28, 2025</span></div>
+          </div>
+        </div>
+        <div class="blog-card" onclick="navigateTo('blog')">
+          <div class="blog-card-img"><div class="img-placeholder img-zanzibar" style="height:160px"><i class="fas fa-umbrella-beach" style="font-size:3rem;"></i></div></div>
+          <div class="blog-card-body">
+            <div class="blog-card-cat">Destination Guide</div>
+            <h3 class="blog-card-title">Zanzibar: 10 Hidden Gems Beyond the Tourist Trail</h3>
+            <div class="blog-card-meta"><span><i class="fas fa-user"></i> Zuri Mohammed</span><span><i class="fas fa-calendar"></i> Jan 15, 2025</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP SECTION -->
+  <section class="map-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-label">Our Coverage</div>
+          <h2 class="section-title">We Cover All of <span>Tanzania</span></h2>
+        </div>
+      </div>
+      <div class="map-wrapper">
+        <div class="map-pins">
+          <div class="map-pin" style="left:45%;top:30%"><div class="map-pin-dot"></div><div class="map-pin-label">Serengeti</div></div>
+          <div class="map-pin" style="left:60%;top:45%"><div class="map-pin-dot"></div><div class="map-pin-label">Kilimanjaro</div></div>
+          <div class="map-pin" style="left:85%;top:70%"><div class="map-pin-dot"></div><div class="map-pin-label">Zanzibar</div></div>
+          <div class="map-pin" style="left:50%;top:40%"><div class="map-pin-dot"></div><div class="map-pin-label">Ngorongoro</div></div>
+          <div class="map-pin" style="left:30%;top:65%"><div class="map-pin-dot"></div><div class="map-pin-label">Ruaha</div></div>
+          <div class="map-pin" style="left:55%;top:35%"><div class="map-pin-dot"></div><div class="map-pin-label">Tarangire</div></div>
+        </div>
+        <div class="map-placeholder">
+          <i class="fas fa-map-marked-alt"></i>
+          <h3>Interactive Tanzania Map</h3>
+          <p>Hover over pins to explore our destinations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="partners-section">
+    <div class="partners-label">Trusted Partnerships & Certifications</div>
+    <div class="container">
+      <div class="partners-track">
+        <div class="partner-item">TATO</div>
+        <div class="partner-item">Tanzania National Parks</div>
+        <div class="partner-item">KPAP</div>
+        <div class="partner-item">Rainforest Alliance</div>
+        <div class="partner-item">IATA</div>
+        <div class="partner-item">TripAdvisor Excellence</div>
+        <div class="partner-item">Lonely Planet</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-orb cta-orb-1"></div>
+    <div class="cta-orb cta-orb-2"></div>
+    <div class="cta-inner">
+      <div class="section-label">Start Your Journey</div>
+      <h2 class="section-title">Ready to Discover <span>Tanzania</span>?</h2>
+      <p class="section-subtitle">Whether it's your first safari or your tenth summit—we'll create the adventure of a lifetime. Custom itineraries available 24/7.</p>
+      <div class="cta-actions">
+        <a href="#" class="cta-btn-white" onclick="navigateTo('tours');return false;"><i class="fas fa-compass"></i> Browse All Tours</a>
+        <a href="#" class="cta-btn-outline" onclick="navigateTo('contact');return false;"><i class="fas fa-headset"></i> Talk to an Expert</a>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end page-home -->
+
+<!-- =========================================
+     TOURS PAGE
+     ========================================= -->
+<div id="page-tours" class="page">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label">Our Packages</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);">Tours & Safari <span style="color:var(--gold-light)">Packages</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 0;color:rgba(255,255,255,0.7);">85+ handcrafted itineraries for every traveler, budget, and adventure level.</p>
+    </div>
+  </div>
+  <div class="packages-filters">
+    <div class="container">
+      <div class="pf-inner">
+        <div class="pf-group">
+          <div class="pf-label">Destination</div>
+          <select class="pf-select" onchange="filterTours()">
+            <option>All Destinations</option>
+            <option>Serengeti</option>
+            <option>Kilimanjaro</option>
+            <option>Zanzibar</option>
+            <option>Ngorongoro</option>
+            <option>Tarangire</option>
+            <option>Ruaha</option>
+          </select>
+        </div>
+        <div class="pf-divider"></div>
+        <div class="pf-group">
+          <div class="pf-label">Duration</div>
+          <select class="pf-select" onchange="filterTours()">
+            <option>Any Duration</option>
+            <option>1–3 Days</option>
+            <option>4–6 Days</option>
+            <option>7–10 Days</option>
+            <option>11+ Days</option>
+          </select>
+        </div>
+        <div class="pf-divider"></div>
+        <div class="pf-group">
+          <div class="pf-label">Budget</div>
+          <select class="pf-select" onchange="filterTours()">
+            <option>Any Budget</option>
+            <option>Under $1,000</option>
+            <option>$1,000–$2,500</option>
+            <option>$2,500–$5,000</option>
+            <option>$5,000+</option>
+          </select>
+        </div>
+        <div class="pf-divider"></div>
+        <div class="pf-group">
+          <div class="pf-label">Activity</div>
+          <select class="pf-select" onchange="filterTours()">
+            <option>All Activities</option>
+            <option>Safari</option>
+            <option>Trekking</option>
+            <option>Beach</option>
+            <option>Cultural</option>
+          </select>
+        </div>
+        <div class="pf-divider"></div>
+        <div class="pf-group">
+          <div class="pf-label">Group</div>
+          <select class="pf-select" onchange="filterTours()">
+            <option>All Groups</option>
+            <option>Solo</option>
+            <option>Couples</option>
+            <option>Family</option>
+            <option>Corporate</option>
+          </select>
+        </div>
+        <div class="pf-result-count" id="tourCount">Showing 9 tours</div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:60px 0;">
+    <div class="container">
+      <div class="grid-3" id="toursGrid">
+        <div class="tour-card" onclick="openModal('tour1')">
+          <div class="tour-card-img"><div class="img-placeholder img-tour1"><i class="fas fa-paw" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-green">Best Seller</span></div><div class="tour-duration">7 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★★</div><span>4.9 (342)</span></div><div class="tour-card-title">Classic Serengeti & Ngorongoro</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Serengeti</span><span class="tour-meta-item"><i class="fas fa-users"></i> 2–12</span></div><div class="tour-card-desc">Witness the Great Migration and explore the world's largest intact volcanic caldera.</div><div class="tour-card-footer"><div class="tour-price">$2,850<span>/pp</span></div><button class="tour-book-btn">Book</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour2')">
+          <div class="tour-card-img"><div class="img-placeholder img-kili"><i class="fas fa-mountain" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-gold">Top Rated</span></div><div class="tour-duration">8 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★★</div><span>4.9 (218)</span></div><div class="tour-card-title">Kilimanjaro Machame Route</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Kilimanjaro</span><span class="tour-meta-item"><i class="fas fa-users"></i> 1–8</span></div><div class="tour-card-desc">Summit Africa's highest peak via the scenic Whiskey Route.</div><div class="tour-card-footer"><div class="tour-price">$1,950<span>/pp</span></div><button class="tour-book-btn">Book</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour3')">
+          <div class="tour-card-img"><div class="img-placeholder img-zanzibar"><i class="fas fa-umbrella-beach" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-green">Beach</span></div><div class="tour-duration">5 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★☆</div><span>4.7 (156)</span></div><div class="tour-card-title">Zanzibar Spice & Beach Escape</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Zanzibar</span><span class="tour-meta-item"><i class="fas fa-users"></i> 2–16</span></div><div class="tour-card-desc">Stone Town, spice plantations, and pristine beaches.</div><div class="tour-card-footer"><div class="tour-price">$1,290<span>/pp</span></div><button class="tour-book-btn">Book</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour1')">
+          <div class="tour-card-img"><div class="img-placeholder img-serengeti"><i class="fas fa-camera" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-gold">Premium</span></div><div class="tour-duration">12 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★★</div><span>5.0 (89)</span></div><div class="tour-card-title">Northern Tanzania Grand Safari</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Full Circuit</span><span class="tour-meta-item"><i class="fas fa-users"></i> 2–10</span></div><div class="tour-card-desc">Complete Northern Circuit: Tarangire, Manyara, Serengeti, Ngorongoro + Zanzibar.</div><div class="tour-card-footer"><div class="tour-price">$5,400<span>/pp</span></div><button class="tour-book-btn">Book</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour2')">
+          <div class="tour-card-img"><div class="img-placeholder img-ngorongoro"><i class="fas fa-binoculars" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-green">Family</span></div><div class="tour-duration">6 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★★</div><span>4.8 (112)</span></div><div class="tour-card-title">Family Safari Adventure</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Ngorongoro</span><span class="tour-meta-item"><i class="fas fa-child"></i> Family</span></div><div class="tour-card-desc">Specially designed family itinerary with junior ranger program.</div><div class="tour-card-footer"><div class="tour-price">$1,680<span>/pp</span></div><button class="tour-book-btn">Book</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour3')">
+          <div class="tour-card-img"><div class="img-placeholder img-ruaha"><i class="fas fa-hippo" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-gold">Wild Card</span></div><div class="tour-duration">9 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★☆</div><span>4.8 (67)</span></div><div class="tour-card-title">Southern Wilderness Expedition</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Ruaha</span><span class="tour-meta-item"><i class="fas fa-users"></i> 2–8</span></div><div class="tour-card-desc">Ruaha & Selous — Tanzania's wilder, quieter south.</div><div class="tour-card-footer"><div class="tour-price">$3,200<span>/pp</span></div><button class="tour-book-btn">Book</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour1')">
+          <div class="tour-card-img"><div class="img-placeholder img-kili" style="filter:brightness(0.9)"><i class="fas fa-snowflake" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-green">High Altitude</span></div><div class="tour-duration">9 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★★</div><span>4.9 (195)</span></div><div class="tour-card-title">Kilimanjaro Lemosho Premium</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Kilimanjaro</span><span class="tour-meta-item"><i class="fas fa-users"></i> 1–6</span></div><div class="tour-card-desc">The most scenic route with the highest summit success rate of 97%.</div><div class="tour-card-footer"><div class="tour-price">$2,250<span>/pp</span></div><button class="tour-book-btn">Book</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour3')">
+          <div class="tour-card-img"><div class="img-placeholder img-beach"><i class="fas fa-sailboat" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-gold">Exclusive</span></div><div class="tour-duration">7 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★★</div><span>5.0 (43)</span></div><div class="tour-card-title">Pemba Island Private Retreat</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Pemba Island</span><span class="tour-meta-item"><i class="fas fa-users"></i> 2–4</span></div><div class="tour-card-desc">Tanzania's most unspoiled island—world-class diving and total seclusion.</div><div class="tour-card-footer"><div class="tour-price">$3,800<span>/pp</span></div><button class="tour-book-btn">Book</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour1')">
+          <div class="tour-card-img"><div class="img-placeholder img-tour2"><i class="fas fa-briefcase" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-green">Corporate</span></div><div class="tour-duration">4 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★★</div><span>4.9 (28)</span></div><div class="tour-card-title">Corporate Incentive Safari</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-map-marker-alt"></i> Serengeti</span><span class="tour-meta-item"><i class="fas fa-users"></i> 10–50</span></div><div class="tour-card-desc">Reward your team with Tanzania's finest — meetings at sunset, game drives, and gala dinners.</div><div class="tour-card-footer"><div class="tour-price">$1,450<span>/pp</span></div><button class="tour-book-btn">Book</button></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FAQ -->
+  <section class="faq-section" style="background:var(--off-white);">
+    <div class="container">
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+      <div class="faq-list">
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is included in the tour price?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>All TanzaniaTrips packages include park/conservation fees, accommodation, meals as specified, transport, professional guide, and government taxes. International flights are not included unless stated.</p></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the best time to visit Tanzania?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Tanzania's dry seasons (June–October and January–February) are ideal for wildlife viewing. The Great Migration river crossings peak July–September. Kilimanjaro is best climbed January–March or June–October.</p></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I need a visa to visit Tanzania?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Most nationalities require a Tanzania visa. You can apply online at the Tanzania e-Visa portal or get a visa on arrival at major entry points. We provide full visa guidance upon booking.</p></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What vaccinations are recommended?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Yellow fever vaccination is required if entering from endemic countries. We recommend hepatitis A & B, typhoid, and rabies. Anti-malaria prophylaxis is strongly advised. Always consult your travel doctor.</p></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I customize my itinerary?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Absolutely! All our packages can be fully customized. Tell us your dates, budget, interests, and group size and our travel experts will craft a bespoke itinerary within 24 hours.</p></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the cancellation policy?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Free cancellation up to 30 days before departure with full refund. 15–30 days: 50% refund. Under 15 days: no refund, but we offer free rebooking within 12 months for force majeure situations.</p></div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- end page-tours -->
+
+<!-- =========================================
+     KILIMANJARO PAGE
+     ========================================= -->
+<div id="page-kilimanjaro" class="page">
+  <div class="page-hero" style="padding:140px 0 80px;">
+    <div class="page-hero-content container">
+      <div class="section-label" style="justify-content:center;color:var(--green-light)">Africa's Highest Peak</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2.5rem,6vw,4rem);">Conquer <span style="color:var(--gold-light)">Kilimanjaro</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 28px;color:rgba(255,255,255,0.7);">5,895m · 94% Summit Success Rate · 7 Routes Available · Year-Round Climbing</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="#" class="btn-gold" onclick="openModal('tour2');return false;"><i class="fas fa-mountain"></i> Book Your Trek</a>
+        <a href="#" class="hero-btn-secondary" onclick="navigateTo('contact');return false;"><i class="fas fa-headset"></i> Free Consultation</a>
+      </div>
+    </div>
+  </div>
+  <section style="padding:80px 0;">
+    <div class="container">
+      <div class="kili-stats" style="position:static;transform:none;width:100%;margin-bottom:60px;background:var(--green-pale);border:1px solid var(--green-light);border-radius:var(--radius-md);overflow:hidden;display:flex;">
+        <div class="kili-stat" style="flex:1;"><div class="kili-stat-val" style="color:var(--green-dark);">5,895m</div><div class="kili-stat-lbl" style="color:var(--gray-500);">Summit Altitude</div></div>
+        <div class="kili-stat" style="flex:1;"><div class="kili-stat-val" style="color:var(--green-dark);">94%</div><div class="kili-stat-lbl" style="color:var(--gray-500);">Our Success Rate</div></div>
+        <div class="kili-stat" style="flex:1;"><div class="kili-stat-val" style="color:var(--green-dark);">7</div><div class="kili-stat-lbl" style="color:var(--gray-500);">Routes</div></div>
+        <div class="kili-stat" style="flex:1;"><div class="kili-stat-val" style="color:var(--green-dark);">12K+</div><div class="kili-stat-lbl" style="color:var(--gray-500);">Summited With Us</div></div>
+        <div class="kili-stat" style="flex:1;"><div class="kili-stat-val" style="color:var(--green-dark);">5–10</div><div class="kili-stat-lbl" style="color:var(--gray-500);">Days per Trek</div></div>
+      </div>
+      <div class="section-label">Choose Your Route</div>
+      <h2 class="section-title" style="margin-bottom:32px;">All Kilimanjaro <span>Routes & Packages</span></h2>
+      <div class="grid-2">
+        <div class="tour-card" onclick="openModal('tour2')" style="cursor:pointer;">
+          <div class="tour-card-img"><div class="img-placeholder img-kili"><i class="fas fa-mountain" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-gold">Most Popular</span></div><div class="tour-duration">7–8 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★★</div><span>4.9 (342 reviews)</span></div><div class="tour-card-title">Machame Route – "The Whiskey Route"</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-chart-line"></i> 85% Success</span><span class="tour-meta-item"><i class="fas fa-fire"></i> Moderate–Hard</span></div><div class="tour-card-desc">The most scenic and popular route. Excellent acclimatization profile with varied landscapes from rainforest to alpine desert.</div><div class="tour-card-footer"><div class="tour-price">$1,950<span>/person</span></div><button class="tour-book-btn">Book Now</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour2')" style="cursor:pointer;">
+          <div class="tour-card-img"><div class="img-placeholder img-kili" style="filter:hue-rotate(20deg)"><i class="fas fa-snowflake" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-green">Best Success</span></div><div class="tour-duration">8–9 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★★</div><span>4.9 (195 reviews)</span></div><div class="tour-card-title">Lemosho Route – "The Classic Route"</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-chart-line"></i> 97% Success</span><span class="tour-meta-item"><i class="fas fa-fire"></i> Moderate</span></div><div class="tour-card-desc">Pristine wilderness, superb wildlife, and the best acclimatization. Starts from the remote western slopes.</div><div class="tour-card-footer"><div class="tour-price">$2,250<span>/person</span></div><button class="tour-book-btn">Book Now</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour2')" style="cursor:pointer;">
+          <div class="tour-card-img"><div class="img-placeholder img-kili" style="filter:brightness(0.8)"><i class="fas fa-home" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-green">Huts Route</span></div><div class="tour-duration">5–6 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★☆</div><span>4.6 (156 reviews)</span></div><div class="tour-card-title">Marangu Route – "The Coca-Cola Route"</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-chart-line"></i> 75% Success</span><span class="tour-meta-item"><i class="fas fa-fire"></i> Moderate</span></div><div class="tour-card-desc">The only route with dormitory huts. Best option for those who prefer not to camp. Shorter but steeper climb.</div><div class="tour-card-footer"><div class="tour-price">$1,650<span>/person</span></div><button class="tour-book-btn">Book Now</button></div></div>
+        </div>
+        <div class="tour-card" onclick="openModal('tour2')" style="cursor:pointer;">
+          <div class="tour-card-img"><div class="img-placeholder img-kili" style="filter:hue-rotate(60deg)"><i class="fas fa-route" style="font-size:4rem;"></i></div><div class="tour-card-tags"><span class="tag tag-gold">Premium</span></div><div class="tour-duration">9–10 Days</div></div>
+          <div class="tour-card-body"><div class="tour-reviews"><div class="stars">★★★★★</div><span>5.0 (87 reviews)</span></div><div class="tour-card-title">Northern Circuit – "The Grand Traverse"</div><div class="tour-card-meta"><span class="tour-meta-item"><i class="fas fa-chart-line"></i> 97% Success</span><span class="tour-meta-item"><i class="fas fa-fire"></i> Moderate</span></div><div class="tour-card-desc">360° circumnavigation of the mountain. Longest route with the best acclimatization and stunning panoramas.</div><div class="tour-card-footer"><div class="tour-price">$2,490<span>/person</span></div><button class="tour-book-btn">Book Now</button></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- What's included -->
+  <section style="padding:60px 0 80px;background:var(--off-white);">
+    <div class="container">
+      <div class="section-label">What's Included</div>
+      <h2 class="section-title" style="margin-bottom:36px;">Every Trek Includes</h2>
+      <div class="grid-4">
+        <div class="value-card"><div class="value-icon"><i class="fas fa-user-tie"></i></div><h3>Expert Guides</h3><p>KINAPA-certified lead guides with 10+ years. Speak English, German & more.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-users"></i></div><h3>Porter Team</h3><p>Dedicated Kilimanjaro Porter Assistance Project (KPAP) partner porters.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-campground"></i></div><h3>Premium Gear</h3><p>High-altitude sleeping bags, quality tents, and insulated dining tents included.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-utensils"></i></div><h3>Full Board</h3><p>3 hot meals daily plus afternoon snacks. Vegetarian and dietary options available.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-heartbeat"></i></div><h3>Medical Support</h3><p>Pulse oximeters, first aid kits, oxygen, and rescue protocols for every team.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-id-card"></i></div><h3>Park Fees</h3><p>All KINAPA fees, camping permits, and rescue fees included in your package price.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-bus"></i></div><h3>Transfers</h3><p>Airport pick-up, hotel transfer to Moshi, and gate transfer all included.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-certificate"></i></div><h3>Summit Certificate</h3><p>Official KINAPA Uhuru Peak certificate upon successful summit.</p></div>
+      </div>
+    </div>
+  </section>
+</div><!-- end kilimanjaro page -->
+
+<!-- =========================================
+     DESTINATIONS PAGE
+     ========================================= -->
+<div id="page-destinations" class="page">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label" style="justify-content:center;">Explore Tanzania</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);">All <span style="color:var(--gold-light)">Destinations</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 0;color:rgba(255,255,255,0.7);">From mountain peaks to white sand beaches — every corner of Tanzania awaits.</p>
+    </div>
+  </div>
+  <section style="padding:80px 0;">
+    <div class="container">
+      <div class="dest-filters" style="margin-bottom:40px;">
+        <div class="dest-filter active">All</div>
+        <div class="dest-filter">🌿 National Parks</div>
+        <div class="dest-filter">🏖 Beaches & Islands</div>
+        <div class="dest-filter">🏔 Mountains</div>
+        <div class="dest-filter">🏛 Heritage</div>
+      </div>
+      <div class="dest-grid">
+        <div class="dest-card featured" onclick="openModal('tour1')">
+          <div class="dest-card-img" style="height:100%"><div class="img-placeholder img-serengeti" style="height:100%;min-height:300px"><i class="fas fa-paw" style="font-size:6rem;"></i></div></div>
+          <div class="dest-card-tag">🔥 Most Popular</div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content"><div class="dest-card-name">Serengeti National Park</div><div class="dest-card-meta"><span class="dest-card-count">24 tours · 14,763 km²</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.9</span></div></div>
+        </div>
+        <div class="dest-card" onclick="navigateTo('kilimanjaro')">
+          <div class="dest-card-img"><div class="img-placeholder img-kili"><i class="fas fa-mountain" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content"><div class="dest-card-name">Mt. Kilimanjaro</div><div class="dest-card-meta"><span class="dest-card-count">12 routes · 5,895m</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.9</span></div></div>
+        </div>
+        <div class="dest-card" onclick="openModal('tour3')">
+          <div class="dest-card-img"><div class="img-placeholder img-zanzibar"><i class="fas fa-umbrella-beach" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-tag">UNESCO</div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content"><div class="dest-card-name">Zanzibar Island</div><div class="dest-card-meta"><span class="dest-card-count">18 tours</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.8</span></div></div>
+        </div>
+        <div class="dest-card" onclick="openModal('tour1')">
+          <div class="dest-card-img"><div class="img-placeholder img-ngorongoro"><i class="fas fa-circle-notch" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content"><div class="dest-card-name">Ngorongoro Crater</div><div class="dest-card-meta"><span class="dest-card-count">16 tours</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.8</span></div></div>
+        </div>
+        <div class="dest-card" onclick="openModal('tour1')">
+          <div class="dest-card-img"><div class="img-placeholder img-tarangire"><i class="fas fa-tree" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content"><div class="dest-card-name">Tarangire National Park</div><div class="dest-card-meta"><span class="dest-card-count">9 tours</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.7</span></div></div>
+        </div>
+        <div class="dest-card" onclick="openModal('tour3')">
+          <div class="dest-card-img"><div class="img-placeholder img-ruaha"><i class="fas fa-hippo" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content"><div class="dest-card-name">Ruaha National Park</div><div class="dest-card-meta"><span class="dest-card-count">7 tours</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.7</span></div></div>
+        </div>
+        <div class="dest-card" onclick="openModal('tour3')">
+          <div class="dest-card-img"><div class="img-placeholder img-beach"><i class="fas fa-water" style="font-size:4rem;"></i></div></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-content"><div class="dest-card-name">Pemba Island</div><div class="dest-card-meta"><span class="dest-card-count">6 tours</span><span class="dest-card-rating"><i class="fas fa-star"></i> 4.9</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================================
+     THINGS TO DO PAGE
+     ========================================= -->
+<div id="page-todo" class="page">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label" style="justify-content:center;">Tanzania Activities</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);">Things To <span style="color:var(--gold-light)">Do</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 0;color:rgba(255,255,255,0.7);">100+ activities — from dawn game drives to sunset dhow cruises.</p>
+    </div>
+  </div>
+  <section style="padding:80px 0;">
+    <div class="container">
+      <div class="todo-cats" style="margin-bottom:40px;">
+        <div class="todo-cat active"><i class="fas fa-th-large"></i> All Activities</div>
+        <div class="todo-cat"><i class="fas fa-paw"></i> Wildlife Safari</div>
+        <div class="todo-cat"><i class="fas fa-mountain"></i> Trekking</div>
+        <div class="todo-cat"><i class="fas fa-umbrella-beach"></i> Beach & Water</div>
+        <div class="todo-cat"><i class="fas fa-landmark"></i> Cultural Tours</div>
+        <div class="todo-cat"><i class="fas fa-hot-air-balloon"></i> Adventure</div>
+        <div class="todo-cat"><i class="fas fa-glass-cheers"></i> Food & Nightlife</div>
+      </div>
+      <div class="todo-grid">
+        <div class="todo-card"><div class="todo-card-img"><div class="img-placeholder img-serengeti"><i class="fas fa-binoculars" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-paw"></i></div></div><div class="todo-card-body"><div class="todo-card-cat">Wildlife Safari</div><div class="todo-card-title">Great Migration Game Drive</div><div class="todo-card-desc">Witness 1.5M wildebeest cross the Mara River. The world's greatest wildlife show.</div><div class="todo-card-footer"><div class="todo-from">From <strong>$320/day</strong></div><button class="tour-book-btn" onclick="openModal('tour1')">Book</button></div></div></div>
+        <div class="todo-card"><div class="todo-card-img"><div class="img-placeholder img-tour2"><i class="fas fa-hot-air-balloon" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-hot-air-balloon"></i></div></div><div class="todo-card-body"><div class="todo-card-cat">Adventure</div><div class="todo-card-title">Hot Air Balloon Safari</div><div class="todo-card-desc">Soar above the Serengeti at sunrise for a truly unforgettable aerial wildlife experience.</div><div class="todo-card-footer"><div class="todo-from">From <strong>$550/person</strong></div><button class="tour-book-btn" onclick="openModal('tour1')">Book</button></div></div></div>
+        <div class="todo-card"><div class="todo-card-img"><div class="img-placeholder img-beach"><i class="fas fa-fish" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-water"></i></div></div><div class="todo-card-body"><div class="todo-card-cat">Water Sports</div><div class="todo-card-title">Zanzibar Snorkeling & Diving</div><div class="todo-card-desc">Explore coral reefs with sea turtles, rays, and 500+ species of tropical fish.</div><div class="todo-card-footer"><div class="todo-from">From <strong>$75/person</strong></div><button class="tour-book-btn" onclick="openModal('tour3')">Book</button></div></div></div>
+        <div class="todo-card"><div class="todo-card-img"><div class="img-placeholder img-zanzibar"><i class="fas fa-mosque" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-landmark"></i></div></div><div class="todo-card-body"><div class="todo-card-cat">Cultural</div><div class="todo-card-title">Stone Town Heritage Walk</div><div class="todo-card-desc">Wander UNESCO-listed Stone Town with spice markets, ancient palaces, and local food.</div><div class="todo-card-footer"><div class="todo-from">From <strong>$45/person</strong></div><button class="tour-book-btn" onclick="openModal('tour3')">Book</button></div></div></div>
+        <div class="todo-card"><div class="todo-card-img"><div class="img-placeholder img-tarangire"><i class="fas fa-hiking" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-walking"></i></div></div><div class="todo-card-body"><div class="todo-card-cat">Trekking</div><div class="todo-card-title">Maasai Village Walking Safari</div><div class="todo-card-desc">Walk with Maasai warriors, learn tracking, and experience living Maasai culture firsthand.</div><div class="todo-card-footer"><div class="todo-from">From <strong>$60/person</strong></div><button class="tour-book-btn" onclick="openModal('tour1')">Book</button></div></div></div>
+        <div class="todo-card"><div class="todo-card-img"><div class="img-placeholder img-ngorongoro"><i class="fas fa-star" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-moon"></i></div></div><div class="todo-card-body"><div class="todo-card-cat">Astronomy</div><div class="todo-card-title">Crater Rim Stargazing</div><div class="todo-card-desc">Clear equatorial skies like nowhere else. Guided astronomy session from the Ngorongoro rim.</div><div class="todo-card-footer"><div class="todo-from">From <strong>$120/person</strong></div><button class="tour-book-btn" onclick="openModal('tour1')">Book</button></div></div></div>
+        <div class="todo-card"><div class="todo-card-img"><div class="img-placeholder img-beach" style="filter:hue-rotate(30deg)"><i class="fas fa-sailboat" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-ship"></i></div></div><div class="todo-card-body"><div class="todo-card-cat">Water Sports</div><div class="todo-card-title">Sunset Dhow Cruise</div><div class="todo-card-desc">Sail traditional Zanzibari dhow at sunset with local seafood dinner and Swahili music.</div><div class="todo-card-footer"><div class="todo-from">From <strong>$95/person</strong></div><button class="tour-book-btn" onclick="openModal('tour3')">Book</button></div></div></div>
+        <div class="todo-card"><div class="todo-card-img"><div class="img-placeholder img-tour1"><i class="fas fa-camera" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-camera"></i></div></div><div class="todo-card-body"><div class="todo-card-cat">Photography</div><div class="todo-card-title">Safari Photography Workshop</div><div class="todo-card-desc">Learn wildlife photography from a professional wildlife photographer on full-day game drives.</div><div class="todo-card-footer"><div class="todo-from">From <strong>$280/person</strong></div><button class="tour-book-btn" onclick="openModal('tour1')">Book</button></div></div></div>
+        <div class="todo-card"><div class="todo-card-img"><div class="img-placeholder img-kili"><i class="fas fa-leaf" style="font-size:3rem;"></i></div><div class="todo-card-icon"><i class="fas fa-leaf"></i></div></div><div class="todo-card-body"><div class="todo-card-cat">Cultural</div><div class="todo-card-title">Zanzibar Spice Farm Tour</div><div class="todo-card-desc">Discover cloves, cardamom, vanilla, and exotic spices that made Zanzibar world-famous.</div><div class="todo-card-footer"><div class="todo-from">From <strong>$35/person</strong></div><button class="tour-book-btn" onclick="openModal('tour3')">Book</button></div></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================================
+     ABOUT PAGE
+     ========================================= -->
+<div id="page-about" class="page">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label" style="justify-content:center;">Our Story</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);">About <span style="color:var(--gold-light)">TanzaniaTrips</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 0;color:rgba(255,255,255,0.7);">15 years of transforming adventures into life's most meaningful memories.</p>
+    </div>
+  </div>
+  <section class="about-mission">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap"><div class="img-placeholder img-serengeti" style="height:480px"><i class="fas fa-paw" style="font-size:6rem;"></i></div></div>
+        <div class="about-text">
+          <div class="section-label">Who We Are</div>
+          <h2 class="section-title" style="margin-bottom:20px;">Born in <span>Tanzania</span>, Grown Worldwide</h2>
+          <p>Founded in 2009 by Moshi-born safari guide Joseph Mwenda, TanzaniaTrips began as a small family-run operation with a single Land Cruiser and an unshakeable passion for sharing Tanzania's natural wonders.</p>
+          <p>Today, we are Tanzania's most trusted outbound tour operator — a team of 120+ passionate travel professionals including master naturalists, KINAPA-certified mountain guides, and hospitality experts who collectively speak 11 languages.</p>
+          <p>What has never changed is our founding commitment: to provide authentic, responsible travel that creates lifelong memories for our guests while genuinely benefiting the communities and ecosystems we depend upon.</p>
+          <p>We are proud members of TATO (Tanzania Association of Tour Operators), certified by the Kilimanjaro Porters Assistance Project, and a TripAdvisor Certificate of Excellence winner for 8 consecutive years.</p>
+          <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;">
+            <a href="#" class="btn-primary" onclick="navigateTo('tours');return false;"><i class="fas fa-compass"></i> Our Tours</a>
+            <a href="#" class="btn-outline" onclick="navigateTo('contact');return false;">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="about-values">
+    <div class="container">
+      <div class="section-label">Our Values</div>
+      <h2 class="section-title" style="margin-bottom:12px;">What Drives <span>Everything We Do</span></h2>
+      <div class="values-grid">
+        <div class="value-card"><div class="value-icon"><i class="fas fa-leaf"></i></div><h3>Sustainability First</h3><p>Every booking plants 3 trees. We partner exclusively with LEED-certified camps and eco-lodges, and offset 100% of our vehicle emissions.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-heart"></i></div><h3>Community Impact</h3><p>30% of all profits fund local school programs, women's cooperatives, and wildlife ranger training in the communities we visit.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-star"></i></div><h3>Excellence Always</h3><p>98% client satisfaction. We respond to inquiries within 2 hours, 7 days a week. Your journey is never handed off to a third party.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-shield-alt"></i></div><h3>Safety & Security</h3><p>Fully licensed and bonded. 24/7 emergency support. Every guide is wilderness first aid certified and carries satellite communication.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-puzzle-piece"></i></div><h3>True Customization</h3><p>No two trips should be the same. We build every itinerary from scratch around your unique interests, group, pace, and budget.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-handshake"></i></div><h3>Transparent Pricing</h3><p>What you see is what you pay. No hidden fees, no surprise charges. Our pricing includes all government taxes and levies.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="team-section">
+    <div class="container">
+      <div class="section-label">The Team</div>
+      <h2 class="section-title" style="margin-bottom:12px;">Meet Our <span>Expert Team</span></h2>
+      <div class="team-grid">
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,var(--green-dark),var(--green-soft))">JM</div><div class="team-name">Joseph Mwenda</div><div class="team-role">Founder & CEO</div><div class="team-social"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#1a3a5c,#2a6aa8)">AR</div><div class="team-name">Amina Rashid</div><div class="team-role">Head of Operations</div><div class="team-social"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#3a2a1a,#8a6a30)">MO</div><div class="team-name">Moses Omondi</div><div class="team-role">Lead Safari Guide</div><div class="team-social"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
+        <div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#3a1a3a,#8a3a8a)">ZM</div><div class="team-name">Zuri Mohammed</div><div class="team-role">Zanzibar Specialist</div><div class="team-social"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================================
+     BLOG PAGE
+     ========================================= -->
+<div id="page-blog" class="page">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label" style="justify-content:center;">Stories & Guides</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);">Travel <span style="color:var(--gold-light)">Blog</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 0;color:rgba(255,255,255,0.7);">Expert guides, insider tips, and first-person stories from the heart of Africa.</p>
+    </div>
+  </div>
+  <section style="padding:80px 0;">
+    <div class="container">
+      <div class="todo-cats" style="margin-bottom:40px;">
+        <div class="todo-cat active"><i class="fas fa-th-large"></i> All Posts</div>
+        <div class="todo-cat">Wildlife Guide</div>
+        <div class="todo-cat">Trekking Tips</div>
+        <div class="todo-cat">Destination Guide</div>
+        <div class="todo-cat">Travel Tips</div>
+        <div class="todo-cat">Conservation</div>
+      </div>
+      <div class="blog-grid" style="grid-template-columns:1fr 1fr;margin-bottom:32px;">
+        <div class="blog-card featured"><div class="blog-card-img"><div class="img-placeholder img-serengeti" style="height:280px"><i class="fas fa-paw" style="font-size:5rem;"></i></div></div><div class="blog-card-body"><div class="blog-card-cat">Wildlife Guide</div><h3 class="blog-card-title" style="font-size:1.4rem;">The Complete Guide to the Great Wildebeest Migration 2025</h3><p class="blog-card-excerpt">Everything you need to know about timing your visit, best viewing spots, and expert photography tips for the world's greatest wildlife spectacle.</p><div class="blog-card-meta"><span><i class="fas fa-user"></i> James Osei</span><span><i class="fas fa-calendar"></i> Feb 12, 2025</span><span><i class="fas fa-clock"></i> 8 min read</span></div></div></div>
+        <div class="blog-card featured"><div class="blog-card-img"><div class="img-placeholder img-kili" style="height:280px"><i class="fas fa-mountain" style="font-size:5rem;"></i></div></div><div class="blog-card-body"><div class="blog-card-cat">Trekking Tips</div><h3 class="blog-card-title" style="font-size:1.4rem;">Machame vs Lemosho: Which Kilimanjaro Route Is Right for You?</h3><p class="blog-card-excerpt">A detailed breakdown of Tanzania's two most popular Kilimanjaro routes—comparing difficulty, scenery, success rates, and cost.</p><div class="blog-card-meta"><span><i class="fas fa-user"></i> Amina Rashid</span><span><i class="fas fa-calendar"></i> Jan 28, 2025</span><span><i class="fas fa-clock"></i> 6 min read</span></div></div></div>
+      </div>
+      <div class="grid-3">
+        <div class="blog-card"><div class="blog-card-img"><div class="img-placeholder img-zanzibar" style="height:180px"><i class="fas fa-umbrella-beach" style="font-size:3rem;"></i></div></div><div class="blog-card-body"><div class="blog-card-cat">Destination Guide</div><h3 class="blog-card-title" style="font-size:1rem;">Zanzibar: 10 Hidden Gems Beyond the Tourist Trail</h3><div class="blog-card-meta"><span><i class="fas fa-user"></i> Zuri Mohammed</span><span><i class="fas fa-calendar"></i> Jan 15, 2025</span></div></div></div>
+        <div class="blog-card"><div class="blog-card-img"><div class="img-placeholder img-ngorongoro" style="height:180px"><i class="fas fa-circle-notch" style="font-size:3rem;"></i></div></div><div class="blog-card-body"><div class="blog-card-cat">Wildlife Guide</div><h3 class="blog-card-title" style="font-size:1rem;">Big Five: A Complete Guide to Spotting All Five in Tanzania</h3><div class="blog-card-meta"><span><i class="fas fa-user"></i> Moses Omondi</span><span><i class="fas fa-calendar"></i> Dec 20, 2024</span></div></div></div>
+        <div class="blog-card"><div class="blog-card-img"><div class="img-placeholder img-tour2" style="height:180px"><i class="fas fa-suitcase" style="font-size:3rem;"></i></div></div><div class="blog-card-body"><div class="blog-card-cat">Travel Tips</div><h3 class="blog-card-title" style="font-size:1rem;">Tanzania Packing List: Everything You Actually Need (2025)</h3><div class="blog-card-meta"><span><i class="fas fa-user"></i> James Osei</span><span><i class="fas fa-calendar"></i> Dec 5, 2024</span></div></div></div>
+        <div class="blog-card"><div class="blog-card-img"><div class="img-placeholder img-ruaha" style="height:180px"><i class="fas fa-hippo" style="font-size:3rem;"></i></div></div><div class="blog-card-body"><div class="blog-card-cat">Conservation</div><h3 class="blog-card-title" style="font-size:1rem;">How Tourism Funds Ruaha's Anti-Poaching Operations</h3><div class="blog-card-meta"><span><i class="fas fa-user"></i> Joseph Mwenda</span><span><i class="fas fa-calendar"></i> Nov 18, 2024</span></div></div></div>
+        <div class="blog-card"><div class="blog-card-img"><div class="img-placeholder img-beach" style="height:180px"><i class="fas fa-fish" style="font-size:3rem;"></i></div></div><div class="blog-card-body"><div class="blog-card-cat">Destination Guide</div><h3 class="blog-card-title" style="font-size:1rem;">Best Dive Sites in Zanzibar and Pemba: Rated by Depth & Species</h3><div class="blog-card-meta"><span><i class="fas fa-user"></i> Zuri Mohammed</span><span><i class="fas fa-calendar"></i> Nov 3, 2024</span></div></div></div>
+        <div class="blog-card"><div class="blog-card-img"><div class="img-placeholder img-tarangire" style="height:180px"><i class="fas fa-tree" style="font-size:3rem;"></i></div></div><div class="blog-card-body"><div class="blog-card-cat">Travel Tips</div><h3 class="blog-card-title" style="font-size:1rem;">Tanzania Visa Guide 2025: Complete Application Process</h3><div class="blog-card-meta"><span><i class="fas fa-user"></i> Amina Rashid</span><span><i class="fas fa-calendar"></i> Oct 22, 2024</span></div></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- =========================================
+     CONTACT PAGE
+     ========================================= -->
+<div id="page-contact" class="page">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label" style="justify-content:center;">Get In Touch</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);">Contact <span style="color:var(--gold-light)">Us</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 0;color:rgba(255,255,255,0.7);">Our expert travel consultants respond within 2 hours, 7 days a week.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="contact-layout">
+      <div class="contact-info">
+        <h2>Let's Plan Your Dream Trip</h2>
+        <p>Whether you have a detailed itinerary in mind or just a dream of witnessing Tanzania's wildlife, we're here to make it a reality. No obligation, completely free consultation.</p>
+        <div class="contact-items">
+          <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-map-marker-alt" style="color:var(--green-dark)"></i></div><div><div class="contact-item-label">Office Address</div><div class="contact-item-val">Moshi, Kilimanjaro Region, Tanzania</div></div></div>
+          <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-phone" style="color:var(--green-dark)"></i></div><div><div class="contact-item-label">Phone / WhatsApp</div><div class="contact-item-val">+255 754 123 456</div></div></div>
+          <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-envelope" style="color:var(--green-dark)"></i></div><div><div class="contact-item-label">Email</div><div class="contact-item-val">hello@tanzaniatrips.com</div></div></div>
+          <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-clock" style="color:var(--green-dark)"></i></div><div><div class="contact-item-label">Office Hours</div><div class="contact-item-val">Mon–Sat: 8am–8pm EAT · Sun: 10am–4pm</div></div></div>
+        </div>
+        <div style="background:var(--green-pale);border-radius:var(--radius-md);padding:20px;margin-bottom:24px;">
+          <div style="font-weight:700;color:var(--green-deep);margin-bottom:8px;"><i class="fab fa-whatsapp" style="color:#25d366"></i> Instant WhatsApp Support</div>
+          <p style="font-size:0.88rem;color:var(--gray-700);margin-bottom:12px;">Get instant answers on WhatsApp — typical reply time under 15 minutes during business hours.</p>
+          <a href="https://wa.me/255754123456" class="btn-primary" style="width:fit-content;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <a href="#" class="footer-social" style="background:var(--gray-50);color:var(--green-dark);border-color:var(--gray-100);"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social" style="background:var(--gray-50);color:var(--green-dark);border-color:var(--gray-100);"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social" style="background:var(--gray-50);color:var(--green-dark);border-color:var(--gray-100);"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social" style="background:var(--gray-50);color:var(--green-dark);border-color:var(--gray-100);"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="footer-social" style="background:var(--gray-50);color:var(--green-dark);border-color:var(--gray-100);"><i class="fab fa-tripadvisor"></i></a>
+        </div>
+      </div>
+      <div class="contact-form-card">
+        <h3>Send Us a Message</h3>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First Name *</label><input type="text" class="form-input" placeholder="Your first name"></div>
+          <div class="form-group"><label class="form-label">Last Name *</label><input type="text" class="form-input" placeholder="Your last name"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Email Address *</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+          <div class="form-group"><label class="form-label">Phone / WhatsApp</label><input type="tel" class="form-input" placeholder="+1 234 567 890"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Tour Interest</label><select class="form-select"><option value="">Select a tour type...</option><option>Safari Package</option><option>Kilimanjaro Trek</option><option>Zanzibar Beach</option><option>Custom Itinerary</option><option>Corporate Group</option><option>Other</option></select></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Preferred Dates</label><input type="text" class="form-input" placeholder="e.g. June 2025"></div>
+          <div class="form-group"><label class="form-label">Group Size</label><select class="form-select"><option>1 person</option><option>2 people</option><option>3–5 people</option><option>6–10 people</option><option>10+ people</option></select></div>
+        </div>
+        <div class="form-group"><label class="form-label">Your Message</label><textarea class="form-textarea" placeholder="Tell us about your dream Tanzania experience, special requirements, or any questions..."></textarea></div>
+        <button class="form-submit" onclick="submitForm()"><i class="fas fa-paper-plane"></i> &nbsp;Send Inquiry – Get Response in 2 Hours</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================
+     TOUR DETAIL MODALS
+     ========================================= -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+  <div class="modal-box" id="modalBox">
+    <!-- Content injected by JS -->
+  </div>
+</div>
+
+<!-- =========================================
+     FOOTER (shared)
+     ========================================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="color:#fff;margin-bottom:12px;"><div class="logo-icon"><i class="fas fa-mountain"></i></div>TanzaniaTrips</div>
+        <p>Tanzania's most trusted tour operator since 2009. Crafting transformative African adventures with passion, expertise, and genuine care for our planet.</p>
+        <div class="footer-socials">
+          <div class="footer-social"><i class="fab fa-facebook-f"></i></div>
+          <div class="footer-social"><i class="fab fa-instagram"></i></div>
+          <div class="footer-social"><i class="fab fa-twitter"></i></div>
+          <div class="footer-social"><i class="fab fa-youtube"></i></div>
+          <div class="footer-social"><i class="fab fa-tripadvisor"></i></div>
+        </div>
+        <div class="footer-newsletter" style="margin-top:20px;">
+          <p>Get travel inspiration & exclusive deals:</p>
+          <div class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Enter your email">
+            <button class="newsletter-btn" onclick="subscribeNewsletter()">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4>Destinations</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="navigateTo('destinations');return false;">Serengeti</a></li>
+          <li><a href="#" onclick="navigateTo('kilimanjaro');return false;">Kilimanjaro</a></li>
+          <li><a href="#" onclick="navigateTo('destinations');return false;">Zanzibar</a></li>
+          <li><a href="#" onclick="navigateTo('destinations');return false;">Ngorongoro</a></li>
+          <li><a href="#" onclick="navigateTo('destinations');return false;">Tarangire</a></li>
+          <li><a href="#" onclick="navigateTo('destinations');return false;">Ruaha</a></li>
+          <li><a href="#" onclick="navigateTo('destinations');return false;">Pemba Island</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Tour Types</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="navigateTo('tours');return false;">Safari Packages</a></li>
+          <li><a href="#" onclick="navigateTo('kilimanjaro');return false;">Kilimanjaro Treks</a></li>
+          <li><a href="#" onclick="navigateTo('tours');return false;">Beach & Islands</a></li>
+          <li><a href="#" onclick="navigateTo('tours');return false;">Cultural Tours</a></li>
+          <li><a href="#" onclick="navigateTo('tours');return false;">Family Safaris</a></li>
+          <li><a href="#" onclick="navigateTo('tours');return false;">Corporate Groups</a></li>
+          <li><a href="#" onclick="navigateTo('tours');return false;">Custom Itineraries</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="#" onclick="navigateTo('about');return false;">About Us</a></li>
+          <li><a href="#" onclick="navigateTo('blog');return false;">Travel Blog</a></li>
+          <li><a href="#" onclick="navigateTo('todo');return false;">Things To Do</a></li>
+          <li><a href="#" onclick="navigateTo('contact');return false;">Contact Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press & Media</a></li>
+          <li><a href="#">Affiliate Program</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 TanzaniaTrips Ltd. All rights reserved. Registered in Tanzania (TZ-2009-04521)</div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Booking Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- =========================================
+     JAVASCRIPT
+     ========================================= -->
+<script>
+/* ---- PAGE LOADER ---- */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('pageLoader').classList.add('loaded');
+  }, 2000);
+});
+
+/* ---- NAVIGATION ---- */
+let currentPage = 'home';
+
+function navigateTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if (el) {
+    el.classList.add('active');
+    el.classList.add('fade-in');
+    setTimeout(() => el.classList.remove('fade-in'), 600);
+  }
+  currentPage = page;
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  // Update nav active state
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  // Update navbar mode
+  updateNavbar();
+}
+
+function goHome() {
+  navigateTo('home');
+}
+
+function updateNavbar() {
+  const nav = document.getElementById('navbar');
+  const scrolled = window.scrollY > 40;
+  if (currentPage === 'home' && !scrolled) {
+    nav.classList.add('hero-mode');
+    nav.classList.remove('scrolled');
+  } else {
+    nav.classList.remove('hero-mode');
+    nav.classList.add('scrolled');
+  }
+}
+
+window.addEventListener('scroll', updateNavbar);
+
+function toggleMobile() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+
+/* ---- SEARCH ---- */
+function switchTab(el, type) {
+  document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+const suggestions = [
+  'Serengeti National Park','Mount Kilimanjaro','Zanzibar Island','Ngorongoro Crater',
+  'Tarangire National Park','Lake Manyara','Ruaha National Park','Selous Game Reserve',
+  'Pemba Island','Arusha National Park','Mikumi National Park'
+];
+
+function showAutocomplete(val) {
+  const drop = document.getElementById('acDropdown');
+  if (!val.trim()) { drop.classList.remove('open'); return; }
+  const matches = suggestions.filter(s => s.toLowerCase().includes(val.toLowerCase()));
+  if (!matches.length) { drop.classList.remove('open'); return; }
+  drop.innerHTML = matches.slice(0,6).map(m =>
+    `<div class="ac-item" onclick="selectDest('${m}')"><i class="fas fa-map-marker-alt"></i> ${m}</div>`
+  ).join('');
+  drop.classList.add('open');
+}
+
+function selectDest(val) {
+  document.getElementById('destInput').value = val;
+  document.getElementById('acDropdown').classList.remove('open');
+}
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.sf-input-wrap')) {
+    document.getElementById('acDropdown').classList.remove('open');
+  }
+});
+
+function fillSearch(text) {
+  document.getElementById('destInput').value = text;
+  showToast('Searching for: ' + text);
+}
+
+function runSearch() {
+  const dest = document.getElementById('destInput').value;
+  navigateTo('tours');
+  if (dest) showToast('Showing results for: ' + dest);
+}
+
+/* ---- DESTINATION FILTER ---- */
+function filterDest(el, cat) {
+  document.querySelectorAll('.dest-filter').forEach(f => f.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.dest-card').forEach(c => {
+    if (cat === 'all' || c.dataset.cat === cat) {
+      c.style.display = '';
+    } else {
+      c.style.display = 'none';
+    }
+  });
+}
+
+function filterTours() {
+  // Simple visual feedback
+  const count = Math.floor(Math.random() * 5) + 4;
+  const el = document.getElementById('tourCount');
+  if(el) el.textContent = `Showing ${count} tours`;
+}
+
+/* ---- REVIEWS SLIDER ---- */
+function scrollReviews(dir) {
+  const track = document.getElementById('reviewsTrack');
+  if (track) track.scrollBy({ left: dir * 400, behavior: 'smooth' });
+}
+
+/* ---- FAQ ACCORDION ---- */
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ---- TOAST ---- */
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+/* ---- FORM SUBMIT ---- */
+function submitForm() {
+  showToast('Message sent! We\'ll respond within 2 hours.');
+}
+
+function subscribeNewsletter() {
+  showToast('Subscribed! Welcome to the TanzaniaTrips community.');
+}
+
+/* ---- PRICE CALCULATOR ---- */
+let calcData = { adults: 2, children: 0, basePrice: 2850 };
+
+function updateCalc() {
+  const total = (calcData.adults * calcData.basePrice) + (calcData.children * calcData.basePrice * 0.7);
+  const el = document.getElementById('calcTotalPrice');
+  if (el) el.textContent = '$' + total.toLocaleString();
+  const ac = document.getElementById('adultCount');
+  if (ac) ac.textContent = calcData.adults;
+  const cc = document.getElementById('childCount');
+  if (cc) cc.textContent = calcData.children;
+}
+
+function changeAdults(d) {
+  calcData.adults = Math.max(1, Math.min(20, calcData.adults + d));
+  updateCalc();
+}
+
+function changeChildren(d) {
+  calcData.children = Math.max(0, Math.min(10, calcData.children + d));
+  updateCalc();
+}
+
+/* ---- MODAL ---- */
+const tourData = {
+  tour1: {
+    title: 'Classic Serengeti & Ngorongoro Safari',
+    duration: '7 Days / 6 Nights',
+    maxGroup: '2–12 People',
+    location: 'Serengeti, Ngorongoro, Arusha',
+    difficulty: 'Easy',
+    price: 2850,
+    bgClass: 'img-serengeti',
+    icon: 'fa-paw',
+    itinerary: [
+      { day: 1, title: 'Arrival in Arusha', desc: 'Welcome briefing, overnight at Arusha Coffee Lodge. Evening cultural walk.' },
+      { day: 2, title: 'Tarangire National Park', desc: 'Full-day game drive in Tarangire. Famous for enormous elephant herds and ancient baobabs.' },
+      { day: 3, title: 'Drive to Serengeti', desc: 'Morning departure to Serengeti. Afternoon game drive with sundowner on the plains.' },
+      { day: 4, title: 'Full Day Serengeti', desc: 'Dawn game drive to catch predators at work. Optional hot air balloon at sunrise.' },
+      { day: 5, title: 'Serengeti to Ngorongoro', desc: 'Morning game drive then drive to crater rim. Sunset views from the lodge.' },
+      { day: 6, title: 'Ngorongoro Crater', desc: 'Full day descent into the crater. All Big Five in one day is very common here.' },
+      { day: 7, title: 'Return to Arusha & Departure', desc: 'Morning game drive, then drive to Arusha for your flight. Farewell lunch.' }
+    ],
+    inclusions: ['Park & conservation fees','All accommodation','All meals (full board)','Professional guide','Transport in 4x4 Land Cruiser','Airport transfers','Government taxes'],
+    exclusions: ['International flights','Travel insurance','Optional balloon safari ($550)','Tips & gratuities','Personal expenses'],
+    faqs: [
+      { q: 'What is the best time for this safari?', a: 'Year-round is great, but July–October offers the best Great Migration viewing in the Serengeti.' },
+      { q: 'Are children welcome?', a: 'Absolutely! This tour is suitable for families with children of all ages.' }
+    ]
+  },
+  tour2: {
+    title: 'Kilimanjaro Machame Route Trek',
+    duration: '8 Days / 7 Nights',
+    maxGroup: '1–8 People',
+    location: 'Mount Kilimanjaro',
+    difficulty: 'Moderate–Hard',
+    price: 1950,
+    bgClass: 'img-kili',
+    icon: 'fa-mountain',
+    itinerary: [
+      { day: 1, title: 'Moshi & Machame Gate (1,800m)', desc: 'Transfer to gate, register, and trek through rainforest to Machame Camp (3,010m).' },
+      { day: 2, title: 'Machame to Shira Camp (3,840m)', desc: 'Climb out of forest zone through heather and moorland with Kibo views.' },
+      { day: 3, title: 'Shira to Barranco (3,960m)', desc: 'Acclimatization day. Trek to Lava Tower (4,630m) then descend to Barranco Camp.' },
+      { day: 4, title: 'Barranco to Karanga (4,035m)', desc: 'Climb the Barranco Wall — the route\'s most exciting section. Short but steep.' },
+      { day: 5, title: 'Karanga to Base Camp (4,681m)', desc: 'Final acclimatization day. Arrive Barafu Base Camp. Rest and prepare for summit.' },
+      { day: 6, title: 'Summit Night! → Uhuru Peak (5,895m)', desc: 'Midnight departure. Summit at dawn. Descend to Mweka Camp (3,100m) for rest.' },
+      { day: 7, title: 'Descent to Mweka Gate', desc: 'Final descent through rainforest. Certificate ceremony at the gate. Transfer to Moshi.' },
+      { day: 8, title: 'Moshi & Departure', desc: 'Celebration breakfast. Transfer to airport or optional recovery day in Moshi.' }
+    ],
+    inclusions: ['All KINAPA park fees','Professional mountain guide','Trained porters (1:1 ratio)','All meals on mountain','High-altitude camping equipment','Airport and gate transfers','Uhuru Peak certificate'],
+    exclusions: ['International flights','Travel insurance','Tips ($180 recommended)','Personal climbing gear','Altitude medication'],
+    faqs: [
+      { q: 'Do I need prior climbing experience?', a: 'No technical climbing experience is needed. Good physical fitness and determination are key.' },
+      { q: 'What is the summit success rate?', a: 'Our Machame route success rate is 85%. Lemosho is 97%. Both are above the industry average.' }
+    ]
+  },
+  tour3: {
+    title: 'Zanzibar Spice & Beach Escape',
+    duration: '5 Days / 4 Nights',
+    maxGroup: '2–16 People',
+    location: 'Zanzibar Island',
+    difficulty: 'Easy',
+    price: 1290,
+    bgClass: 'img-zanzibar',
+    icon: 'fa-umbrella-beach',
+    itinerary: [
+      { day: 1, title: 'Arrive Zanzibar — Stone Town', desc: 'Airport pickup, check in to boutique Stone Town hotel. Evening harbor dhow cruise.' },
+      { day: 2, title: 'Stone Town Heritage Tour', desc: 'UNESCO walking tour: Forodhani Night Market, Sultan\'s Palace, spice bazaars, and House of Wonders.' },
+      { day: 3, title: 'Spice Farm & Prison Island', desc: 'Morning spice plantation tour with tasting. Afternoon boat to Prison Island to meet giant tortoises. Snorkeling.' },
+      { day: 4, title: 'North Coast Beaches', desc: 'Transfer to Nungwi or Kendwa. Beach day: snorkeling, sunset dhow cruise, seafood dinner.' },
+      { day: 5, title: 'Departure', desc: 'Leisurely breakfast. Last swim. Transfer to airport. Karibu tena — come back again!' }
+    ],
+    inclusions: ['4 nights accommodation','Daily breakfast + 3 dinners','Airport transfers','Stone Town guided tour','Spice farm tour','Prison Island boat trip','Dhow sunset cruise'],
+    exclusions: ['International flights','Lunch meals','Travel insurance','Water sports extras','Personal expenses'],
+    faqs: [
+      { q: 'When is the best time to visit Zanzibar?', a: 'June–October and December–February are ideal. Avoid April–May (long rains) and November (short rains).' },
+      { q: 'Is Zanzibar safe for solo female travelers?', a: 'Yes — Zanzibar is generally safe. We recommend modest dress in Stone Town and never leaving valuables on the beach.' }
+    ]
+  }
+};
+
+function openModal(tourId) {
+  const tour = tourData[tourId];
+  if (!tour) return;
+  calcData.basePrice = tour.price;
+  calcData.adults = 2;
+  calcData.children = 0;
+  
+  // Build calendar
+  const cal = buildCalendar();
+  
+  document.getElementById('modalBox').innerHTML = `
+    <div class="modal-header-img">
+      <div class="img-placeholder ${tour.bgClass}" style="height:300px">
+        <i class="fas ${tour.icon}" style="font-size:6rem;"></i>
+      </div>
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <h2 class="modal-title">${tour.title}</h2>
+      <div class="modal-meta">
+        <span class="modal-meta-item"><i class="fas fa-clock"></i> ${tour.duration}</span>
+        <span class="modal-meta-item"><i class="fas fa-map-marker-alt"></i> ${tour.location}</span>
+        <span class="modal-meta-item"><i class="fas fa-users"></i> ${tour.maxGroup}</span>
+        <span class="modal-meta-item"><i class="fas fa-fire"></i> ${tour.difficulty}</span>
+        <span class="modal-meta-item stars">★★★★★ <span style="color:var(--gray-500)">4.9 (200+ reviews)</span></span>
+      </div>
+      <div class="modal-tabs">
+        <div class="modal-tab active" onclick="switchModalTab(this,'itinerary')">Itinerary</div>
+        <div class="modal-tab" onclick="switchModalTab(this,'pricing')">Pricing</div>
+        <div class="modal-tab" onclick="switchModalTab(this,'inclusions')">Inclusions</div>
+        <div class="modal-tab" onclick="switchModalTab(this,'availability')">Availability</div>
+        <div class="modal-tab" onclick="switchModalTab(this,'faqs')">FAQs</div>
+      </div>
+      
+      <div class="modal-tab-content active" id="tab-itinerary">
+        ${tour.itinerary.map(d => `
+          <div class="itinerary-day">
+            <div class="itinerary-day-num">D${d.day}</div>
+            <div>
+              <div class="itinerary-day-title">${d.title}</div>
+              <div class="itinerary-day-desc">${d.desc}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      
+      <div class="modal-tab-content" id="tab-pricing">
+        <p style="font-size:0.88rem;color:var(--gray-500);margin-bottom:16px;">Pricing is per person based on double occupancy. Solo supplement applies for single travelers.</p>
+        <div class="pricing-grid">
+          <div class="price-option selected">
+            <div class="price-option-name">Standard</div>
+            <div class="price-option-price">$${tour.price.toLocaleString()}</div>
+            <div class="price-option-per">per person</div>
+          </div>
+          <div class="price-option">
+            <div class="price-option-name">Comfort</div>
+            <div class="price-option-price">$${(tour.price * 1.35).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div>
+            <div class="price-option-per">per person</div>
+          </div>
+          <div class="price-option">
+            <div class="price-option-name">Luxury</div>
+            <div class="price-option-price">$${(tour.price * 1.75).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div>
+            <div class="price-option-per">per person</div>
+          </div>
+        </div>
+        <div class="price-calc">
+          <h4>Price Calculator</h4>
+          <div class="calc-row">
+            <span class="calc-label">Adults (18+)</span>
+            <div class="calc-controls">
+              <div class="calc-btn" onclick="changeAdults(-1)">−</div>
+              <span class="calc-count" id="adultCount">2</span>
+              <div class="calc-btn" onclick="changeAdults(1)">+</div>
+            </div>
+          </div>
+          <div class="calc-row">
+            <span class="calc-label">Children (5–17)</span>
+            <div class="calc-controls">
+              <div class="calc-btn" onclick="changeChildren(-1)">−</div>
+              <span class="calc-count" id="childCount">0</span>
+              <div class="calc-btn" onclick="changeChildren(1)">+</div>
+            </div>
+          </div>
+          <div class="calc-total">
+            <span class="calc-total-label">Estimated Total</span>
+            <span class="calc-total-price" id="calcTotalPrice">$${(tour.price * 2).toLocaleString()}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-tab-content" id="tab-inclusions">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div>
+            <h4 style="font-weight:700;color:var(--green-deep);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-check-circle" style="color:var(--green-soft)"></i> Included</h4>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              ${tour.inclusions.map(i => `<div class="inclusion-item"><i class="fas fa-check"></i> ${i}</div>`).join('')}
+            </div>
+          </div>
+          <div>
+            <h4 style="font-weight:700;color:var(--green-deep);margin-bottom:12px;display:flex;align-items:center;gap:8px;"><i class="fas fa-times-circle" style="color:#e74c3c"></i> Excluded</h4>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              ${tour.exclusions.map(e => `<div class="exclusion-item"><i class="fas fa-times"></i> ${e}</div>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-tab-content" id="tab-availability">
+        <p style="font-size:0.88rem;color:var(--gray-500);margin-bottom:16px;">Select your preferred departure date. Green = available, grey = unavailable.</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <button style="padding:6px 14px;border:1px solid var(--gray-100);border-radius:6px;font-size:0.85rem;cursor:pointer;" onclick="showToast('Previous month')">◀ Prev</button>
+          <strong>May 2025</strong>
+          <button style="padding:6px 14px;border:1px solid var(--gray-100);border-radius:6px;font-size:0.85rem;cursor:pointer;" onclick="showToast('Next month')">Next ▶</button>
+        </div>
+        ${cal}
+      </div>
+      
+      <div class="modal-tab-content" id="tab-faqs">
+        ${tour.faqs.map(f => `
+          <div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">
+            <div style="font-weight:700;color:var(--green-deep);margin-bottom:6px;"><i class="fas fa-question-circle" style="color:var(--green-soft)"></i> ${f.q}</div>
+            <div style="font-size:0.88rem;color:var(--gray-500);">${f.a}</div>
+          </div>
+        `).join('')}
+      </div>
+      
+      <div class="modal-footer">
+        <a href="#" class="btn-primary" style="flex:1;justify-content:center;" onclick="closeModal();navigateTo('contact');return false;"><i class="fas fa-calendar-check"></i> Book This Tour</a>
+        <button class="btn-outline" onclick="showToast('Itinerary PDF sent to your email!')"><i class="fas fa-download"></i> Download PDF</button>
+        <button class="btn-outline" onclick="showToast('Added to wishlist!')"><i class="fas fa-heart"></i></button>
+      </div>
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function buildCalendar() {
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const available = [3,5,10,12,15,17,22,24,26];
+  let html = '<div class="calendar-grid">';
+  html += days.map(d => `<div class="cal-day-name">${d}</div>`).join('');
+  // offset
+  for(let i=0;i<3;i++) html += '<div class="cal-day"></div>';
+  for(let i=1;i<=31;i++) {
+    const cls = available.includes(i) ? 'available' : 'unavailable';
+    const today = i === 15 ? ' today' : '';
+    html += `<div class="cal-day ${cls}${today}" onclick="if(this.classList.contains('available')){showToast('Date selected: May ${i}, 2025');}">${i}</div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function switchModalTab(el, tab) {
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.modal-tab-content').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  const content = document.getElementById('tab-' + tab);
+  if(content) content.classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnBg(e) {
+  if(e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+/* ---- INITIAL STATE ---- */
+updateNavbar();
+</script>
+</body>
+</html>

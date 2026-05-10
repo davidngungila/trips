@@ -180,7 +180,7 @@ class DestinationController extends Controller
         // Get regular destinations for fallback
         $destinations = Destination::all();
         
-        return view('destinations.index', compact('homepageDestinations', 'destinations'));
+        return view('destinations', compact('homepageDestinations', 'destinations'));
     }
 
     /**

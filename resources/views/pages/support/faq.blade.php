@@ -1,62 +1,83 @@
 @extends('layouts.app')
 
-@section('title', 'Frequently Asked Questions - Adventure Tours')
-@section('description', 'Find answers to common questions about our tours, booking process, safety, and preparation. Get all the information you need for your next adventure.')
-
-@section('body_class', 'support-page')
-
 @section('content')
-
-    <!-- Page Header -->
-    <section class="page-header" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80&blend=0f3429&sat=-100&bri=-20&bm=multiply');">
-        <div class="container">
-            <h1 class="page-title" data-aos="fade-up">Frequently Asked Questions</h1>
-            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="100">Have a question? We've got answers. If you can't find what you're looking for, please don't hesitate to contact us.</p>
+<div id="page-faq" class="page">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label" style="justify-content:center;">Help Center</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);">Frequently Asked <span style="color:var(--gold-light)">Questions</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 0;color:rgba(255,255,255,0.7);">Everything you need to know about traveling with TanzaniaTrips.</p>
+    </div>
+  </div>
+  <section style="padding:80px 0;">
+    <div class="container">
+      <div class="section-label">Popular Questions</div>
+      <h2 class="section-title" style="margin-bottom:12px;">Travel <span>FAQ</span></h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">When is the best time to visit Tanzania?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>The best time depends on your interests. June-October is ideal for wildlife viewing during dry season. January-February and June-October are best for Kilimanjaro climbing. Great Migration river crossings peak July-September.</p>
+          </div>
         </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="content-section faq-section">
-        <div class="container">
-            <div class="faq-accordion" x-data="{ active: 1 }">
-                @php
-                    $faqs = [
-                        1 => ['q' => 'What level of fitness is required for your tours?', 'a' => 'Each of our tours has a specific fitness rating, from easy (1/5) for cultural tours to strenuous (5/5) for high-altitude expeditions like Kilimanjaro. You can find this rating on each tour details page. We pride ourselves on offering adventures suitable for a wide range of fitness levels.'],
-                        2 => ['q' => 'Do you offer custom or private tours?', 'a' => 'Absolutely! We specialize in creating bespoke, private itineraries for individuals, families, and corporate groups. Our travel experts can tailor a trip to your specific interests, budget, and schedule. Please contact us to start planning your custom adventure.'],
-                        3 => ['q' => 'What is your cancellation policy?', 'a' => 'We offer a flexible cancellation policy. You can cancel up to 60 days before your trip for a full refund, minus a small processing fee. Cancellations made between 30 and 60 days are eligible for a 50% refund. Please refer to our Terms of Service for complete details.'],
-                        4 => ['q' => 'Is travel insurance required?', 'a' => 'Comprehensive travel insurance is mandatory for all our international tours, especially for high-altitude treks and remote expeditions. It ensures you are covered for medical emergencies, trip cancellations, and other unforeseen events. We can recommend trusted insurance partners.'],
-                        5 => ['q' => 'What kind of accommodation should I expect?', 'a' => 'Accommodations vary by tour and are chosen to enhance your experience. They range from comfortable, locally-owned hotels and eco-lodges on our cultural tours to high-quality tents and mountain huts on our trekking expeditions. You can find specific details on each tour itinerary page.'],
-                    ];
-                @endphp
-                @foreach($faqs as $id => $faq)
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="{{ $id * 100 }}">
-                    <button class="faq-question" @click="active = active === {{ $id }} ? null : {{ $id }}">
-                        <span>{{ $faq['q'] }}</span>
-                        <i class="fas fa-chevron-down" :class="{'rotate-180': active === {{ $id }} }"></i>
-                    </button>
-                    <div class="faq-answer" x-show="active === {{ $id }}" x-collapse.duration.500ms>
-                        <p>{{ $faq['a'] }}</p>
-                    </div>
-                </div>
-                @endforeach
-            </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What should I pack for a safari?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>Lightweight clothing in neutral colors, comfortable walking shoes, hat, sunscreen, insect repellent, binoculars, camera, and any personal medications. We provide detailed packing lists upon booking.</p>
+          </div>
         </div>
-    </section>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Do I need vaccinations?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>Yellow fever vaccination is required if entering from endemic countries. We recommend hepatitis A & B, typhoid, and anti-malaria prophylaxis. Consult your travel doctor 6-8 weeks before departure.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Is Tanzania safe for tourists?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>Yes, Tanzania is generally very safe for tourists. We provide experienced guides, secure transportation, and 24/7 emergency support. Standard travel precautions apply as with any international travel.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What currency is used?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>Tanzania Shilling (TZS) is the local currency, but US dollars are widely accepted in tourist areas. ATMs available in major towns, and credit cards accepted at hotels and larger establishments.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Can I join a group tour?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>Yes! We offer scheduled group departures with fixed dates, perfect for solo travelers or couples who want to join others. Group sizes typically 6-12 people.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="about-mission" style="background:var(--off-white);">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-label">Still Have Questions?</div>
+          <h2 class="section-title" style="margin-bottom:20px;">Contact Our <span>Support Team</span></h2>
+          <p>Can't find the answer you're looking for? Our travel experts are here to help with any questions about your Tanzania adventure.</p>
+          <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;">
+            <a href="{{ route('contact') }}" class="btn-primary"><i class="fas fa-headset"></i> Contact Support</a>
+            <a href="mailto:support@tanzaniatrips.com" class="btn-outline"><i class="fas fa-envelope"></i> Email Us</a>
+          </div>
+        </div>
+        <div class="about-img-wrap">
+          <div class="img-placeholder img-serengeti" style="height:480px"><i class="fas fa-question-circle" style="font-size:6rem;"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 @endsection
 
-@push('styles')
-<style>
-    /* Page Header Styles */
-    .page-header { padding: 100px 0; /* ... */ }
-
-    .faq-section { padding: 100px 0; background: var(--light-green); }
-    html.dark .faq-section { background: var(--background); }
-    .faq-accordion { max-width: 800px; margin: 0 auto; }
-    .faq-item { background: var(--card-bg); border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--shadow); overflow: hidden; }
-    .faq-question { width: 100%; padding: 20px; display: flex; justify-content: space-between; align-items: center; background: none; border: none; cursor: pointer; text-align: left; }
-    .faq-question span { font-family: var(--font-secondary); font-weight: 600; font-size: 1.1rem; color: var(--text-color); }
-    .faq-question i { font-size: 1.2rem; color: var(--accent-green); transition: transform 0.3s; }
-    .faq-answer { padding: 0 20px 20px 20px; color: var(--gray); line-height: 1.7; }
-    .rotate-180 { transform: rotate(180deg); }
-</style>
+@push('scripts')
+<script>
+// Set current page for navigation
+currentPage = 'faq';
+updateNavbar();
+</script>
 @endpush

@@ -16,7 +16,7 @@ class TourController extends Controller
     {
         $perPage = $request->get('per_page', 12); // 12 tours per page
         
-        $tours = Tour::with('destination')
+        $tours = Tour::with(['destination', 'categories'])
             ->where('status', 'active')
             ->where('publish_status', 'published')
             ->orderBy('is_featured', 'desc')
@@ -30,6 +30,7 @@ class TourController extends Controller
                     'price' => (float) $tour->price,
                     'starting_price' => (float) ($tour->starting_price ?? $tour->price),
                     'duration_days' => $tour->duration_days,
+                    'duration_nights' => $tour->duration_nights,
                     'image' => $tour->image_url ? (str_starts_with($tour->image_url, 'http') ? $tour->image_url : asset($tour->image_url)) : asset('images/safari_home-1.jpg'),
                     'description' => $tour->short_description ?: substr($tour->description ?? '', 0, 150) . '...',
                     'destination' => $tour->destination ? $tour->destination->name : 'Tanzania',
@@ -37,10 +38,24 @@ class TourController extends Controller
                     'fitness_level' => $tour->fitness_level ?? 'moderate',
                     'max_capacity' => $tour->max_group_size ?? 12,
                     'is_featured' => $tour->is_featured ?? false,
+                    'tour_type' => $tour->tour_type,
+                    'max_group_size' => $tour->max_group_size,
+                    'destination_id' => $tour->destination_id,
                 ];
             });
 
-        return view('tours.index', compact('tours'));
+        // Get categories for filtering
+        $categories = \App\Models\TourCategory::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+        
+        // Get unique destinations for filtering
+        $destinations = \App\Models\Destination::orderBy('name')
+            ->pluck('name')
+            ->values();
+
+        return view('tours', compact('tours', 'categories', 'destinations'));
     }
 
     /**

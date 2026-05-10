@@ -32,7 +32,7 @@
                         <select name="user_id" class="form-select">
                             <option value="">New Customer</option>
                             @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->email }})</option>
+                                <option value="{{ $user->id }}" data-phone="{{ $user->phone ?? '' }}">{{ $user->name }} ({{ $user->email }})</option>
                             @endforeach
                         </select>
                         <small class="text-muted">If customer exists in system, select here. Otherwise fill details below.</small>
@@ -302,6 +302,86 @@ document.querySelector('select[name="tour_id"]')?.addEventListener('change', fun
     const total = price * (adults + children);
     document.querySelector('input[name="total_price"]').value = total.toFixed(2);
     calculateNetTotal();
+});
+
+// Customer selection logic
+document.querySelector('select[name="user_id"]').addEventListener('change', function() {
+    const customerNameField = document.querySelector('input[name="customer_name"]');
+    const customerEmailField = document.querySelector('input[name="customer_email"]');
+    const customerPhoneField = document.querySelector('input[name="customer_phone"]');
+    const selectedUserId = this.value;
+    
+    if (selectedUserId) {
+        // Disable customer name and email fields when existing user is selected
+        customerNameField.disabled = true;
+        customerEmailField.disabled = true;
+        customerPhoneField.disabled = false; // Keep phone field enabled for manual entry
+        
+        // Remove required attribute to allow form submission
+        customerNameField.removeAttribute('required');
+        customerEmailField.removeAttribute('required');
+        customerPhoneField.setAttribute('required', 'required'); // Keep phone required
+        
+        // Add visual indication
+        customerNameField.classList.add('bg-light');
+        customerEmailField.classList.add('bg-light');
+        customerPhoneField.classList.remove('bg-light');
+        
+        // Update placeholders to show auto-filled
+        customerNameField.placeholder = 'Auto-filled from selected user';
+        customerEmailField.placeholder = 'Auto-filled from selected user';
+        customerPhoneField.placeholder = 'Enter phone number manually';
+        
+        // Find the selected user and populate fields
+        const selectedOption = this.options[this.selectedIndex];
+        const userText = selectedOption.text;
+        const userEmail = userText.match(/\(([^)]+)\)/)?.[1] || '';
+        const userName = userText.replace(/\s*\([^)]+\)/, '');
+        const userPhone = selectedOption.dataset.phone || '';
+        
+        customerNameField.value = userName;
+        customerEmailField.value = userEmail;
+        customerPhoneField.value = userPhone; // Populate phone from data attribute
+        
+        // Update phone field placeholder based on whether phone is available
+        if (userPhone) {
+            customerPhoneField.placeholder = 'Phone number from profile';
+            customerPhoneField.disabled = true; // Disable if phone is available
+            customerPhoneField.classList.add('bg-light');
+            customerPhoneField.removeAttribute('required');
+        } else {
+            customerPhoneField.placeholder = 'Enter phone number manually';
+            customerPhoneField.disabled = false; // Keep enabled for manual entry
+            customerPhoneField.classList.remove('bg-light');
+            customerPhoneField.setAttribute('required', 'required');
+        }
+        
+    } else {
+        // Enable customer detail fields when no user is selected
+        customerNameField.disabled = false;
+        customerEmailField.disabled = false;
+        customerPhoneField.disabled = false;
+        
+        // Add required attribute back
+        customerNameField.setAttribute('required', 'required');
+        customerEmailField.setAttribute('required', 'required');
+        customerPhoneField.setAttribute('required', 'required');
+        
+        // Remove visual indication
+        customerNameField.classList.remove('bg-light');
+        customerEmailField.classList.remove('bg-light');
+        customerPhoneField.classList.remove('bg-light');
+        
+        // Reset placeholders
+        customerNameField.placeholder = '';
+        customerEmailField.placeholder = '';
+        customerPhoneField.placeholder = '';
+        
+        // Clear values
+        customerNameField.value = '';
+        customerEmailField.value = '';
+        customerPhoneField.value = '';
+    }
 });
 
 // Form submission

@@ -68,13 +68,19 @@ use App\Http\Controllers\Admin\PermissionController;
 
 // --- 1.1 Core & Static Pages ---
 Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/safaris', [PageController::class, 'safaris'])->name('safaris');
+Route::get('/kilimanjaro', [PageController::class, 'kilimanjaro'])->name('kilimanjaro');
+Route::get('/things-to-do', [PageController::class, 'todo'])->name('todo');
+Route::get('/blog', [PageController::class, 'blog'])->name('blog');
 Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/safaris', [PageController::class, 'safaris'])->name('safaris');
 Route::get('/our-team', [PageController::class, 'team'])->name('team');
 Route::get('/sustainability', [PageController::class, 'sustainability'])->name('sustainability');
 Route::get('/partners', [PageController::class, 'partners'])->name('partners');
 Route::get('/careers', [PageController::class, 'careers'])->name('careers');
 Route::get('/press-media', [PageController::class, 'press'])->name('press');
+Route::get('/affiliate-program', [PageController::class, 'affiliate'])->name('affiliate');
+Route::get('/booking-conditions', [PageController::class, 'booking'])->name('booking');
 
 // --- 1.2 Tours Section ---
 Route::controller(TourController::class)->prefix('tours')->name('tours.')->group(function () {

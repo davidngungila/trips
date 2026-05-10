@@ -1,92 +1,72 @@
 @extends('layouts.app')
 
-@section('title', 'Gift Cards - Adventure Tours')
-@section('description', 'Give the gift of adventure. Purchase a gift card from Adventure Tours, the perfect present for any explorer, valid for any tour.')
-
-@section('body_class', 'support-page')
-
 @section('content')
-
-    <!-- Page Header -->
-    <section class="page-header" style="background-image: url('https://images.unsplash.com/photo-1520175488493-4a9987d625b5?auto=format&fit=crop&w=1920&q=80&blend=0f3429&sat=-100&bri=-20&bm=multiply');">
-        <div class="container">
-            <h1 class="page-title" data-aos="fade-up">Give the Gift of Adventure</h1>
-            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="100">The perfect present for the explorer in your life.</p>
+<div id="page-gift-cards" class="page">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label" style="justify-content:center;">Perfect Gifts</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);">Travel <span style="color:var(--gold-light)">Gift Cards</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 0;color:rgba(255,255,255,0.7);">Give the gift of adventure to someone special.</p>
+    </div>
+  </div>
+  <section style="padding:80px 0;">
+    <div class="container">
+      <div class="section-label">Gift Options</div>
+      <h2 class="section-title" style="margin-bottom:12px;">Choose <span>Amount</span></h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-gift"></i></div>
+          <h3>Safari Adventure</h3>
+          <p>Perfect for wildlife enthusiasts. Includes 3-day safari for one person with accommodation and meals.</p>
+          <div class="price-tag">$500</div>
         </div>
-    </section>
-
-    <!-- Gift Card Section -->
-    <section class="content-section" x-data="{ amount: 250 }">
-        <div class="container">
-            <div class="gift-card-wrapper">
-                <div class="gift-card-visual" data-aos="fade-right">
-                    <div class="card-design">
-                        <span class="card-logo">ADVENTURE<span class="highlight">TOURS</span></span>
-                        <span class="card-label">Gift Card</span>
-                        <span class="card-amount" x-text="'$' + amount"></span>
-                    </div>
-                </div>
-                <div class="gift-card-form" data-aos="fade-left">
-                    <h2 class="form-title">Purchase a Gift Card</h2>
-                    <p>Gift cards are delivered by email and contain instructions to redeem them at checkout. Our gift cards have no additional processing fees.</p>
-                    <div class="amount-selection">
-                        <button @click="amount = 100" :class="{'active': amount === 100}">$100</button>
-                        <button @click="amount = 250" :class="{'active': amount === 250}">$250</button>
-                        <button @click="amount = 500" :class="{'active': amount === 500}">$500</button>
-                        <button @click="amount = 1000" :class="{'active': amount === 1000}">$1000</button>
-                    </div>
-                    <form action="#">
-                        <div class="form-group">
-                            <label>Selected Amount</label>
-                            <input type="text" :value="'$' + amount" readonly>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Purchase</button>
-                    </form>
-                </div>
-            </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-mountain"></i></div>
+          <h3>Kilimanjaro Climb</h3>
+          <p>7-day Machame route trek for one person. Includes guides, equipment, and park fees.</p>
+          <div class="price-tag">$1,200</div>
         </div>
-    </section>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-umbrella-beach"></i></div>
+          <h3>Zanzibar Escape</h3>
+          <p>5-day beach holiday for two people. Includes accommodation, transfers, and spice tour.</p>
+          <div class="price-tag">$800</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-users"></i></div>
+          <h3>Family Safari</h3>
+          <p>4-day family safari for two adults and two children. Includes family-friendly accommodation and activities.</p>
+          <div class="price-tag">$1,500</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="about-mission" style="background:var(--off-white);">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-label">How It Works</div>
+          <h2 class="section-title" style="margin-bottom:20px;">Gift of <span>Adventure</span></h2>
+          <p>TanzaniaTrips gift cards are the perfect way to share Tanzania's incredible experiences with your loved ones. Recipients can choose their preferred adventure and travel dates.</p>
+          <p>Gift cards are delivered instantly via email and can be used toward any of our tours or custom itineraries. Valid for 2 years from purchase date.</p>
+          <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;">
+            <a href="{{ route('contact') }}" class="btn-primary"><i class="fas fa-gift"></i> Purchase Gift Card</a>
+            <a href="mailto:support@tanzaniatrips.com" class="btn-outline">Questions?</a>
+          </div>
+        </div>
+        <div class="about-img-wrap">
+          <div class="img-placeholder img-serengeti" style="height:480px"><i class="fas fa-gift" style="font-size:6rem;"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 @endsection
 
-@push('styles')
-<style>
-    /* Page Header Styles */
-    .page-header { padding: 100px 0; /* ... */ }
-
-    .gift-card-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-    }
-    .card-design {
-        background: var(--dark-green);
-        color: var(--white);
-        padding: 40px;
-        border-radius: 15px;
-        aspect-ratio: 16 / 10;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        box-shadow: 0 15px 40px var(--shadow);
-    }
-    .card-logo { font-family: var(--font-primary); font-size: 1.5rem; letter-spacing: 2px; }
-    .card-logo .highlight { color: var(--accent-green); }
-    .card-label { font-size: 1rem; opacity: 0.7; }
-    .card-amount { font-family: var(--font-primary); font-size: 3rem; text-align: right; }
-    
-    .form-title { font-family: var(--font-primary); font-size: 2rem; margin-bottom: 15px; }
-    .gift-card-form p { color: var(--gray); margin-bottom: 30px; }
-    .amount-selection { display: flex; gap: 10px; margin-bottom: 20px; }
-    .amount-selection button {
-        flex-grow: 1; padding: 15px; background: var(--light-green); border: 2px solid var(--light-green);
-        border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s;
-    }
-    .amount-selection button.active { border-color: var(--accent-green); background: var(--white); }
-    html.dark .amount-selection button { background: var(--card-bg); border-color: var(--shadow); }
-    html.dark .amount-selection button.active { border-color: var(--accent-green); }
-    .btn-block { width: 100%; text-align: center; padding-top: 15px; padding-bottom: 15px; font-size: 1.1rem; }
-
-    @media (max-width: 992px) { .gift-card-wrapper { grid-template-columns: 1fr; } }
-</style>
+@push('scripts')
+<script>
+// Set current page for navigation
+currentPage = 'gift-cards';
+updateNavbar();
+</script>
 @endpush

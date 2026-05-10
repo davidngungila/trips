@@ -1,90 +1,87 @@
 @extends('layouts.app')
 
-@section('title', 'Customer Reviews - Adventure Tours')
-@section('description', 'Read stories and testimonials from our community of travelers. See why adventurers from around the world choose us for their journey of a lifetime.')
-
-@section('body_class', 'support-page')
-
 @section('content')
-
-    <!-- Page Header -->
-    <section class="page-header" style="background-image: url('https://images.unsplash.com/photo-1517732306149-e8f829eb588a?auto=format&fit=crop&w=1920&q=80&blend=0f3429&sat=-100&bri=-20&bm=multiply');">
-        <div class="container">
-            <h1 class="page-title" data-aos="fade-up">Stories from the Trail</h1>
-            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="100">Don't just take our word for it. Here's what our travelers have to say.</p>
+<div id="page-reviews" class="page">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label" style="justify-content:center;">Testimonials</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);">Customer <span style="color:var(--gold-light)">Reviews</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 0;color:rgba(255,255,255,0.7);">Real experiences from real travelers who chose TanzaniaTrips.</p>
+    </div>
+  </div>
+  <section style="padding:80px 0;">
+    <div class="container">
+      <div class="section-label">Recent Reviews</div>
+      <h2 class="section-title" style="margin-bottom:12px;">What Our <span>Travelers Say</span></h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon" style="color:var(--gold-light);"><i class="fas fa-star"></i></div>
+          <h3>Exceptional Service</h3>
+          <p class="review-text">"Our Kilimanjaro climb with TanzaniaTrips was absolutely incredible. The guides were professional, the food was excellent, and the summit experience was life-changing. Highly recommend!"</p>
+          <div class="review-meta">
+            <div class="review-author">- Sarah Mitchell, UK</div>
+            <div class="review-rating">★★★★★</div>
+            <div class="review-date">January 2025</div>
+          </div>
         </div>
-    </section>
-
-    <!-- Reviews Section -->
-    <section class="content-section">
-        <div class="container">
-            <div class="reviews-grid">
-                @php
-                    $reviews = [
-                        ['name' => 'Sarah L.', 'tour' => 'Kilimanjaro Expedition', 'rating' => 5, 'text' => 'The most challenging and rewarding experience of my life. The guides were phenomenal—their expertise and encouragement were the only reason I reached the summit. I felt safe and supported every step of the way.'],
-                        ['name' => 'David Chen', 'tour' => 'Serengeti Great Migration', 'rating' => 5, 'text' => 'Unbelievable. Seeing the great migration in person is something I\'ll never forget. Our guide, Joseph, was a walking encyclopedia of the Serengeti. The lodges were pure luxury in the middle of the wild. 10/10!'],
-                        ['name' => 'Emily Rose', 'tour' => 'Patagonia W Trek', 'rating' => 4, 'text' => 'Patagonia\'s beauty is otherworldly. The logistics were handled flawlessly by Adventure Tours. The trek was tough but the views were worth every ounce of effort. My only suggestion is to pack more warm socks!'],
-                        ['name' => 'Mark Jenkins', 'tour' => 'Everest Base Camp Trek', 'rating' => 5, 'text' => 'A lifelong dream fulfilled. The entire crew, from the guides to the porters, were absolute heroes. The cultural immersion in the Sherpa villages was just as impactful as seeing Everest itself. Highly recommend.'],
-                    ];
-                @endphp
-                @foreach($reviews as $review)
-                <div class="review-card" data-aos="fade-up">
-                    <div class="review-stars">
-                        @for ($i = 0; $i < $review['rating']; $i++) <i class="fas fa-star"></i> @endfor
-                    </div>
-                    <p class="review-text">"{{ $review['text'] }}"</p>
-                    <div class="review-author">
-                        <span class="author-name">- {{ $review['name'] }}</span>
-                        <span class="author-tour">{{ $review['tour'] }}</span>
-                    </div>
-                </div>
-                @endforeach
-            </div>
+        <div class="value-card">
+          <div class="value-icon" style="color:var(--gold-light);"><i class="fas fa-star"></i></div>
+          <h3>Amazing Safari</h3>
+          <p class="review-text">"The Serengeti safari exceeded all our expectations. We saw the Big Five in just 3 days, and our guide's knowledge of wildlife was remarkable. Thank you TanzaniaTrips!"</p>
+          <div class="review-meta">
+            <div class="review-author">- Roberto Chen, Singapore</div>
+            <div class="review-rating">★★★★★</div>
+            <div class="review-date">December 2024</div>
+          </div>
         </div>
-    </section>
+        <div class="value-card">
+          <div class="value-icon" style="color:var(--gold-light);"><i class="fas fa-star"></i></div>
+          <h3>Perfect Zanzibar</h3>
+          <p class="review-text">"Zanzibar was paradise! TanzaniaTrips arranged everything flawlessly - from Stone Town tours to spice plantations to pristine beaches. The cultural insights made it extra special."</p>
+          <div class="review-meta">
+            <div class="review-author">- Emma Wilson, Canada</div>
+            <div class="review-rating">★★★★☆</div>
+            <div class="review-date">November 2024</div>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" style="color:var(--gold-light);"><i class="fas fa-star"></i></div>
+          <h3>Professional Team</h3>
+          <p class="review-text">"From initial inquiry to post-trip follow-up, TanzaniaTrips provided outstanding service. Their attention to detail and customer care is unmatched in the travel industry."</p>
+          <div class="review-meta">
+            <div class="review-author">- Michael Park, USA</div>
+            <div class="review-rating">★★★★★</div>
+            <div class="review-date">October 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="about-mission" style="background:var(--off-white);">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-label">Share Your Experience</div>
+          <h2 class="section-title" style="margin-bottom:20px;">Leave a <span>Review</span></h2>
+          <p>Have you traveled with TanzaniaTrips? We'd love to hear about your experience and share it with future travelers.</p>
+          <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;">
+            <a href="{{ route('contact') }}" class="btn-primary"><i class="fas fa-star"></i> Submit Review</a>
+            <a href="{{ route('tours.index') }}" class="btn-outline">Browse Tours</a>
+          </div>
+        </div>
+        <div class="about-img-wrap">
+          <div class="img-placeholder img-serengeti" style="height:480px"><i class="fas fa-comments" style="font-size:6rem;"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 @endsection
 
-@push('styles')
-<style>
-    /* Page Header Styles */
-    .page-header { padding: 100px 0; /* ... */ }
-
-    .reviews-grid {
-        column-count: 3;
-        column-gap: 30px;
-    }
-    .review-card {
-        background: var(--card-bg);
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 5px 25px var(--shadow);
-        margin-bottom: 30px;
-        display: inline-block;
-        width: 100%;
-    }
-    .review-stars {
-        color: #ffc107;
-        margin-bottom: 15px;
-    }
-    .review-text {
-        color: var(--gray);
-        font-style: italic;
-        line-height: 1.7;
-        margin-bottom: 20px;
-    }
-    .review-author {
-        text-align: right;
-    }
-    .author-name {
-        font-weight: 600;
-        color: var(--text-color);
-        display: block;
-    }
-    .author-tour {
-        font-size: 0.9rem;
-        color: var(--accent-green);
-    }
-    @media (max-width: 992px) { .reviews-grid { column-count: 2; } }
-    @media (max-width: 768px) { .reviews-grid { column-count: 1; } }
-</style>
+@push('scripts')
+<script>
+// Set current page for navigation
+currentPage = 'reviews';
+updateNavbar();
+</script>
 @endpush

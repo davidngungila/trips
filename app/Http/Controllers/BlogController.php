@@ -18,7 +18,7 @@ class BlogController extends Controller
         // e.g., $posts = Post::latest()->paginate(10);
         $posts = $this->getPlaceholderPosts();
 
-        return view('blog.index', [
+        return view('blog', [
             'posts' => $posts
         ]);
     }

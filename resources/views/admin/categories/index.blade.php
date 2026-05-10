@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Tour Categories - Lau Paradise Adventures')
+@section('title', 'Categories Management - Tanzania Trips')
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
@@ -10,11 +10,30 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="mb-0">
-                        <i class="ri-folder-line me-2"></i>Tour Categories
+                        <i class="ri-folder-line me-2"></i>Categories Management
                     </h4>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
                         <i class="ri-add-line me-1"></i>Add Category
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Summary -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-info d-flex align-items-center" role="alert">
+                <i class="ri-information-line me-2 fs-4"></i>
+                <div>
+                    <strong>Categories Overview:</strong> You have 
+                    <span class="badge bg-primary">{{ $stats['total'] }} total categories</span> and 
+                    <span class="badge bg-success">{{ $stats['tour_category_total'] }} tour categories</span> 
+                    with <span class="badge bg-info">{{ $stats['total_tours_in_categories'] }} tours</span> 
+                    currently categorized. 
+                    @if($stats['inactive'] > 0)
+                        <span class="badge bg-warning">{{ $stats['inactive'] }} inactive</span> categories need attention.
+                    @endif
                 </div>
             </div>
         </div>
@@ -342,9 +361,12 @@
     <div class="card mt-4">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">
-                <i class="ri-map-pin-line me-2"></i>Tour Categories (TourCategory Model)
+                <i class="ri-map-pin-line me-2"></i>Tour Categories ({{ $tourCategories->count() }} Active)
             </h5>
-            <span class="badge bg-label-primary">{{ $tourCategories->count() }} Categories</span>
+            <div class="d-flex gap-2">
+                <span class="badge bg-label-success">{{ $stats['tour_category_active'] }} Active</span>
+                <span class="badge bg-label-secondary">{{ $stats['tour_category_total'] }} Total</span>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -357,6 +379,7 @@
                             <th>Description</th>
                             <th>Status</th>
                             <th>Sort Order</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -397,6 +420,18 @@
                             </td>
                             <td>
                                 <span class="badge bg-label-secondary">{{ $tourCategory->sort_order ?? 0 }}</span>
+                            </td>
+                            <td>
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn btn-sm btn-icon btn-outline-primary" 
+                                            onclick="viewTourCategory('{{ $tourCategory->slug }}')" title="View Details">
+                                        <i class="ri-eye-line"></i>
+                                    </button>
+                                    <a href="{{ route('tours.index', ['category' => $tourCategory->slug]) }}" 
+                                       class="btn btn-sm btn-icon btn-outline-success" target="_blank" title="View Tours">
+                                        <i class="ri-compass-line"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
@@ -729,6 +764,122 @@ function deleteCategory(categoryId, categoryName) {
     document.getElementById('deleteCategoryName').textContent = categoryName;
     document.getElementById('deleteCategoryForm').action = `{{ url('admin/categories') }}/${categoryId}`;
     new bootstrap.Modal(document.getElementById('deleteCategoryModal')).show();
+}
+
+function viewTourCategory(slug) {
+    // Find the tour category data from the page
+    const tourCategories = @json($tourCategories->toArray());
+    const tourCategory = tourCategories.find(cat => cat.slug === slug);
+    
+    if (tourCategory) {
+        const modal = document.createElement('div');
+        modal.innerHTML = `
+            <div class="modal fade" id="tourCategoryModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                <i class="ri-map-pin-line me-2"></i>${tourCategory.name}
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Category Name</label>
+                                    <p class="mb-0">${tourCategory.name}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Slug</label>
+                                    <p class="mb-0"><code>${tourCategory.slug}</code></p>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label fw-semibold">Description</label>
+                                    <p class="mb-0">${tourCategory.description || '<em class=\"text-muted\">No description</em>'}</p>
+                                </div>
+                                ${tourCategory.image_url ? `
+                                <div class="col-md-12">
+                                    <label class="form-label fw-semibold">Image</label>
+                                    <p class="mb-0">
+                                        <img src="${tourCategory.image_url}" alt="${tourCategory.name}" class="img-thumbnail" style="max-width: 300px;">
+                                        <br><small class="text-muted">${tourCategory.image_url}</small>
+                                    </p>
+                                </div>
+                                ` : ''}
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Status</label>
+                                    <p class="mb-0">
+                                        ${tourCategory.is_active ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-secondary">Inactive</span>'}
+                                    </p>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Sort Order</label>
+                                    <p class="mb-0">${tourCategory.sort_order || 0}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Tours Count</label>
+                                    <p class="mb-0">
+                                        <span class="badge bg-label-${tourCategory.tours_count > 0 ? 'success' : 'secondary'}">
+                                            ${tourCategory.tours_count || 0} tours
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label fw-semibold">Quick Actions</label>
+                                    <div class="d-flex gap-2">
+                                        <a href="${window.location.origin}/tours?category=${tourCategory.slug}" 
+                                           class="btn btn-outline-success" target="_blank">
+                                            <i class="ri-compass-line me-1"></i>View Tours
+                                        </a>
+                                        <button type="button" class="btn btn-outline-secondary" onclick="copySlug('${tourCategory.slug}')">
+                                            <i class="ri-file-copy-line me-1"></i>Copy Slug
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        const bsModal = new bootstrap.Modal(modal.querySelector('.modal'));
+        bsModal.show();
+        
+        // Clean up after modal is hidden
+        modal.querySelector('.modal').addEventListener('hidden.bs.modal', function() {
+            document.body.removeChild(modal);
+        });
+    }
+}
+
+function copySlug(slug) {
+    navigator.clipboard.writeText(slug).then(() => {
+        // Show success message
+        const toast = document.createElement('div');
+        toast.className = 'position-fixed top-0 end-0 p-3';
+        toast.style.zIndex = '9999';
+        toast.innerHTML = `
+            <div class="toast show" role="alert">
+                <div class="toast-header bg-success text-white">
+                    <strong class="me-auto">Success</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    Slug copied to clipboard: <code>${slug}</code>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 3000);
+    });
 }
 
 // Reset form when modal is closed

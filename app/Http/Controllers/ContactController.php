@@ -22,7 +22,7 @@ class ContactController extends Controller
             ->orderBy('display_order')
             ->get();
         
-        return view('contact.index', compact('sections', 'features'));
+        return view('contact', compact('sections', 'features'));
     }
 
     /**

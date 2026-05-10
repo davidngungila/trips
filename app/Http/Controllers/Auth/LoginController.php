@@ -45,6 +45,9 @@ class LoginController extends Controller
                     $redirectUrl = route('admin.dashboard');
                 } elseif ($user->hasRole('Customer')) {
                     $redirectUrl = route('customer.dashboard');
+                } else {
+                    // Default to admin dashboard if no specific role
+                    $redirectUrl = route('admin.dashboard');
                 }
                 
                 return response()->json([
@@ -64,7 +67,8 @@ class LoginController extends Controller
                 return redirect()->intended(route('customer.dashboard'))->with('success', 'Welcome back, ' . $user->name . '!');
             }
             
-            return redirect()->intended('/')->with('success', 'Welcome back, ' . $user->name . '!');
+            // Default fallback to admin dashboard
+            return redirect()->intended(route('admin.dashboard'))->with('success', 'Welcome back, ' . $user->name . '!');
         }
 
         // Handle AJAX requests

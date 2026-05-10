@@ -70,10 +70,17 @@ class PageController extends Controller
                     'price' => (float) $tour->price,
                     'starting_price' => (float) ($tour->starting_price ?? $tour->price),
                     'duration_days' => $tour->duration_days,
+                    'duration_nights' => $tour->duration_nights,
                     'image' => $tour->image_url ? (str_starts_with($tour->image_url, 'http') ? $tour->image_url : asset($tour->image_url)) : asset('images/safari_home-1.jpg'),
                     'description' => $tour->short_description ?: substr($tour->description ?? '', 0, 150) . '...',
                     'destination' => $tour->destination ? $tour->destination->name : 'Tanzania',
                     'rating' => $tour->rating ?? 4.5,
+                    'max_group_size' => $tour->max_group_size,
+                    'min_group_size' => $tour->min_group_size ?? 1,
+                    'tour_type' => $tour->tour_type,
+                    'difficulty_level' => $tour->difficulty_level,
+                    'is_last_minute_deal' => $tour->is_last_minute_deal,
+                    'last_minute_discount_percentage' => $tour->last_minute_discount_percentage,
                 ];
             });
 
@@ -111,7 +118,58 @@ class PageController extends Controller
             ];
         });
 
-        return view('pages.home', compact('featuredTours', 'heroSlides', 'homepageGallery', 'activities'));
+        // Get destinations for homepage
+        $destinations = \App\Models\HomepageDestination::where('is_active', true)
+            ->orderBy('display_order')
+            ->orderBy('name')
+            ->take(5) // Limit to first 5 destinations
+            ->get()
+            ->map(function($destination) {
+                return [
+                    'id' => $destination->id,
+                    'name' => $destination->name,
+                    'slug' => $destination->slug,
+                    'description' => $destination->short_description ?? $destination->description,
+                    'featured_image_url' => $destination->featured_image_url,
+                    'tour_count' => \App\Models\Tour::where('status', 'active')
+                        ->where('publish_status', 'published')
+                        ->where(function($query) use ($destination) {
+                            $query->whereHas('destination', function($destQuery) use ($destination) {
+                                $destQuery->where('name', 'like', '%' . $destination->name . '%');
+                            })
+                                  ->orWhere('name', 'like', '%' . $destination->name . '%');
+                        })
+                        ->count(),
+                    'rating' => $destination->rating ?? 4.8,
+                    'category' => $this->getDestinationCategory($destination->name),
+                    'is_featured' => $destination->is_featured,
+                ];
+            });
+
+        return view('home', compact('featuredTours', 'heroSlides', 'homepageGallery', 'activities', 'destinations'));
+    }
+
+    /**
+     * Helper method to determine destination category
+     */
+    private function getDestinationCategory($destinationName): string
+    {
+        $nationalParks = ['Serengeti', 'Ngorongoro', 'Tarangire', 'Ruaha', 'Lake Manyara'];
+        $beachIslands = ['Zanzibar', 'Pemba', 'Mafia'];
+        $mountains = ['Kilimanjaro', 'Mount Meru', 'Usambara'];
+        $cultural = ['Stone Town', 'Bagamoyo', 'Kilwa Kisiwani'];
+
+        if (in_array($destinationName, $nationalParks)) {
+            return 'national-parks';
+        } elseif (in_array($destinationName, $beachIslands)) {
+            return 'beach';
+        } elseif (in_array($destinationName, $mountains)) {
+            return 'mountains';
+        } elseif (in_array($destinationName, $cultural)) {
+            return 'cultural';
+        }
+
+        return 'national-parks'; // default
     }
 
     /**
@@ -164,7 +222,7 @@ class PageController extends Controller
             ->get()
             ->groupBy('block_type');
         
-        return view('pages.about', compact(
+        return view('about', compact(
             'sections',
             'teamMembers',
             'values',
@@ -184,7 +242,7 @@ class PageController extends Controller
      */
     public function team(Request $request): View
     {
-        return view('pages.team');
+        return view('team');
     }
 
     /**
@@ -195,7 +253,7 @@ class PageController extends Controller
      */
     public function sustainability(Request $request): View
     {
-        return view('pages.sustainability');
+        return view('sustainability');
     }
 
     /**
@@ -206,7 +264,7 @@ class PageController extends Controller
      */
     public function partners(Request $request): View
     {
-        return view('pages.partners');
+        return view('partners');
     }
 
     /**
@@ -217,7 +275,7 @@ class PageController extends Controller
      */
     public function careers(Request $request): View
     {
-        return view('pages.careers');
+        return view('careers');
     }
 
     /**
@@ -228,7 +286,7 @@ class PageController extends Controller
      */
     public function press(Request $request): View
     {
-        return view('pages.press');
+        return view('press');
     }
 
     /**
@@ -239,7 +297,7 @@ class PageController extends Controller
      */
     public function bookingHelp(Request $request): View
     {
-        return view('pages.support.booking-help');
+        return view('support.booking-help');
     }
 
     /**
@@ -250,7 +308,7 @@ class PageController extends Controller
      */
     public function faq(Request $request): View
     {
-        return view('pages.support.faq');
+        return view('support.faq');
     }
 
     /**
@@ -261,7 +319,7 @@ class PageController extends Controller
      */
     public function reviews(Request $request): View
     {
-        return view('pages.support.reviews');
+        return view('support.reviews');
     }
 
     /**
@@ -272,7 +330,7 @@ class PageController extends Controller
      */
     public function travelInsurance(Request $request): View
     {
-        return view('pages.support.travel-insurance');
+        return view('support.travel-insurance');
     }
 
     /**
@@ -283,7 +341,7 @@ class PageController extends Controller
      */
     public function travelTips(Request $request): View
     {
-        return view('pages.support.travel-tips');
+        return view('support.travel-tips');
     }
 
     /**
@@ -294,46 +352,18 @@ class PageController extends Controller
      */
     public function giftCards(Request $request): View
     {
-        return view('pages.support.gift-cards');
+        return view('support.gift-cards');
     }
 
     /**
      * Display the 'Safaris' page.
      *
-     * @param Request $request
-     * @return View
-     */
-    public function safaris(Request $request): View
-    {
-        // Get safari tours from database
-        $safariTours = \App\Models\Tour::with('destination')
-            ->where('status', 'active')
-            ->where('publish_status', 'published')
-            ->where(function($query) {
-                $query->where('name', 'like', '%Safari%')
-                      ->orWhere('description', 'like', '%Safari%')
-                      ->orWhere('short_description', 'like', '%Safari%');
-            })
-            ->orderBy('is_featured', 'desc')
-            ->orderBy('price', 'asc')
-            ->get()
-            ->map(function($tour) {
-                return [
-                    'id' => $tour->id,
-                    'name' => $tour->name,
-                    'slug' => $tour->slug,
-                    'price' => (float) $tour->price,
-                    'starting_price' => (float) ($tour->starting_price ?? $tour->price),
-                    'duration_days' => $tour->duration_days,
-                    'image' => $tour->image_url ? (str_starts_with($tour->image_url, 'http') ? $tour->image_url : asset($tour->image_url)) : asset('images/hero-slider/safari-adventure.jpg'),
-                    'description' => $tour->short_description ?: substr($tour->description ?? '', 0, 200) . '...',
-                    'destination' => $tour->destination ? $tour->destination->name : 'Tanzania',
                     'rating' => $tour->rating ?? 4.5,
                     'is_featured' => $tour->is_featured ?? false,
                 ];
             });
 
-        return view('pages.safaris', compact('safariTours'));
+        return view('safaris', compact('safariTours'));
     }
 
     /**
@@ -347,105 +377,220 @@ class PageController extends Controller
         // Get destinations for the form (Destination model doesn't have is_active column)
         $destinations = \App\Models\Destination::orderBy('name')->get();
         
-        // Get tour categories
-        $categories = \App\Models\TourCategory::where('is_active', true)
+        return view('custom-tours', compact('destinations'));
+    }
+
+    public function tours(): View
+    {
+        // Get tours from database with destination relationship
+        $tours = \App\Models\Tour::with(['categories', 'destination'])
+            ->where('status', 'active')
+            ->where('publish_status', 'published')
+            ->orderBy('is_featured', 'desc')
             ->orderBy('name')
             ->get();
-
-        return view('pages.custom-tours', compact('destinations', 'categories'));
+        
+        // Get categories for filtering
+        $categories = \App\Models\TourCategory::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+        
+        // Get unique destinations for filtering
+        $destinations = \App\Models\Destination::orderBy('name')
+            ->pluck('name')
+            ->values();
+        
+        return view('tours', compact('tours', 'categories', 'destinations'));
     }
 
     /**
-     * Display the 'Travel Proposal' page.
+     * Display destinations page.
      *
-     * @param Request $request
      * @return View
      */
-    public function travelProposal(Request $request): View
+    public function destinations(): View
     {
-        return view('pages.travel-proposal');
+        // Get destinations from database
+        $destinations = \App\Models\HomepageDestination::where('is_active', true)
+            ->orderBy('display_order')
+            ->orderBy('name')
+            ->get();
+        
+        // Get tour count and featured tours for each destination
+        foreach ($destinations as $destination) {
+            $destination->tour_count = \App\Models\Tour::where('status', 'active')
+                ->where('publish_status', 'published')
+                ->where(function($query) use ($destination) {
+                    $query->where('destination', 'like', '%' . $destination->name . '%')
+                          ->orWhere('name', 'like', '%' . $destination->name . '%');
+                })
+                ->count();
+            
+            // Get featured tours for this destination
+            $destination->featured_tours = \App\Models\Tour::with('destination')
+                ->where('status', 'active')
+                ->where('publish_status', 'published')
+                ->where(function($query) use ($destination) {
+                    $query->where('destination', 'like', '%' . $destination->name . '%')
+                          ->orWhere('name', 'like', '%' . $destination->name . '%');
+                })
+                ->orderBy('is_featured', 'desc')
+                ->orderBy('rating', 'desc')
+                ->take(5)
+                ->get(['id', 'name', 'slug', 'price', 'rating'])
+                ->toArray();
+        }
+        
+        return view('destinations', compact('destinations'));
     }
 
     /**
-     * Display the 'Family Experiences' page.
+     * Display kilimanjaro page.
      *
-     * @param Request $request
      * @return View
      */
-    public function familyExperiences(Request $request): View
+    public function kilimanjaro(): View
     {
-        // Get family-friendly tours
-        $familyTours = \App\Models\Tour::with('destination')
+        // Get Kilimanjaro-related tours from database
+        $kilimanjaroTours = \App\Models\Tour::with(['destination', 'categories'])
             ->where('status', 'active')
             ->where('publish_status', 'published')
             ->where(function($query) {
-                $query->where('name', 'like', '%Family%')
-                      ->orWhere('description', 'like', '%Family%')
-                      ->orWhere('short_description', 'like', '%Family%')
-                      ->orWhere('name', 'like', '%Kid%')
-                      ->orWhere('description', 'like', '%Kid%');
+                $query->where('name', 'like', '%kilimanjaro%')
+                      ->orWhere('description', 'like', '%kilimanjaro%')
+                      ->orWhere('short_description', 'like', '%kilimanjaro%')
+                      ->orWhere('tour_type', 'like', '%trekking%')
+                      ->orWhere('tour_type', 'like', '%mountain%');
             })
             ->orderBy('is_featured', 'desc')
-            ->orderBy('price', 'asc')
-            ->get()
-            ->map(function($tour) {
-                return [
-                    'id' => $tour->id,
-                    'name' => $tour->name,
-                    'slug' => $tour->slug,
-                    'price' => (float) $tour->price,
-                    'starting_price' => (float) ($tour->starting_price ?? $tour->price),
-                    'duration_days' => $tour->duration_days,
-                    'image' => $tour->image_url ? (str_starts_with($tour->image_url, 'http') ? $tour->image_url : asset($tour->image_url)) : asset('images/hero-slider/animal-movement.jpg'),
-                    'description' => $tour->short_description ?: substr($tour->description ?? '', 0, 200) . '...',
-                    'destination' => $tour->destination ? $tour->destination->name : 'Tanzania',
-                    'rating' => $tour->rating ?? 4.5,
-                    'is_featured' => $tour->is_featured ?? false,
-                ];
-            });
-
-        return view('pages.experiences.family', compact('familyTours'));
+            ->orderBy('name')
+            ->get();
+        
+        // Get statistics for Kilimanjaro
+        $stats = [
+            'total_tours' => $kilimanjaroTours->count(),
+            'featured_tours' => $kilimanjaroTours->where('is_featured', true)->count(),
+            'avg_price' => $kilimanjaroTours->avg('price'),
+            'avg_duration' => $kilimanjaroTours->avg('duration_days'),
+        ];
+        
+        return view('kilimanjaro', compact('kilimanjaroTours', 'stats'));
     }
 
     /**
-     * Display the 'Wildlife Birds' page.
+     * Display things to do page.
+     *
+     * @return View
+     */
+    public function todo(): View
+    {
+        // Get tour categories for activity types
+        $categories = \App\Models\TourCategory::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+        
+        // Get featured tours for each category
+        $toursByCategory = [];
+        foreach ($categories as $category) {
+            $toursByCategory[$category->slug] = \App\Models\Tour::with(['destination', 'categories'])
+                ->where('status', 'active')
+                ->where('publish_status', 'published')
+                ->whereHas('categories', function($query) use ($category) {
+                    $query->where('tour_categories.id', $category->id);
+                })
+                ->orderBy('is_featured', 'desc')
+                ->orderBy('name')
+                ->take(3)
+                ->get();
+        }
+        
+        // Get all tours for the "All Activities" section
+        $allTours = \App\Models\Tour::with(['destination', 'categories'])
+            ->where('status', 'active')
+            ->where('publish_status', 'published')
+            ->orderBy('is_featured', 'desc')
+            ->orderBy('name')
+            ->take(12)
+            ->get();
+        
+        return view('todo', compact('categories', 'toursByCategory', 'allTours'));
+    }
+
+    /**
+     * Display blog page.
+     *
+     * @return View
+     */
+    public function blog(): View
+    {
+        return view('blog');
+    }
+
+    /**
+     * Display contact page.
+     *
+     * @return View
+     */
+    public function contact(): View
+    {
+        return view('contact');
+    }
+
+    /**
+     * Show the affiliate program page.
      *
      * @param Request $request
      * @return View
      */
-    public function wildlifeBirds(Request $request): View
+    public function affiliate(Request $request): View
     {
-        // Get bird watching tours
-        $birdingTours = \App\Models\Tour::with('destination')
-            ->where('status', 'active')
-            ->where('publish_status', 'published')
-            ->where(function($query) {
-                $query->where('name', 'like', '%bird%')
-                      ->orWhere('description', 'like', '%bird%')
-                      ->orWhere('short_description', 'like', '%bird%')
-                      ->orWhere('name', 'like', '%birding%')
-                      ->orWhere('description', 'like', '%birding%');
-            })
-            ->orderBy('is_featured', 'desc')
-            ->orderBy('price', 'asc')
-            ->get()
-            ->map(function($tour) {
-                return [
-                    'id' => $tour->id,
-                    'name' => $tour->name,
-                    'slug' => $tour->slug,
-                    'price' => (float) $tour->price,
-                    'starting_price' => (float) ($tour->starting_price ?? $tour->price),
-                    'duration_days' => $tour->duration_days,
-                    'image' => $tour->image_url ? (str_starts_with($tour->image_url, 'http') ? $tour->image_url : asset($tour->image_url)) : asset('images/hero-slider/group-of-animals.jpg'),
-                    'description' => $tour->short_description ?: substr($tour->description ?? '', 0, 200) . '...',
-                    'destination' => $tour->destination ? $tour->destination->name : 'Tanzania',
-                    'rating' => $tour->rating ?? 4.5,
-                    'is_featured' => $tour->is_featured ?? false,
-                ];
-            });
+        return view('affiliate');
+    }
 
-        return view('pages.wildlife.birds', compact('birdingTours'));
+    /**
+     * Show the privacy policy page.
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function privacy(Request $request): View
+    {
+        return view('privacy');
+    }
+
+    /**
+     * Show the terms and conditions page.
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function terms(Request $request): View
+    {
+        return view('terms');
+    }
+
+    /**
+     * Show the cookie policy page.
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function cookie(Request $request): View
+    {
+        return view('cookie');
+    }
+
+    /**
+     * Show the booking conditions page.
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function booking(Request $request): View
+    {
+        return view('booking');
     }
 }
 

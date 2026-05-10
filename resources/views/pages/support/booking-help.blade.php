@@ -1,97 +1,77 @@
 @extends('layouts.app')
 
-@section('title', 'Booking Help - Adventure Tours')
-@section('description', 'A step-by-step guide to our simple and secure booking process. Find information on payments, confirmations, and how to manage your booking.')
-
-@section('body_class', 'support-page')
-
 @section('content')
-
-    <!-- Page Header -->
-    <section class="page-header" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80&blend=0f3429&sat=-100&bri=-20&bm=multiply');">
-        <div class="container">
-            <h1 class="page-title" data-aos="fade-up">Booking Help</h1>
-            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="100">Your adventure is just a few clicks away. Here’s how our simple booking process works.</p>
+<div id="page-booking-help" class="page">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="section-label" style="justify-content:center;">Support Center</div>
+      <h1 class="section-title" style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);">Booking <span style="color:var(--gold-light)">Help</span></h1>
+      <p class="section-subtitle" style="margin:12px auto 0;color:rgba(255,255,255,0.7);">Everything you need to know about booking your Tanzania adventure.</p>
+    </div>
+  </div>
+  <section style="padding:80px 0;">
+    <div class="container">
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-title" style="margin-bottom:12px;">Booking <span>FAQ</span></h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">How do I make a booking?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>You can book online through our website, by email at bookings@tanzaniatrips.com, or by calling +255 754 123 456. We'll respond within 2 hours to confirm availability and provide payment details.</p>
+          </div>
         </div>
-    </section>
-
-    <!-- Step-by-Step Guide Section -->
-    <section class="content-section">
-        <div class="container">
-            <div class="steps-grid">
-                <!-- Step 1 -->
-                <div class="step-card" data-aos="fade-up">
-                    <div class="step-number">01</div>
-                    <div class="step-icon"><i class="fas fa-route"></i></div>
-                    <h3 class="step-title">Choose Your Tour</h3>
-                    <p>Browse our collection of adventures. Use our filters to sort by destination, activity, or date. Once you find the perfect trip, click "View Details" to learn more.</p>
-                </div>
-                <!-- Step 2 -->
-                <div class="step-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="step-number">02</div>
-                    <div class="step-icon"><i class="fas fa-calendar-check"></i></div>
-                    <h3 class="step-title">Select Your Date</h3>
-                    <p>On the tour page, you'll find a list of available departure dates. Select the one that works for you and specify the number of travelers in your group.</p>
-                </div>
-                <!-- Step 3 -->
-                <div class="step-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="step-number">03</div>
-                    <div class="step-icon"><i class="fas fa-user-edit"></i></div>
-                    <h3 class="step-title">Enter Your Details</h3>
-                    <p>Proceed to our secure booking page. Fill in your personal information and any optional add-ons, like gear rental or travel insurance.</p>
-                </div>
-                <!-- Step 4 -->
-                <div class="step-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="step-number">04</div>
-                    <div class="step-icon"><i class="fas fa-credit-card"></i></div>
-                    <h3 class="step-title">Confirm & Pay</h3>
-                    <p>Review your booking summary and complete the payment through our secure gateway. We accept all major credit cards. Once complete, you'll receive an instant confirmation email.</p>
-                </div>
-            </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>We accept bank transfers, credit/debit cards, PayPal, M-Pesa, Tigo Pesa, and Airtel Money. A 30% deposit is required to confirm booking, with balance due 30 days before departure.</p>
+          </div>
         </div>
-    </section>
-
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Can I customize my itinerary?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>Absolutely! All our tours can be fully customized. Contact us with your preferences for dates, group size, budget, and special interests, and we'll create a personalized itinerary.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What is your cancellation policy?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>Free cancellation up to 30 days before departure (full refund). 15-30 days: 50% refund. Less than 15 days: no refund, but we offer free rebooking within 12 months.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Do you offer travel insurance?<i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">
+            <p>Yes, we recommend comprehensive travel insurance and can arrange it through our partners. Coverage includes trip cancellation, medical evacuation, and lost luggage.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="about-mission" style="background:var(--off-white);">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-label">Need More Help?</div>
+          <h2 class="section-title" style="margin-bottom:20px;">Contact Our <span>Support Team</span></h2>
+          <p>Our travel consultants are available 7 days a week to help with any questions about your booking, itinerary changes, or special requirements.</p>
+          <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;">
+            <a href="tel:+255754123456" class="btn-primary"><i class="fas fa-phone"></i> Call Us</a>
+            <a href="mailto:support@tanzaniatrips.com" class="btn-outline"><i class="fas fa-envelope"></i> Email Support</a>
+          </div>
+        </div>
+        <div class="about-img-wrap">
+          <div class="img-placeholder img-serengeti" style="height:480px"><i class="fas fa-headset" style="font-size:6rem;"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 @endsection
 
-@push('styles')
-<style>
-    /* Page Header Styles */
-    .page-header { padding: 100px 0; /* ... */ }
-
-    .steps-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-    }
-    .step-card {
-        background: var(--card-bg);
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 5px 25px var(--shadow);
-        text-align: center;
-        position: relative;
-    }
-    .step-number {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        font-family: var(--font-primary);
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--accent-green);
-        opacity: 0.1;
-    }
-    .step-icon {
-        font-size: 2.5rem;
-        color: var(--accent-green);
-        margin-bottom: 20px;
-    }
-    .step-title {
-        font-family: var(--font-primary);
-        font-size: 1.5rem;
-        color: var(--text-color);
-        margin-bottom: 15px;
-    }
-    .step-card p { color: var(--gray); }
-</style>
+@push('scripts')
+<script>
+// Set current page for navigation
+currentPage = 'booking-help';
+updateNavbar();
+</script>
 @endpush
