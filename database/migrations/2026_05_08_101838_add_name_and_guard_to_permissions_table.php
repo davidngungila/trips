@@ -12,10 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('permissions', function (Blueprint $table) {
-            $table->string('name')->after('id');
-            $table->string('guard_name')->default('web')->after('name');
+            if (!Schema::hasColumn('permissions', 'name')) {
+                $table->string('name')->after('id');
+            }
+            if (!Schema::hasColumn('permissions', 'guard_name')) {
+                $table->string('guard_name')->default('web')->after('name');
+            }
             
-            $table->unique(['name', 'guard_name']);
+            if (!Schema::hasColumn('permissions', 'name') || !Schema::hasColumn('permissions', 'guard_name')) {
+                $table->unique(['name', 'guard_name']);
+            }
         });
     }
 
@@ -25,8 +31,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('permissions', function (Blueprint $table) {
-            $table->dropUnique(['name', 'guard_name']);
-            $table->dropColumn(['name', 'guard_name']);
+            if (Schema::hasColumn('permissions', 'name') && Schema::hasColumn('permissions', 'guard_name')) {
+                $table->dropUnique(['name', 'guard_name']);
+                $table->dropColumn(['name', 'guard_name']);
+            }
         });
     }
 };
